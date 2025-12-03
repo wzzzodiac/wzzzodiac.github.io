@@ -2,16 +2,416 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Walter – Proyectos</title>
+  <title>Mis proyectos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1e293b, #020617);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 64px;
+      background: rgba(15, 23, 42, 0.95);
+      border-right: 1px solid rgba(148, 163, 184, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 8px;
+      transition: width 0.25s ease;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .sidebar:hover {
+      width: 220px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+    }
+
+    .logo span {
+      color: #0b1120;
+    }
+
+    .menu {
+      width: 100%;
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .menu-item span.icon {
+      width: 24px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .menu-item span.label {
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .sidebar:hover .menu-item span.label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .menu-item:hover {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--accent);
+      transform: translateX(2px);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 11px;
+      color: var(--text-soft);
+      text-align: center;
+      opacity: 0.6;
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    .main {
+      margin-left: 64px;
+      padding: 32px 20px;
+      width: 100%;
+      max-width: 920px;
+      margin-right: auto;
+    }
+
+    @media (min-width: 900px) {
+      .main {
+        padding: 48px 40px;
+      }
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    /* ========== HERO / PERFIL ========== */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .hero-text {
+      flex: 1 1 260px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .hero-photo-wrapper {
+      flex: 0 0 auto;
+    }
+
+    .hero-photo-link {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-photo-link:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-photo {
+      display: block;
+      width: 110px;
+      height: 110px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid #020617;
+      background: #020617;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* ========== PROYECTOS ========== */
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .project-list {
+      list-style: decimal-leading-zero;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-list li {
+      position: relative;
+    }
+
+    .project-link {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid transparent;
+      transition: 
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .project-link:hover {
+      transform: translateX(6px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
+      border-color: rgba(56, 189, 248, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--accent);
+    }
+
+    /* ========== CONTACTO ========== */
+    .contact-box {
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.85);
+      font-size: 13px;
+    }
+
+    .contact-box a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h1>Mis proyectos</h1>
-  <p>Bienvenido a mi página principal de GitHub :)</p>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <!-- Cambia las iniciales si quieres -->
+      <span>WZ</span>
+    </div>
 
-  <h2>Proyectos</h2>
-  <ul>
-    <li><a href="https://wzzzodiac.github.io/proyecto-recetas">App recetas de mi papá</a></li>
-    <li><a href="https://github.com/wzzzodiac/otro-proyecto">Otro proyecto en GitHub</a></li>
-  </ul>
+    <nav class="menu">
+      <a class="menu-item" href="#inicio">
+        <span class="icon">🏠</span>
+        <span class="label">Inicio</span>
+      </a>
+      <a class="menu-item" href="#proyectos">
+        <span class="icon">📁</span>
+        <span class="label">Proyectos</span>
+      </a>
+      <a class="menu-item" href="#contacto">
+        <span class="icon">✉️</span>
+        <span class="label">Contacto</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      v1.0 • GitHub Pages
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- INICIO -->
+    <section id="inicio" class="hero">
+      <div class="hero-text">
+        <div class="hero-tag">
+          <span>🛠️</span>
+          <span>Proyectos personales</span>
+        </div>
+        <h1 class="hero-title">Walter Zafra</h1>
+        <p class="hero-subtitle">
+          Estudiante de mecatrónica • Proyectos de estudio, ideas random y cosas que me apetece programar.
+        </p>
+        <p style="font-size: 13px; color: var(--text-soft); max-width: 420px;">
+          Esta página es mi “hub” principal. Aquí voy listando mis proyectos
+          para tenerlos todos en un solo lugar.
+        </p>
+      </div>
+
+      <div class="hero-photo-wrapper">
+        <!-- 
+          Cambia href por el link donde quieres que lleve tu foto
+          (por ejemplo a tu GitHub).
+        -->
+        <a
+          class="hero-photo-link"
+          href="https://github.com/wzzzodiac"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <!-- 
+            Cambia src por la URL de tu foto.
+            Puede ser por ejemplo la foto de tu perfil de GitHub o una imagen subida a otra parte.
+          -->
+          <img
+            class="hero-photo"
+            src="https://avatars.githubusercontent.com/u/583231?v=4"
+            alt="Foto de perfil"
+          >
+        </a>
+        <div class="hero-note">
+          Haz click en la foto para ir al perfil.
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos">
+      <h2 class="section-title">Proyectos</h2>
+      <p class="section-subtitle">
+        Lista simple. Sin descripción, solo enlaces. Al pasar el ratón se resaltan.
+      </p>
+
+      <ol class="project-list">
+        <!-- Ejemplos, cambia los href y los nombres -->
+        <li>
+          <a
+            class="project-link"
+            href="https://wzzzodiac.github.io/proyecto-recetas"
+            target="_blank"
+            rel="noreferrer"
+          >
+            01 – App recetas de mi papá
+          </a>
+        </li>
+        <li>
+          <a
+            class="project-link"
+            href="https://github.com/wzzzodiac/otro-proyecto"
+            target="_blank"
+            rel="noreferrer"
+          >
+            02 – Otro proyecto de prueba
+          </a>
+        </li>
+        <li>
+          <a
+            class="project-link"
+            href="https://github.com/wzzzodiac/otro-mas"
+            target="_blank"
+            rel="noreferrer"
+          >
+            03 – Proyecto random
+          </a>
+        </li>
+      </ol>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-box">
+        <p>
+          Si algún día alguien quiere escribirme por algo de estos proyectos:
+        </p>
+        <p style="margin-top: 6px;">
+          GitHub: 
+          <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">
+            @TU_USUARIO
+          </a>
+        </p>
+        <p style="margin-top: 2px;">
+          Email (ejemplo):
+          <a href="mailto:abc123@hotmail.com">abc123@hotmail.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
