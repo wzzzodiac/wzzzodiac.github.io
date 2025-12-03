@@ -288,7 +288,51 @@
   white-space: normal;
   text-align: center;
 }
-    
+    /* Foto dentro del sidebar */
+.sidebar-profile {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-photo-link {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px;
+  background: linear-gradient(135deg, #38bdf8, #a855f7);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-photo-link:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
+}
+
+.sidebar-photo {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid #020617;
+}
+
+.sidebar-photo-note {
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar:hover .sidebar-photo-note {
+  opacity: 1;
+  transform: translateY(0);
+}
+
   </style>
 </head>
 <body>
