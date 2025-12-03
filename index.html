@@ -34,7 +34,7 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 64px;
+      width: 68px;
       background: rgba(15, 23, 42, 0.95);
       border-right: 1px solid rgba(148, 163, 184, 0.15);
       display: flex;
@@ -47,8 +47,14 @@
     }
 
     .sidebar:hover {
-      width: 220px;
+      width: 260px;
     }
+
+    .sidebar-photo-note {
+    max-width: 70px;
+    text-align: center;
+    }
+
 
     .logo {
       width: 40px;
@@ -314,10 +320,14 @@
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
 }
-
+    
 .sidebar-photo {
   width: 62px;
   height: 62px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid #020617;
+}
 
 .sidebar-photo-note {
   font-size: 11px;
