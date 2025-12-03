@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mis proyectos</title>
+  <title>My projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
@@ -298,12 +298,17 @@
 }
 
 .sidebar-photo-link {
-  display: inline-block;
-  border-radius: 999px;
-  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;      /* tamaño fijo del círculo */
+  height: 70px;     /* tamaño fijo del círculo */
+  border-radius: 50%;
+  padding: 3px;
   background: linear-gradient(135deg, #38bdf8, #a855f7);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 
 .sidebar-photo-link:hover {
   transform: translateY(-3px) scale(1.02);
@@ -311,12 +316,8 @@
 }
 
 .sidebar-photo {
-  width: 54px;
-  height: 54px;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 3px solid #020617;
-}
+  width: 62px;
+  height: 62px;
 
 .sidebar-photo-note {
   font-size: 11px;
@@ -374,9 +375,9 @@
       <div class="hero-text">
         <div class="hero-tag">
           <span>🛠️</span>
-          <span>Proyectos personales</span>
+          <span>Personal projects</span>
         </div>
-        <h1 class="hero-title">Walter Zafra</h1>
+        <h1 class="hero-title">W.ZC</h1>
         <p class="hero-subtitle">
           Mechatronics Bs. of Science • Projects, random ideas & more.
         </p>
@@ -431,7 +432,7 @@
 
     <!-- CONTACTO -->
     <section id="contacto">
-      <h2 class="section-title">Contacto</h2>
+      <h2 class="section-title">Contact</h2>
       <div class="contact-box">
         <p>
          Example
