@@ -354,6 +354,48 @@
     list-style-position: inside;
     }
 
+    @media (max-width: 600px) {
+  body {
+    padding: 18px;
+    overflow: auto;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 360px;
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  #scanner {
+    width: min(78vw, 280px);
+    height: min(78vw, 280px);
+    border-radius: 22px;
+  }
+
+  #scanner::before {
+    font-size: 3.3rem;
+  }
+
+  #detect-btn {
+    width: 100%;
+    padding: 15px 26px;
+    font-size: 1rem;
+  }
+
+  .button-box {
+    width: 80%;
+  }
+
+  #result {
+    font-size: 1.2rem;
+  }
+}
+
 
 
   </style>
