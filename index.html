@@ -354,6 +354,101 @@
     list-style-position: inside;
     }
 
+    @media (max-width: 700px) {
+  body {
+    display: block;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: 78px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-right: none;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  }
+
+  .sidebar:hover {
+    width: 100%;
+  }
+
+  .sidebar-profile {
+    width: auto;
+    margin-bottom: 0;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .sidebar-photo-link {
+    width: 52px;
+    height: 52px;
+  }
+
+  .sidebar-photo {
+    width: 46px;
+    height: 46px;
+  }
+
+  .sidebar-photo-note,
+  .sidebar-footer {
+    display: none;
+  }
+
+  .menu {
+    width: auto;
+    margin-top: 0;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .menu-item {
+    padding: 8px 10px;
+    border-radius: 14px;
+  }
+
+  .menu-item span.label {
+    display: none;
+  }
+
+  .menu-item span.icon {
+    font-size: 20px;
+  }
+
+  .sidebar:hover .menu-item span.label {
+    opacity: 0;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 110px 20px 32px;
+    max-width: 100%;
+  }
+
+  .sidebar:hover ~ .main {
+    margin-left: 0;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .project-list {
+    list-style-position: outside;
+    padding-left: 28px;
+  }
+
+  .project-link {
+    width: 100%;
+  }
+}
     
   </style>
 
