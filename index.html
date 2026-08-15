@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <title>W. ZC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
-  
+
   <style>
     :root {
       --bg: #0f172a;
@@ -31,7 +30,6 @@
       display: flex;
     }
 
-    /* ========== SIDEBAR ========== */
     .sidebar {
       position: fixed;
       left: 0;
@@ -53,28 +51,54 @@
       width: 260px;
     }
 
-    .sidebar-photo-note {
-    max-width: 70px;
-    text-align: center;
+    .sidebar-profile {
+      width: 100%;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-
-    .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #38bdf8, #a855f7);
+    .sidebar-photo-link {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 24px;
-      flex-shrink: 0;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .logo span {
-      color: #0b1120;
+    .sidebar-photo-link:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
+    }
+
+    .sidebar-photo {
+      width: 62px;
+      height: 62px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid #020617;
+    }
+
+    .sidebar-photo-note {
+      max-width: 70px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-top: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .sidebar:hover .sidebar-photo-note {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .menu {
@@ -129,7 +153,6 @@
       opacity: 0.6;
     }
 
-    /* ========== MAIN CONTENT ========== */
     .main {
       margin-left: 140px;
       padding: 32px 20px;
@@ -139,17 +162,19 @@
       transition: margin-left 0.25s ease;
     }
 
-    @media (min-width: 900px) {
-      .main {
-        padding: 48px 40px;
-      }
+    .sidebar:hover ~ .main {
+      margin-left: 300px;
     }
 
     section {
+      margin-top: 48px;
       margin-bottom: 48px;
     }
 
-    /* ========== HERO / PERFIL ========== */
+    section:first-of-type {
+      margin-top: 0;
+    }
+
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -173,42 +198,6 @@
       margin-bottom: 12px;
     }
 
-    .hero-photo-wrapper {
-      flex: 0 0 auto;
-    }
-
-    .hero-photo-link {
-      display: inline-block;
-      border-radius: 999px;
-      padding: 4px;
-      background: linear-gradient(135deg, #38bdf8, #a855f7);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .hero-photo-link:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.7);
-    }
-
-    .hero-photo {
-      display: block;
-      width: 110px;
-      height: 110px;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 3px solid #020617;
-      background: #020617;
-    }
-
-    .hero-note {
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-top: 6px;
-      text-align: center;
-    }
-
-    /* ========== PROYECTOS ========== */
     .section-title {
       font-size: 20px;
       margin-bottom: 12px;
@@ -222,14 +211,12 @@
 
     .project-list {
       list-style: decimal-leading-zero;
-      padding-left: 18px;
+      margin-left: 0;
+      padding-left: 16px;
+      list-style-position: inside;
       display: flex;
       flex-direction: column;
       gap: 8px;
-    }
-
-    .project-list li {
-      position: relative;
     }
 
     .project-link {
@@ -240,12 +227,7 @@
       color: var(--text);
       background: rgba(15, 23, 42, 0.6);
       border: 1px solid transparent;
-      transition: 
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease,
-        color 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
     }
 
     .project-link:hover {
@@ -256,7 +238,6 @@
       color: var(--accent);
     }
 
-    /* ========== CONTACTO ========== */
     .contact-box {
       padding: 16px 18px;
       border-radius: 16px;
@@ -274,334 +255,149 @@
       text-decoration: underline;
     }
 
-    .logo-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 999px;
-    object-fit: cover;
-    }
-    .hero-note {
-     max-width: 110px; /* mismo tamaño que la foto */
-      word-wrap: break-word;
-    white-space: normal;
-    text-align: center;
-    }
-    /* Foto dentro del sidebar */
-    .sidebar-profile {
-    width: 100%;
-    margin-bottom: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-
-    .sidebar-photo-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 70px;      /* tamaño fijo del círculo */
-    height: 70px;     /* tamaño fijo del círculo */
-    border-radius: 50%;
-    padding: 3px;
-    background: linear-gradient(135deg, #38bdf8, #a855f7);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-
-    .sidebar-photo-link:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
-    }
-    
-    .sidebar-photo {
-    width: 62px;
-    height: 62px;
-    border-radius: 999px;
-    object-fit: cover;
-    border: 3px solid #020617;
-    }
-
-    .sidebar-photo-note {
-    font-size: 11px;
-    color: var(--text-soft);
-    margin-top: 4px;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(-2px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .sidebar:hover .sidebar-photo-note {
-    opacity: 1;
-     transform: translateY(0);
-    }
-
-    .sidebar:hover ~ .main {
-    margin-left: 300px;  /* 260px sidebar + un poco de aire */
-    }
-
-    section {
-    margin-top: 48px;
-    }
-
-    section:first-of-type {
-    margin-top: 0;
-    }
-
-    .project-list {
-    margin-left: 0;
-    padding-left: 16px;
-    list-style-position: inside;
+    @media (min-width: 900px) {
+      .main {
+        padding: 48px 40px;
+      }
     }
 
     @media (max-width: 700px) {
-  body {
-    display: block;
-    padding: 0;
-    overflow-x: hidden;
-  }
+      body {
+        display: block;
+        padding: 0;
+        overflow-x: hidden;
+      }
 
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: auto;
-    width: 100%;
-    height: 78px;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px 14px;
-    border-right: none;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  }
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100%;
+        height: 78px;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 14px;
+        border-right: none;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+      }
 
-  .sidebar:hover {
-    width: 100%;
-  }
+      .sidebar:hover {
+        width: 100%;
+      }
 
-  .sidebar-profile {
-    width: auto;
-    margin-bottom: 0;
-    flex-direction: row;
-    gap: 8px;
-  }
+      .sidebar-profile {
+        width: auto;
+        margin-bottom: 0;
+        flex-direction: row;
+        gap: 8px;
+      }
 
-  .sidebar-photo-link {
-    width: 52px;
-    height: 52px;
-  }
+      .sidebar-photo-link {
+        width: 52px;
+        height: 52px;
+      }
 
-  .sidebar-photo {
-    width: 46px;
-    height: 46px;
-  }
+      .sidebar-photo {
+        width: 46px;
+        height: 46px;
+      }
 
-  .sidebar-photo-note,
-  .sidebar-footer {
-    display: none;
-  }
+      .sidebar-photo-note,
+      .sidebar-footer {
+        display: none;
+      }
 
-  .menu {
-    width: auto;
-    margin-top: 0;
-    flex-direction: row;
-    gap: 8px;
-  }
+      .menu {
+        width: auto;
+        margin-top: 0;
+        flex-direction: row;
+        gap: 8px;
+      }
 
-  .menu-item {
-    padding: 8px 10px;
-    border-radius: 14px;
-  }
+      .menu-item {
+        padding: 8px 10px;
+        border-radius: 14px;
+      }
 
-  .menu-item span.label {
-    display: none;
-  }
+      .menu-item span.label {
+        display: none;
+      }
 
-  .menu-item span.icon {
-    font-size: 20px;
-  }
+      .menu-item span.icon {
+        font-size: 20px;
+      }
 
-  .sidebar:hover .menu-item span.label {
-    opacity: 0;
-  }
+      .main,
+      .sidebar:hover ~ .main {
+        margin-left: 0;
+        padding: 110px 20px 32px;
+        max-width: 100%;
+      }
 
-  .main {
-    margin-left: 0;
-    padding: 110px 20px 32px;
-    max-width: 100%;
-  }
+      .hero-title {
+        font-size: 26px;
+      }
 
-  .sidebar:hover ~ .main {
-    margin-left: 0;
-  }
+      .project-list {
+        list-style-position: outside;
+        padding-left: 28px;
+      }
 
-  .hero-title {
-    font-size: 26px;
-  }
-
-  .project-list {
-    list-style-position: outside;
-    padding-left: 28px;
-  }
-
-  .project-link {
-    width: 100%;
-  }
-}
-    
+      .project-link {
+        width: 100%;
+      }
+    }
   </style>
-
-
-
-
-
-
-
-
-
-  
 </head>
 <body>
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-<div class="sidebar-profile">
-  <a href="https://github.com/wzzzodiac" target="_blank" class="sidebar-photo-link">
-    <img class="sidebar-photo" src="https://avatars.githubusercontent.com/u/46037018?s=400&u=794e01b6bf68c90c20112760090bd295675f571a&v=4" alt="Foto de perfil">
-  </a>
-  <div class="sidebar-photo-note">My profile</div>
-</div>
-
-
+    <div class="sidebar-profile">
+      <a href="https://github.com/wzzzodiac" target="_blank" class="sidebar-photo-link">
+        <img class="sidebar-photo" src="https://avatars.githubusercontent.com/u/46037018?s=400&u=794e01b6bf68c90c20112760090bd295675f571a&v=4" alt="Foto de perfil">
+      </a>
+      <div class="sidebar-photo-note">My profile</div>
+    </div>
 
     <nav class="menu">
-      <a class="menu-item" href="#inicio">
-        <span class="icon">🏠</span>
-        <span class="label">Home</span>
-      </a>
-      <a class="menu-item" href="#proyectos">
-        <span class="icon">📁</span>
-        <span class="label">Projects</span>
-      </a>
-      <a class="menu-item" href="#contacto">
-        <span class="icon">✉️</span>
-        <span class="label">Contact</span>
-      </a>
+      <a class="menu-item" href="#inicio"><span class="icon">🏠</span><span class="label">Home</span></a>
+      <a class="menu-item" href="#proyectos"><span class="icon">📁</span><span class="label">Projects</span></a>
+      <a class="menu-item" href="#contacto"><span class="icon">✉️</span><span class="label">Contact</span></a>
     </nav>
 
-    <div class="sidebar-footer">
-      v0.17 • GitHub Pages
-    </div>
+    <div class="sidebar-footer">v0.18 • GitHub Pages</div>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
-    <!-- INICIO -->
     <section id="inicio" class="hero">
       <div class="hero-text">
-        
         <h1 class="hero-title">W.ZC</h1>
-        <p class="hero-subtitle">
-          Mechatronics Bs. of Science • Projects, random ideas & more.
-        </p>
-        <p style="font-size: 13px; color: var(--text-soft); max-width: 420px;">
-          Principal "hub" for projects.
-        </p>
-         
+        <p class="hero-subtitle">Mechatronics Bs. of Science • Projects, random ideas & more.</p>
+        <p style="font-size: 13px; color: var(--text-soft); max-width: 420px;">Principal "hub" for projects.</p>
       </div>
-
     </section>
 
-    <!-- PROYECTOS -->
     <section id="proyectos">
       <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">
-        just 4 fun:
-      </p>
+      <p class="section-subtitle">just 4 fun:</p>
 
       <ol class="project-list">
-        <!-- Ejemplos, cambia los href y los nombres -->
-
-        
-        <li>
-          <a
-            class="project-link"
-            href="https://wzzzodiac.github.io/papa_cocina"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Qué cocino mañana
-          </a>
-        </li>
-
-        
-        <li>
-          <a
-            class="project-link"
-            href="https://wzzzodiac.github.io/Whatever/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Are u g4e?
-          </a>
-        </li>
-
-        
-        <li>
-          <a
-            class="project-link"
-            href="https://wzzzodiac.github.io/waifu_rating/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            waifu rating
-          </a>
-        </li>
-
-        
-        <li>
-          <a
-            class="project-link"
-            href="https://wzzzodiac.github.io/g4ydetector/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Gay detector 100% real
-          </a>
-         </li>
-
-        <li>
-          <a
-            class="project-link"
-            href="https://wzzzodiac.github.io/financial-damage-calculator/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Financial Damage Calculator
-          </a>
-        </li>
-        
-          
+        <li><a class="project-link" href="https://wzzzodiac.github.io/papa_cocina" target="_blank" rel="noreferrer">Qué cocino mañana</a></li>
+        <li><a class="project-link" href="https://wzzzodiac.github.io/Whatever/" target="_blank" rel="noreferrer">Are u g4e?</a></li>
+        <li><a class="project-link" href="https://wzzzodiac.github.io/waifu_rating/" target="_blank" rel="noreferrer">waifu rating</a></li>
+        <li><a class="project-link" href="https://wzzzodiac.github.io/g4ydetector/" target="_blank" rel="noreferrer">Gay detector 100% real</a></li>
+        <li><a class="project-link" href="https://wzzzodiac.github.io/financial-damage-calculator/" target="_blank" rel="noreferrer">Financial Damage Calculator</a></li>
+        <li><a class="project-link" href="https://wzzzodiac.github.io/flappy_bird/" target="_blank" rel="noreferrer">Flappy Bird — Bad Decisions Edition</a></li>
       </ol>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto">
       <h2 class="section-title">Contact</h2>
       <div class="contact-box">
-        <p>
-         +00 000 000 0000
-        </p>
-        <p style="margin-top: 6px;">
-          GitHub: 
-          <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">
-            @wzzzodiac
-          </a>
-        </p>
-        <p style="margin-top: 2px;">
-          Email (example):
-          <a href="mailto:abc123@hotmail.com">abc123@hotmail.com</a>
-        </p>
+        <p>+00 000 000 0000</p>
+        <p style="margin-top: 6px;">GitHub: <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">@wzzzodiac</a></p>
+        <p style="margin-top: 2px;">Email (example): <a href="mailto:abc123@hotmail.com">abc123@hotmail.com</a></p>
       </div>
     </section>
   </main>
