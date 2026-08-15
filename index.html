@@ -18,11 +18,7 @@
       --steam-soft: rgba(102, 192, 244, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -49,9 +45,7 @@
       z-index: 10;
     }
 
-    .sidebar:hover {
-      width: 260px;
-    }
+    .sidebar:hover { width: 260px; }
 
     .sidebar-profile {
       width: 100%;
@@ -98,10 +92,7 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .sidebar:hover .sidebar-photo-note {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .sidebar:hover .sidebar-photo-note { opacity: 1; transform: translateY(0); }
 
     .menu {
       width: 100%;
@@ -124,11 +115,7 @@
       white-space: nowrap;
     }
 
-    .menu-item span.icon {
-      width: 24px;
-      text-align: center;
-      font-size: 16px;
-    }
+    .menu-item span.icon { width: 24px; text-align: center; font-size: 16px; }
 
     .menu-item span.label {
       opacity: 0;
@@ -136,10 +123,7 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
-    .sidebar:hover .menu-item span.label {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .sidebar:hover .menu-item span.label { opacity: 1; transform: translateX(0); }
 
     .menu-item:hover {
       background: rgba(15, 23, 42, 0.9);
@@ -164,52 +148,18 @@
       transition: margin-left 0.25s ease;
     }
 
-    .sidebar:hover ~ .main {
-      margin-left: 300px;
-    }
+    .sidebar:hover ~ .main { margin-left: 300px; }
 
-    section {
-      margin-top: 48px;
-      margin-bottom: 48px;
-    }
+    section { margin-top: 48px; margin-bottom: 48px; }
+    section:first-of-type { margin-top: 0; }
 
-    section:first-of-type {
-      margin-top: 0;
-    }
+    .hero { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .hero-text { flex: 1 1 260px; }
+    .hero-title { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .hero-subtitle { font-size: 14px; color: var(--text-soft); margin-bottom: 12px; }
 
-    .hero {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .hero-text {
-      flex: 1 1 260px;
-    }
-
-    .hero-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: var(--text-soft);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .section-subtitle {
-      font-size: 13px;
-      color: var(--text-soft);
-      margin-bottom: 16px;
-    }
+    .section-title { font-size: 20px; margin-bottom: 12px; }
+    .section-subtitle { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
 
     .section-divider {
       height: 1px;
@@ -283,10 +233,7 @@
       text-transform: uppercase;
     }
 
-    .steam-title {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
+    .steam-title { font-size: 18px; margin-bottom: 8px; }
 
     .steam-text {
       max-width: 650px;
@@ -319,34 +266,55 @@
     }
 
     .contact-box {
-      padding: 16px 18px;
-      border-radius: 16px;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      background: rgba(15, 23, 42, 0.85);
+      position: relative;
+      overflow: hidden;
+      padding: 20px 22px;
+      min-height: 116px;
+      border-radius: 18px;
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      background:
+        radial-gradient(circle at 90% 15%, rgba(56, 189, 248, 0.09), transparent 35%),
+        linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(8, 15, 29, 0.97));
+      box-shadow: 0 16px 38px rgba(2, 6, 23, 0.34);
       font-size: 13px;
     }
 
-    .contact-box a {
-      color: var(--accent);
-      text-decoration: none;
+    .contact-box::before {
+      content: "✉";
+      position: absolute;
+      right: 20px;
+      bottom: -20px;
+      font-size: 86px;
+      line-height: 1;
+      color: rgba(56, 189, 248, 0.055);
+      transform: rotate(-8deg);
+      pointer-events: none;
     }
 
-    .contact-box a:hover {
-      text-decoration: underline;
+    .contact-box::after {
+      content: "MAIL";
+      position: absolute;
+      right: 92px;
+      bottom: 8px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: rgba(56, 189, 248, 0.05);
+      pointer-events: none;
     }
+
+    .contact-box p,
+    .contact-box a { position: relative; z-index: 1; }
+
+    .contact-box a { color: var(--accent); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
 
     @media (min-width: 900px) {
-      .main {
-        padding: 48px 40px;
-      }
+      .main { padding: 48px 40px; }
     }
 
     @media (max-width: 700px) {
-      body {
-        display: block;
-        padding: 0;
-        overflow-x: hidden;
-      }
+      body { display: block; padding: 0; overflow-x: hidden; }
 
       .sidebar {
         position: fixed;
@@ -363,51 +331,15 @@
         border-bottom: 1px solid rgba(148, 163, 184, 0.15);
       }
 
-      .sidebar:hover {
-        width: 100%;
-      }
-
-      .sidebar-profile {
-        width: auto;
-        margin-bottom: 0;
-        flex-direction: row;
-        gap: 8px;
-      }
-
-      .sidebar-photo-link {
-        width: 52px;
-        height: 52px;
-      }
-
-      .sidebar-photo {
-        width: 46px;
-        height: 46px;
-      }
-
-      .sidebar-photo-note,
-      .sidebar-footer {
-        display: none;
-      }
-
-      .menu {
-        width: auto;
-        margin-top: 0;
-        flex-direction: row;
-        gap: 4px;
-      }
-
-      .menu-item {
-        padding: 8px 8px;
-        border-radius: 14px;
-      }
-
-      .menu-item span.label {
-        display: none;
-      }
-
-      .menu-item span.icon {
-        font-size: 19px;
-      }
+      .sidebar:hover { width: 100%; }
+      .sidebar-profile { width: auto; margin-bottom: 0; flex-direction: row; gap: 8px; }
+      .sidebar-photo-link { width: 52px; height: 52px; }
+      .sidebar-photo { width: 46px; height: 46px; }
+      .sidebar-photo-note, .sidebar-footer { display: none; }
+      .menu { width: auto; margin-top: 0; flex-direction: row; gap: 4px; }
+      .menu-item { padding: 8px 8px; border-radius: 14px; }
+      .menu-item span.label { display: none; }
+      .menu-item span.icon { font-size: 19px; }
 
       .main,
       .sidebar:hover ~ .main {
@@ -416,31 +348,15 @@
         max-width: 100%;
       }
 
-      .hero-title {
-        font-size: 26px;
-      }
-
-      .project-list {
-        list-style-position: outside;
-        padding-left: 28px;
-      }
-
-      .project-link {
-        width: 100%;
-      }
-
-      .steam-card {
-        padding: 18px;
-      }
-
-      .steam-card::after {
-        font-size: 44px;
-      }
-
-      .steam-button {
-        width: 100%;
-        justify-content: center;
-      }
+      .hero-title { font-size: 26px; }
+      .project-list { list-style-position: outside; padding-left: 28px; }
+      .project-link { width: 100%; }
+      .steam-card { padding: 18px; }
+      .steam-card::after { font-size: 44px; }
+      .steam-button { width: 100%; justify-content: center; }
+      .contact-box { padding: 18px; }
+      .contact-box::before { font-size: 68px; right: 12px; bottom: -14px; }
+      .contact-box::after { display: none; }
     }
   </style>
 </head>
@@ -460,7 +376,7 @@
       <a class="menu-item" href="#contacto"><span class="icon">✉️</span><span class="label">Contact</span></a>
     </nav>
 
-    <div class="sidebar-footer">v0.20 • GitHub Pages</div>
+    <div class="sidebar-footer">v0.21 • GitHub Pages</div>
   </aside>
 
   <main class="main">
@@ -495,18 +411,9 @@
       <div class="steam-card">
         <div class="steam-label">🎮 Steam profile comments</div>
         <h3 class="steam-title">Leave your comment in my steam profile :P</h3>
-        <p class="steam-text">
-          I'm too lazy to build a backend, thats why.....Steam is now my completely professional comment system lol.
-        </p>
-
-        <a
-          class="steam-button"
-          href="https://steamcommunity.com/profiles/76561198422313945"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <span>OPEN STEAM COMMENTS</span>
-          <span>↗</span>
+        <p class="steam-text">I'm too lazy to build a backend, thats why.....Steam is now my completely professional comment system lol.</p>
+        <a class="steam-button" href="https://steamcommunity.com/profiles/76561198422313945" target="_blank" rel="noreferrer">
+          <span>OPEN STEAM COMMENTS</span><span>↗</span>
         </a>
       </div>
     </section>
