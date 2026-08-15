@@ -1,370 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>W. ZC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+
+  <title>W.ZC — Projects, code & questionable ideas</title>
+  <meta name="description" content="Personal hub for projects, code experiments, games and questionable ideas by W.ZC.">
+
+  <meta property="og:title" content="W.ZC — Projects, code & questionable ideas">
+  <meta property="og:description" content="Personal hub for projects, code experiments, games and questionable ideas.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://wzzzodiac.github.io/">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/46037018?v=4">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="W.ZC — Projects, code & questionable ideas">
+  <meta name="twitter:description" content="Projects, code experiments, games and questionable ideas.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/46037018?v=4">
+
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
-
-  <style>
-    :root {
-      --bg: #0f172a;
-      --bg-soft: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --text-soft: #9ca3af;
-      --steam: #66c0f4;
-      --steam-soft: rgba(102, 192, 244, 0.12);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1e293b, #020617);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-    }
-
-    .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 100px;
-      background: rgba(15, 23, 42, 0.95);
-      border-right: 1px solid rgba(148, 163, 184, 0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 16px 8px;
-      transition: width 0.25s ease;
-      backdrop-filter: blur(10px);
-      z-index: 10;
-    }
-
-    .sidebar:hover { width: 260px; }
-
-    .sidebar-profile {
-      width: 100%;
-      margin-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .sidebar-photo-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      padding: 3px;
-      background: linear-gradient(135deg, #38bdf8, #a855f7);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .sidebar-photo-link:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.8);
-    }
-
-    .sidebar-photo {
-      width: 62px;
-      height: 62px;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 3px solid #020617;
-    }
-
-    .sidebar-photo-note {
-      max-width: 70px;
-      text-align: center;
-      font-size: 11px;
-      color: var(--text-soft);
-      margin-top: 4px;
-      white-space: nowrap;
-      opacity: 0;
-      transform: translateY(-2px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .sidebar:hover .sidebar-photo-note { opacity: 1; transform: translateY(0); }
-
-    .menu {
-      width: 100%;
-      margin-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      cursor: pointer;
-      color: var(--text-soft);
-      text-decoration: none;
-      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .menu-item span.icon { width: 24px; text-align: center; font-size: 16px; }
-
-    .menu-item span.label {
-      opacity: 0;
-      transform: translateX(-6px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .sidebar:hover .menu-item span.label { opacity: 1; transform: translateX(0); }
-
-    .menu-item:hover {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--accent);
-      transform: translateX(2px);
-    }
-
-    .sidebar-footer {
-      margin-top: auto;
-      font-size: 11px;
-      color: var(--text-soft);
-      text-align: center;
-      opacity: 0.6;
-    }
-
-    .main {
-      margin-left: 140px;
-      padding: 32px 20px;
-      width: 100%;
-      max-width: 920px;
-      margin-right: auto;
-      transition: margin-left 0.25s ease;
-    }
-
-    .sidebar:hover ~ .main { margin-left: 300px; }
-
-    section { margin-top: 48px; margin-bottom: 48px; }
-    section:first-of-type { margin-top: 0; }
-
-    .hero { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
-    .hero-text { flex: 1 1 260px; }
-    .hero-title { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    .hero-subtitle { font-size: 14px; color: var(--text-soft); margin-bottom: 12px; }
-
-    .section-title { font-size: 20px; margin-bottom: 12px; }
-    .section-subtitle { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
-
-    .section-divider {
-      height: 1px;
-      width: 100%;
-      margin: 14px 0 28px;
-      background: linear-gradient(90deg, rgba(148,163,184,0.28), transparent);
-    }
-
-    .project-list {
-      list-style: decimal-leading-zero;
-      margin-left: 0;
-      padding-left: 16px;
-      list-style-position: inside;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .project-link {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 10px;
-      text-decoration: none;
-      color: var(--text);
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid transparent;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-
-    .project-link:hover {
-      transform: translateX(6px);
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.8);
-      border-color: rgba(56, 189, 248, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--accent);
-    }
-
-    .steam-card {
-      position: relative;
-      overflow: hidden;
-      padding: 22px;
-      border-radius: 20px;
-      border: 1px solid rgba(102, 192, 244, 0.28);
-      background:
-        radial-gradient(circle at 90% 10%, rgba(102, 192, 244, 0.13), transparent 34%),
-        linear-gradient(145deg, rgba(18, 32, 47, 0.96), rgba(10, 18, 31, 0.96));
-      box-shadow: 0 18px 45px rgba(2, 6, 23, 0.45);
-    }
-
-    .steam-card::after {
-      content: "STEAM";
-      position: absolute;
-      right: -8px;
-      bottom: -18px;
-      font-size: 58px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      color: rgba(102, 192, 244, 0.045);
-      pointer-events: none;
-    }
-
-    .steam-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-      color: var(--steam);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .steam-title { font-size: 18px; margin-bottom: 8px; }
-
-    .steam-text {
-      max-width: 650px;
-      color: var(--text-soft);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .steam-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 18px;
-      padding: 11px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(102, 192, 244, 0.35);
-      background: linear-gradient(135deg, rgba(102, 192, 244, 0.20), rgba(27, 89, 132, 0.26));
-      color: #dff4ff;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .steam-button:hover {
-      transform: translateY(-2px);
-      border-color: rgba(102, 192, 244, 0.75);
-      background: linear-gradient(135deg, rgba(102, 192, 244, 0.30), rgba(27, 89, 132, 0.38));
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-    }
-
-    .contact-box {
-      position: relative;
-      overflow: hidden;
-      padding: 20px 22px;
-      min-height: 116px;
-      border-radius: 18px;
-      border: 1px solid rgba(56, 189, 248, 0.22);
-      background:
-        radial-gradient(circle at 90% 15%, rgba(56, 189, 248, 0.09), transparent 35%),
-        linear-gradient(145deg, rgba(15, 23, 42, 0.94), rgba(8, 15, 29, 0.97));
-      box-shadow: 0 16px 38px rgba(2, 6, 23, 0.34);
-      font-size: 13px;
-    }
-
-    .contact-box::before {
-      content: "✉";
-      position: absolute;
-      right: 20px;
-      bottom: -20px;
-      font-size: 86px;
-      line-height: 1;
-      color: rgba(56, 189, 248, 0.055);
-      transform: rotate(-8deg);
-      pointer-events: none;
-    }
-
-    .contact-box::after {
-      content: "MAIL";
-      position: absolute;
-      right: 92px;
-      bottom: 8px;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.22em;
-      color: rgba(56, 189, 248, 0.05);
-      pointer-events: none;
-    }
-
-    .contact-box p,
-    .contact-box a { position: relative; z-index: 1; }
-
-    .contact-box a { color: var(--accent); text-decoration: none; }
-    .contact-box a:hover { text-decoration: underline; }
-
-    @media (min-width: 900px) {
-      .main { padding: 48px 40px; }
-    }
-
-    @media (max-width: 700px) {
-      body { display: block; padding: 0; overflow-x: hidden; }
-
-      .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: auto;
-        width: 100%;
-        height: 78px;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px 14px;
-        border-right: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-      }
-
-      .sidebar:hover { width: 100%; }
-      .sidebar-profile { width: auto; margin-bottom: 0; flex-direction: row; gap: 8px; }
-      .sidebar-photo-link { width: 52px; height: 52px; }
-      .sidebar-photo { width: 46px; height: 46px; }
-      .sidebar-photo-note, .sidebar-footer { display: none; }
-      .menu { width: auto; margin-top: 0; flex-direction: row; gap: 4px; }
-      .menu-item { padding: 8px 8px; border-radius: 14px; }
-      .menu-item span.label { display: none; }
-      .menu-item span.icon { font-size: 19px; }
-
-      .main,
-      .sidebar:hover ~ .main {
-        margin-left: 0;
-        padding: 110px 20px 32px;
-        max-width: 100%;
-      }
-
-      .hero-title { font-size: 26px; }
-      .project-list { list-style-position: outside; padding-left: 28px; }
-      .project-link { width: 100%; }
-      .steam-card { padding: 18px; }
-      .steam-card::after { font-size: 44px; }
-      .steam-button { width: 100%; justify-content: center; }
-      .contact-box { padding: 18px; }
-      .contact-box::before { font-size: 68px; right: 12px; bottom: -14px; }
-      .contact-box::after { display: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <aside class="sidebar">
+  <aside class="sidebar" aria-label="Main navigation">
     <div class="sidebar-profile">
-      <a href="https://github.com/wzzzodiac" target="_blank" class="sidebar-photo-link">
-        <img class="sidebar-photo" src="https://avatars.githubusercontent.com/u/46037018?s=400&u=794e01b6bf68c90c20112760090bd295675f571a&v=4" alt="Foto de perfil">
+      <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer" class="sidebar-photo-link" aria-label="Open GitHub profile">
+        <img class="sidebar-photo" src="https://avatars.githubusercontent.com/u/46037018?s=400&u=794e01b6bf68c90c20112760090bd295675f571a&v=4" alt="W.ZC profile picture">
       </a>
       <div class="sidebar-photo-note">My profile</div>
     </div>
@@ -376,51 +38,121 @@
       <a class="menu-item" href="#contacto"><span class="icon">✉️</span><span class="label">Contact</span></a>
     </nav>
 
-    <div class="sidebar-footer">v0.21 • GitHub Pages</div>
+    <div class="sidebar-footer">v0.30 • GitHub Pages</div>
   </aside>
 
   <main class="main">
-    <section id="inicio" class="hero">
+    <section id="inicio" class="hero reveal">
       <div class="hero-text">
+        <p class="eyebrow">MECHATRONICS // CODE // QUESTIONABLE IDEAS</p>
         <h1 class="hero-title">W.ZC</h1>
         <p class="hero-subtitle">Mechatronics Bs. of Science • Projects, random ideas & more.</p>
-        <p style="font-size: 13px; color: var(--text-soft); max-width: 420px;">Principal "hub" for projects.</p>
+        <p class="hero-description">
+          My little corner of the internet for useful tools, useless experiments and projects that somehow survived development.
+        </p>
+
+        <div class="hero-actions">
+          <a class="hero-button primary" href="#proyectos">📁 Browse projects</a>
+          <a class="hero-button" href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+
+        <div class="hero-badges">
+          <span class="badge">6 public mini-projects</span>
+          <span class="badge">Last updated: <span id="lastUpdated">recently</span></span>
+          <span class="badge">Powered by questionable decisions XD</span>
+        </div>
       </div>
     </section>
 
-    <section id="proyectos">
+    <section id="proyectos" class="reveal">
       <div class="section-divider"></div>
       <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">just 4 fun:</p>
+      <p class="section-subtitle">Useful stuff, stupid stuff, and the dangerous overlap between both.</p>
 
-      <ol class="project-list">
-        <li><a class="project-link" href="https://wzzzodiac.github.io/papa_cocina" target="_blank" rel="noreferrer">Qué cocino mañana</a></li>
-        <li><a class="project-link" href="https://wzzzodiac.github.io/Whatever/" target="_blank" rel="noreferrer">Are u g4e?</a></li>
-        <li><a class="project-link" href="https://wzzzodiac.github.io/waifu_rating/" target="_blank" rel="noreferrer">waifu rating</a></li>
-        <li><a class="project-link" href="https://wzzzodiac.github.io/g4ydetector/" target="_blank" rel="noreferrer">Gay detector 100% real</a></li>
-        <li><a class="project-link" href="https://wzzzodiac.github.io/financial-damage-calculator/" target="_blank" rel="noreferrer">Financial Damage Calculator</a></li>
-        <li><a class="project-link" href="https://wzzzodiac.github.io/flappy_bird/" target="_blank" rel="noreferrer">Flappy Bird — Bad Decisions Edition</a></li>
-      </ol>
+      <div class="project-grid">
+        <article class="project-card" data-icon="🍳">
+          <div class="project-top">
+            <span class="project-number">01</span>
+            <span class="project-tag">Random</span>
+          </div>
+          <h3>Qué cocino mañana</h3>
+          <p>Because deciding what to cook tomorrow apparently required software engineering.</p>
+          <a class="project-open" href="https://wzzzodiac.github.io/papa_cocina" target="_blank" rel="noreferrer">OPEN PROJECT ↗</a>
+        </article>
+
+        <article class="project-card" data-icon="❓">
+          <div class="project-top">
+            <span class="project-number">02</span>
+            <span class="project-tag">Science™</span>
+          </div>
+          <h3>Are u g4e?</h3>
+          <p>A highly reliable internet instrument backed by absolutely no peer-reviewed research.</p>
+          <a class="project-open" href="https://wzzzodiac.github.io/Whatever/" target="_blank" rel="noreferrer">OPEN PROJECT ↗</a>
+        </article>
+
+        <article class="project-card" data-icon="⭐">
+          <div class="project-top">
+            <span class="project-number">03</span>
+            <span class="project-tag">Culture</span>
+          </div>
+          <h3>Waifu Rating</h3>
+          <p>Important analytical infrastructure for questions society was too afraid to quantify.</p>
+          <a class="project-open" href="https://wzzzodiac.github.io/waifu_rating/" target="_blank" rel="noreferrer">OPEN PROJECT ↗</a>
+        </article>
+
+        <article class="project-card" data-icon="🔬">
+          <div class="project-top">
+            <span class="project-number">04</span>
+            <span class="project-tag">Detector</span>
+          </div>
+          <h3>Gay Detector 100% Real</h3>
+          <p>Laser technology, random answers and the confidence of a machine that has never known accountability.</p>
+          <a class="project-open" href="https://wzzzodiac.github.io/g4ydetector/" target="_blank" rel="noreferrer">OPEN PROJECT ↗</a>
+        </article>
+
+        <article class="project-card" data-icon="💸">
+          <div class="project-top">
+            <span class="project-number">05</span>
+            <span class="project-tag">Tool</span>
+          </div>
+          <h3>Financial Damage Calculator</h3>
+          <p>Find out exactly how many work hours and Döner your next terrible purchase is going to cost.</p>
+          <a class="project-open" href="https://wzzzodiac.github.io/financial-damage-calculator/" target="_blank" rel="noreferrer">CALCULATE DAMAGE ↗</a>
+        </article>
+
+        <article class="project-card" data-icon="🐦">
+          <div class="project-top">
+            <span class="project-number">06</span>
+            <span class="project-tag">Game</span>
+          </div>
+          <h3>Flappy Bird — Bad Decisions Edition</h3>
+          <p>Gravity, pipes, questionable aviation decisions and increasingly disrespectful death messages.</p>
+          <a class="project-open" href="https://wzzzodiac.github.io/flappy_bird/" target="_blank" rel="noreferrer">RUIN THE BIRD'S DAY ↗</a>
+        </article>
+      </div>
     </section>
 
-    <section id="steam">
+    <section id="steam" class="reveal">
       <div class="section-divider"></div>
       <h2 class="section-title">Comments thing</h2>
       <p class="section-subtitle">Because apparently websites are supposed to have social interaction.</p>
 
       <div class="steam-card">
         <div class="steam-label">🎮 Steam profile comments</div>
-        <h3 class="steam-title">Leave your comment in my steam profile :P</h3>
-        <p class="steam-text">I'm too lazy to build a backend, thats why.....Steam is now my completely professional comment system lol.</p>
+        <h3 class="steam-title">Leave your comment in my Steam profile :P</h3>
+        <p class="steam-text">
+          I'm too lazy to build a backend just so someone can write “nice site bro”, so Steam is now my completely professional comment system lol.
+        </p>
         <a class="steam-button" href="https://steamcommunity.com/profiles/76561198422313945" target="_blank" rel="noreferrer">
           <span>OPEN STEAM COMMENTS</span><span>↗</span>
         </a>
       </div>
     </section>
 
-    <section id="contacto">
+    <section id="contacto" class="reveal">
       <div class="section-divider"></div>
       <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">For serious matters, allegedly.</p>
       <div class="contact-box">
         <p>+00 000 000 0000</p>
         <p style="margin-top: 6px;">GitHub: <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">@wzzzodiac</a></p>
@@ -428,5 +160,8 @@
       </div>
     </section>
   </main>
+
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="script.js"></script>
 </body>
 </html>
