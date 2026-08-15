@@ -14,6 +14,8 @@
       --accent-soft: rgba(56, 189, 248, 0.12);
       --text: #e5e7eb;
       --text-soft: #9ca3af;
+      --steam: #66c0f4;
+      --steam-soft: rgba(102, 192, 244, 0.12);
     }
 
     * {
@@ -209,6 +211,13 @@
       margin-bottom: 16px;
     }
 
+    .section-divider {
+      height: 1px;
+      width: 100%;
+      margin: 14px 0 28px;
+      background: linear-gradient(90deg, rgba(148,163,184,0.28), transparent);
+    }
+
     .project-list {
       list-style: decimal-leading-zero;
       margin-left: 0;
@@ -236,6 +245,77 @@
       border-color: rgba(56, 189, 248, 0.7);
       background: rgba(15, 23, 42, 0.95);
       color: var(--accent);
+    }
+
+    .steam-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(102, 192, 244, 0.28);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(102, 192, 244, 0.13), transparent 34%),
+        linear-gradient(145deg, rgba(18, 32, 47, 0.96), rgba(10, 18, 31, 0.96));
+      box-shadow: 0 18px 45px rgba(2, 6, 23, 0.45);
+    }
+
+    .steam-card::after {
+      content: "STEAM";
+      position: absolute;
+      right: -8px;
+      bottom: -18px;
+      font-size: 58px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: rgba(102, 192, 244, 0.045);
+      pointer-events: none;
+    }
+
+    .steam-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      color: var(--steam);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .steam-title {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .steam-text {
+      max-width: 650px;
+      color: var(--text-soft);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .steam-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 18px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(102, 192, 244, 0.35);
+      background: linear-gradient(135deg, rgba(102, 192, 244, 0.20), rgba(27, 89, 132, 0.26));
+      color: #dff4ff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .steam-button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(102, 192, 244, 0.75);
+      background: linear-gradient(135deg, rgba(102, 192, 244, 0.30), rgba(27, 89, 132, 0.38));
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
     }
 
     .contact-box {
@@ -313,11 +393,11 @@
         width: auto;
         margin-top: 0;
         flex-direction: row;
-        gap: 8px;
+        gap: 4px;
       }
 
       .menu-item {
-        padding: 8px 10px;
+        padding: 8px 8px;
         border-radius: 14px;
       }
 
@@ -326,7 +406,7 @@
       }
 
       .menu-item span.icon {
-        font-size: 20px;
+        font-size: 19px;
       }
 
       .main,
@@ -348,6 +428,19 @@
       .project-link {
         width: 100%;
       }
+
+      .steam-card {
+        padding: 18px;
+      }
+
+      .steam-card::after {
+        font-size: 44px;
+      }
+
+      .steam-button {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -363,10 +456,11 @@
     <nav class="menu">
       <a class="menu-item" href="#inicio"><span class="icon">🏠</span><span class="label">Home</span></a>
       <a class="menu-item" href="#proyectos"><span class="icon">📁</span><span class="label">Projects</span></a>
+      <a class="menu-item" href="#steam"><span class="icon">🎮</span><span class="label">Steam</span></a>
       <a class="menu-item" href="#contacto"><span class="icon">✉️</span><span class="label">Contact</span></a>
     </nav>
 
-    <div class="sidebar-footer">v0.18 • GitHub Pages</div>
+    <div class="sidebar-footer">v0.19 • GitHub Pages</div>
   </aside>
 
   <main class="main">
@@ -392,7 +486,32 @@
       </ol>
     </section>
 
+    <section id="steam">
+      <div class="section-divider"></div>
+      <h2 class="section-title">Guestbook-ish thing</h2>
+      <p class="section-subtitle">Because apparently websites are supposed to have social interaction.</p>
+
+      <div class="steam-card">
+        <div class="steam-label">🎮 Steam profile comments</div>
+        <h3 class="steam-title">Leave your comment here</h3>
+        <p class="steam-text">
+          I'm too lazy to build a backend just so you can write "nice site bro", so Steam is now my completely professional comment system lol XD.
+        </p>
+
+        <a
+          class="steam-button"
+          href="https://steamcommunity.com/profiles/76561198422313945"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>OPEN STEAM COMMENTS</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </section>
+
     <section id="contacto">
+      <div class="section-divider"></div>
       <h2 class="section-title">Contact</h2>
       <div class="contact-box">
         <p>+00 000 000 0000</p>
