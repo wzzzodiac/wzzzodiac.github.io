@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071015">
+  <title>YouTube Speed Hotkeys — Field Notes — W.ZC</title>
+  <meta name="description" content="Tampermonkey userscript for quick YouTube playback-speed hotkeys.">
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
+  <link rel="stylesheet" href="../style.css?v=0.52">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="sidebar-profile">
+      <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer" class="sidebar-photo-link" aria-label="Open GitHub profile">
+        <img class="sidebar-photo" src="https://avatars.githubusercontent.com/u/46037018?s=400&u=794e01b6bf68c90c20112760090bd295675f571a&v=4" alt="W.ZC profile picture">
+      </a>
+      <div class="sidebar-photo-note">my profile</div>
+    </div>
+    <nav class="menu">
+      <a class="menu-item" href="../index.html"><span class="icon">⌂</span><span class="label">home</span></a>
+      <a class="menu-item" href="../projects.html"><span class="icon">⌘</span><span class="label">projects</span></a>
+      <a class="menu-item active" href="../field-notes.html"><span class="icon">▤</span><span class="label">field notes</span></a>
+      <a class="menu-item" href="../contact.html"><span class="icon">✉</span><span class="label">contact</span></a>
+    </nav>
+    <div class="sidebar-footer">v0.52<br>field note 004</div>
+  </aside>
+
+  <main class="main article-main">
+    <article class="tutorial-article reveal">
+      <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
+      <header class="article-header">
+        <span class="notes-code">NOTE 004 // YOUTUBE / TAMPERMONKEY</span>
+        <h1>YouTube playback-speed hotkeys</h1>
+        <p>A tiny userscript that makes speed control immediate: <code>2</code> for fixed 2×, <code>1</code> for normal speed, or hold <code>Q</code> for temporary 2×.</p>
+      </header>
+
+      <div class="article-callout">
+        <strong>What this solves</strong>
+        <p>No menus, no repeated clicks. The script only changes the playback rate of the current YouTube video, and it ignores shortcuts while you are typing in search, comments or text fields.</p>
+      </div>
+
+      <section class="article-step">
+        <span class="step-number">01</span>
+        <div><h2>Install Tampermonkey</h2><p>Install the Tampermonkey browser extension. In Opera, Chrome or Edge, open the extension settings and make sure <strong>Allow UserScripts</strong> / <strong>UserScripts zulassen</strong> is enabled. Without that switch, the userscript will not run.</p></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">02</span>
+        <div><h2>Create a new userscript</h2><p>Open Tampermonkey and choose <strong>Create a new script</strong> / <strong>Neues Skript erstellen</strong>. Delete the default content and paste the script below.</p>
+<pre class="code-scroll"><code>// ==UserScript==
+// @name         YouTube Speed Hotkeys Fixed
+// @match        https://www.youtube.com/*
+// @match        https://youtube.com/*
+// @grant        none
+// @run-at       document-idle
+// ==/UserScript==
+
+(function () {
+  function getVideo() {
+    return document.querySelector("video");
+  }
+
+  function isTyping() {
+    const el = document.activeElement;
+    if (!el) return false;
+
+    const tag = el.tagName?.toLowerCase();
+
+    return (
+      tag === "input" ||
+      tag === "textarea" ||
+      el.isContentEditable
+    );
+  }
+
+  function setSpeed(rate) {
+    const video = getVideo();
+    if (!video) return;
+
+    video.playbackRate = rate;
+    console.log("YouTube speed set to:", rate);
+  }
+
+  window.addEventListener("keydown", function (e) {
+    if (isTyping()) return;
+
+    if (e.key === "2") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(2);
+    }
+
+    if (e.key === "1") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(1);
+    }
+
+    if (e.key.toLowerCase() === "q") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(2);
+    }
+  }, true);
+
+  window.addEventListener("keyup", function (e) {
+    if (isTyping()) return;
+
+    if (e.key.toLowerCase() === "q") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(1);
+    }
+  }, true);
+})();</code></pre></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">03</span>
+        <div><h2>Save and reload YouTube</h2><p>Save the userscript with <strong>Ctrl + S</strong>. Open or reload YouTube, then start any video.</p></div>
+      </section>
+
+      <section class="article-checklist">
+        <h2>Hotkeys</h2>
+        <ul>
+          <li><code>2</code> → fixed playback speed at 2×.</li>
+          <li><code>1</code> → return to 1×.</li>
+          <li>Hold <code>Q</code> → temporary 2×.</li>
+          <li>Release <code>Q</code> → return to 1×.</li>
+          <li>Typing fields are ignored, so the shortcuts do not interfere with search or comments.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="../script.js"></script>
+</body>
+</html>
