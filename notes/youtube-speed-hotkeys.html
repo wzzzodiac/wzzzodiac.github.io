@@ -7,8 +7,8 @@
   <title>YouTube Speed Hotkeys — Field Notes — W.ZC</title>
   <meta name="description" content="Tampermonkey userscript for quick YouTube playback-speed hotkeys.">
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
-  <link rel="stylesheet" href="../style.css?v=0.52">
-  <link rel="stylesheet" href="notes-extra.css?v=0.52">
+  <link rel="stylesheet" href="../style.css?v=0.53">
+  <link rel="stylesheet" href="notes-extra.css?v=0.53">
 </head>
 <body>
   <aside class="sidebar" aria-label="Main navigation">
@@ -24,7 +24,7 @@
       <a class="menu-item active" href="../field-notes.html"><span class="icon">▤</span><span class="label">field notes</span></a>
       <a class="menu-item" href="../contact.html"><span class="icon">✉</span><span class="label">contact</span></a>
     </nav>
-    <div class="sidebar-footer">v0.52<br>field note 004</div>
+    <div class="sidebar-footer">v0.53<br>field note 004</div>
   </aside>
 
   <main class="main article-main">
@@ -33,12 +33,12 @@
       <header class="article-header">
         <span class="notes-code">NOTE 004 // YOUTUBE / TAMPERMONKEY</span>
         <h1>YouTube playback-speed hotkeys</h1>
-        <p>A tiny userscript that makes speed control immediate: <code>2</code> for fixed 2×, <code>1</code> for normal speed, or hold <code>Q</code> for temporary 2×.</p>
+        <p>A tiny userscript for immediate playback control: 0.25×, 1×, 2×, 3× and 4× from the keyboard, plus temporary 2× while holding <code>Q</code>.</p>
       </header>
 
       <div class="article-callout">
         <strong>What this solves</strong>
-        <p>No menus, no repeated clicks. The script only changes the playback rate of the current YouTube video, and it ignores shortcuts while you are typing in search, comments or text fields.</p>
+        <p>No menus and no repeated clicks. The script changes the playback rate of the current YouTube video and ignores the hotkeys while you are typing in search, comments or other text fields.</p>
       </div>
 
       <section class="article-step">
@@ -48,7 +48,7 @@
 
       <section class="article-step">
         <span class="step-number">02</span>
-        <div><h2>Create a new userscript</h2><p>Open Tampermonkey and choose <strong>Create a new script</strong> / <strong>Neues Skript erstellen</strong>. Delete the default content and paste the script below.</p>
+        <div><h2>Create a new userscript</h2><p>Open Tampermonkey and choose <strong>Create a new script</strong> / <strong>Neues Skript erstellen</strong>. Delete the default content and paste the current script below.</p>
 <pre class="code-scroll"><code>// ==UserScript==
 // @name         YouTube Speed Hotkeys Fixed
 // @match        https://www.youtube.com/*
@@ -67,7 +67,6 @@
     if (!el) return false;
 
     const tag = el.tagName?.toLowerCase();
-
     return (
       tag === "input" ||
       tag === "textarea" ||
@@ -92,10 +91,28 @@
       setSpeed(2);
     }
 
+    if (e.key === "0") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(0.25);
+    }
+
     if (e.key === "1") {
       e.preventDefault();
       e.stopPropagation();
       setSpeed(1);
+    }
+
+    if (e.key === "3") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(3);
+    }
+
+    if (e.key === "4") {
+      e.preventDefault();
+      e.stopPropagation();
+      setSpeed(4);
     }
 
     if (e.key.toLowerCase() === "q") {
@@ -125,8 +142,11 @@
       <section class="article-checklist">
         <h2>Hotkeys</h2>
         <ul>
-          <li><code>2</code> → fixed playback speed at 2×.</li>
-          <li><code>1</code> → return to 1×.</li>
+          <li><code>0</code> → 0.25× playback.</li>
+          <li><code>1</code> → normal 1× playback.</li>
+          <li><code>2</code> → fixed 2× playback.</li>
+          <li><code>3</code> → fixed 3× playback.</li>
+          <li><code>4</code> → fixed 4× playback.</li>
           <li>Hold <code>Q</code> → temporary 2×.</li>
           <li>Release <code>Q</code> → return to 1×.</li>
           <li>Typing fields are ignored, so the shortcuts do not interfere with search or comments.</li>
