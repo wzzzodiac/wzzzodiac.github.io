@@ -4,23 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#071015">
-
   <title>W.ZC — Projects, code & questionable ideas</title>
-  <meta name="description" content="Personal hub for projects, code experiments, games and questionable ideas by W.ZC.">
-
+  <meta name="description" content="Personal hub for projects, code experiments, field notes and questionable ideas by W.ZC.">
   <meta property="og:title" content="W.ZC — Projects, code & questionable ideas">
-  <meta property="og:description" content="Personal hub for projects, code experiments, games and questionable ideas.">
+  <meta property="og:description" content="Personal hub for projects, code experiments, field notes and questionable ideas.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://wzzzodiac.github.io/">
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/46037018?v=4">
-
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="W.ZC — Projects, code & questionable ideas">
-  <meta name="twitter:description" content="Projects, code experiments, games and questionable ideas.">
+  <meta name="twitter:description" content="Projects, code experiments, field notes and questionable ideas.">
   <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/46037018?v=4">
-
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=0.50">
 </head>
 <body>
   <aside class="sidebar" aria-label="Main navigation">
@@ -30,31 +26,27 @@
       </a>
       <div class="sidebar-photo-note">my profile</div>
     </div>
-
     <nav class="menu">
-      <a class="menu-item" href="#inicio"><span class="icon">⌂</span><span class="label">home</span></a>
-      <a class="menu-item" href="#proyectos"><span class="icon">⌘</span><span class="label">projects</span></a>
-      <a class="menu-item" href="#contacto"><span class="icon">✉</span><span class="label">contact</span></a>
+      <a class="menu-item active" href="index.html"><span class="icon">⌂</span><span class="label">home</span></a>
+      <a class="menu-item" href="projects.html"><span class="icon">⌘</span><span class="label">projects</span></a>
+      <a class="menu-item" href="field-notes.html"><span class="icon">▤</span><span class="label">field notes</span></a>
+      <a class="menu-item" href="contact.html"><span class="icon">✉</span><span class="label">contact</span></a>
     </nav>
-
-    <div class="sidebar-footer">v0.45<br>github pages</div>
+    <div class="sidebar-footer">v0.50<br>github pages</div>
   </aside>
 
-  <main class="main">
-    <section id="inicio" class="hero reveal">
+  <main class="main home-main">
+    <section class="hero reveal">
       <div class="hero-text">
         <p class="eyebrow">MECHATRONICS / CODE / QUESTIONABLE IDEAS</p>
         <h1 class="hero-title">W.ZC</h1>
         <p class="hero-subtitle">Mechatronics Bs. of Science • Projects, random ideas & more.</p>
-        <p class="hero-description">
-          Personal lab notebook for useful tools, useless experiments and software that survived long enough to get a public URL.
-        </p>
-
+        <p class="hero-description">Personal lab notebook for useful tools, useless experiments and software that survived long enough to get a public URL.</p>
         <div class="hero-actions">
-          <a class="hero-button primary" href="#proyectos">browse experiments</a>
+          <a class="hero-button primary" href="projects.html">browse experiments</a>
+          <a class="hero-button" href="field-notes.html">field notes ↗</a>
           <a class="hero-button" href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">github ↗</a>
         </div>
-
         <div class="hero-badges">
           <span class="badge">8 public experiments</span>
           <span class="badge">last update: <span id="lastUpdated">recently</span></span>
@@ -62,84 +54,8 @@
         </div>
       </div>
     </section>
-
-    <section id="proyectos" class="reveal">
-      <div class="section-divider"></div>
-      <h2 class="section-title">Projects / experiments</h2>
-      <p class="section-subtitle">[ INDEX ] useful stuff, stupid stuff, and the dangerous overlap between both.</p>
-
-      <div class="project-index">
-        <article class="project-row">
-          <span class="project-number">01</span>
-          <div class="project-main"><h3>Qué cocino mañana (back end not working anymore)</h3><span class="project-meta">random utility</span></div>
-          <p>Because deciding what to cook tomorrow apparently required software engineering.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/papa_cocina" target="_blank" rel="noreferrer">open ↗</a>
-        </article>
-
-        <article class="project-row">
-          <span class="project-number">02</span>
-          <div class="project-main"><h3>Waifu Rating</h3><span class="project-meta">critical research</span></div>
-          <p>Important analytical infrastructure for questions society was too afraid to quantify.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/waifu_rating/" target="_blank" rel="noreferrer">open ↗</a>
-        </article>
-
-        <article class="project-row featured">
-          <span class="project-number">03</span>
-          <div class="project-main"><h3>Financial Damage Calculator</h3><span class="project-meta">tool / economic trauma</span></div>
-          <p>Find out exactly how many work hours and Döner your next terrible purchase is going to cost.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/financial-damage-calculator/" target="_blank" rel="noreferrer">calculate damage ↗</a>
-        </article>
-
-        <article class="project-row">
-          <span class="project-number">04</span>
-          <div class="project-main"><h3>Flappy Bird — Bad Decisions Edition</h3><span class="project-meta">game / aviation incident</span></div>
-          <p>Gravity, pipes, questionable aviation decisions and increasingly disrespectful death messages.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/flappy_bird/" target="_blank" rel="noreferrer">ruin bird's day ↗</a>
-        </article>
-
-        <article class="project-row featured">
-          <span class="project-number">05</span>
-          <div class="project-main"><h3>Path Planning Visualizer</h3><span class="project-meta">robotics / algorithms</span></div>
-          <p>Watch A*, Dijkstra and Greedy Best-First fight through obstacles, weighted terrain and optional diagonal movement.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/path-planning-visualizer/" target="_blank" rel="noreferrer">run experiment ↗</a>
-        </article>
-
-        <article class="project-row featured">
-          <span class="project-number">06</span>
-          <div class="project-main"><h3>Robot Arm Kinematics</h3><span class="project-meta">robotics / kinematics / teach mode</span></div>
-          <p>Interactive 2-DOF / 3-DOF planar robot with FK, analytic IK, collision guards, gripper automation and taught pose sequences.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/robot-arm-kinematics/" target="_blank" rel="noreferrer">move robot ↗</a>
-        </article>
-
-        <article class="project-row">
-          <span class="project-number">07</span>
-          <div class="project-main"><h3>Space Ship — Asteroid Avoidance</h3><span class="project-meta">game / flight test / survival</span></div>
-          <p>Mouse-and-touch asteroid survival with Standard, Hardcore and a No Hope mode featuring an approaching black hole and cinematic collapse.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/space-ship/" target="_blank" rel="noreferrer">enter asteroid field ↗</a>
-        </article>
-
-        <article class="project-row featured">
-          <span class="project-number">08</span>
-          <div class="project-main"><h3>Drone Simulator — 3D Ring Course</h3><span class="project-meta">game / 3D / flight training</span></div>
-          <p>Third-person 3D drone flight with Training, Time Attack and procedural Endless modes, responsive steering and soft ambient audio.</p>
-          <a class="project-open" href="https://wzzzodiac.github.io/drone-simulator/" target="_blank" rel="noreferrer">start flight test ↗</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="contacto" class="reveal">
-      <div class="section-divider"></div>
-      <h2 class="section-title">Contact</h2>
-      <p class="section-subtitle">[ EXTERNAL COMMUNICATION PORT ] for serious matters, of course</p>
-      <div class="contact-box">
-        <p>+00 000 000 0000</p>
-        <p style="margin-top: 7px;">github :: <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">@wzzzodiac</a></p>
-        <p style="margin-top: 3px;">mail :: <a href="mailto:abc123@hotmail.com">abc123@hotmail.com</a></p>
-      </div>
-    </section>
   </main>
 
-  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
   <script src="script.js"></script>
 </body>
 </html>
