@@ -1,3 +1,11 @@
+if (!document.querySelector('link[rel~="icon"]')) {
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/png';
+  favicon.href = 'https://avatars.githubusercontent.com/u/46037018?v=4';
+  document.head.appendChild(favicon);
+}
+
 if (!document.querySelector('.sidebar')) {
   const inNotes = location.pathname.includes('/notes/');
   const prefix = inNotes ? '../' : '';
