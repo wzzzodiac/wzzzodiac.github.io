@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071015">
+  <title>GitHub Pages — Field Notes — W.ZC</title>
+  <meta name="description" content="A practical field note for publishing a small HTML/CSS/JS project with GitHub Pages.">
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
+  <link rel="stylesheet" href="../style.css?v=0.51">
+</head>
+<body>
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="sidebar-profile">
+      <a href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer" class="sidebar-photo-link" aria-label="Open GitHub profile">
+        <img class="sidebar-photo" src="https://avatars.githubusercontent.com/u/46037018?s=400&u=794e01b6bf68c90c20112760090bd295675f571a&v=4" alt="W.ZC profile picture">
+      </a>
+      <div class="sidebar-photo-note">my profile</div>
+    </div>
+    <nav class="menu">
+      <a class="menu-item" href="../index.html"><span class="icon">⌂</span><span class="label">home</span></a>
+      <a class="menu-item" href="../projects.html"><span class="icon">⌘</span><span class="label">projects</span></a>
+      <a class="menu-item active" href="../field-notes.html"><span class="icon">▤</span><span class="label">field notes</span></a>
+      <a class="menu-item" href="../contact.html"><span class="icon">✉</span><span class="label">contact</span></a>
+    </nav>
+    <div class="sidebar-footer">v0.51<br>field note 001</div>
+  </aside>
+
+  <main class="main article-main">
+    <article class="tutorial-article reveal">
+      <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
+      <header class="article-header">
+        <span class="notes-code">NOTE 001 // GITHUB</span>
+        <h1>Publish a small project with GitHub Pages</h1>
+        <p>A reusable checklist for taking a simple HTML/CSS/JavaScript project from a local folder to a public URL.</p>
+      </header>
+
+      <div class="article-callout">
+        <strong>Starting point</strong>
+        <p>Your project already contains <code>index.html</code>, <code>style.css</code> and <code>script.js</code>.</p>
+      </div>
+
+      <section class="article-step">
+        <span class="step-number">01</span>
+        <div><h2>Create the repository</h2><p>In GitHub, create a new repository and give it the project name, for example <code>financial-damage-calculator</code>.</p><p>Do not create another repository named <code>username.github.io</code>. That name belongs to the main hub.</p></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">02</span>
+        <div><h2>Upload the project files</h2><p>Inside the new repository use <strong>Add file → Upload files</strong> and upload the project files.</p><pre><code>index.html
+style.css
+script.js</code></pre><p>The important part is that <code>index.html</code> sits directly in the repository root, not inside another project folder. Commit the upload.</p></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">03</span>
+        <div><h2>Enable GitHub Pages</h2><p>Open <strong>Settings → Pages</strong>. Under <strong>Build and deployment</strong> choose:</p><pre><code>Source: Deploy from a branch
+Branch: main
+Folder: / (root)</code></pre><p>Save the configuration.</p></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">04</span>
+        <div><h2>Wait for publication</h2><p>Give GitHub one or several minutes, then return to <strong>Settings → Pages</strong>. The public address normally follows this pattern:</p><pre><code>https://YOUR-USER.github.io/REPOSITORY-NAME/</code></pre><p>Example:</p><pre><code>https://wzzzodiac.github.io/financial-damage-calculator/</code></pre></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">05</span>
+        <div><h2>Remember: repository and website are different</h2><pre><code>Repository:
+https://github.com/YOUR-USER/REPOSITORY-NAME
+
+Published website:
+https://YOUR-USER.github.io/REPOSITORY-NAME/</code></pre></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">06</span>
+        <div><h2>Add it to the main hub</h2><p>Open the main <code>YOUR-USER.github.io</code> repository, edit the project index in the hub, add the new project and commit the change.</p></div>
+      </section>
+
+      <section class="article-step">
+        <span class="step-number">07</span>
+        <div><h2>Recommended structure</h2><pre><code>YOUR-USER.github.io  → main hub
+project-1            → separate repo + GitHub Pages
+project-2            → separate repo + GitHub Pages
+project-3            → separate repo + GitHub Pages</code></pre><p>Each project owns its repository and URL. The hub simply links everything together.</p></div>
+      </section>
+
+      <section class="article-checklist">
+        <h2>Quick checklist</h2>
+        <ul>
+          <li>Create repo with the project name.</li>
+          <li>Upload <code>index.html</code>, <code>style.css</code> and <code>script.js</code> to the root.</li>
+          <li>Commit.</li>
+          <li>Settings → Pages.</li>
+          <li>Deploy from a branch → <code>main</code> → <code>/ (root)</code>.</li>
+          <li>Save and wait for publication.</li>
+          <li>Test the public URL.</li>
+          <li>Add the project link to the main hub and commit again.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="../script.js"></script>
+</body>
+</html>
