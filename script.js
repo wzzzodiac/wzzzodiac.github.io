@@ -1,7 +1,7 @@
 const pageFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
 const faviconGroups = {
-  '🧪': ['index.html', '404.html'],
+  '🧪': ['404.html'],
   '🗂️': ['projects.html'],
   '📓': ['field-notes.html'],
   '✉️': ['contact.html'],
@@ -29,23 +29,25 @@ const faviconGroups = {
   '🎮': ['category-gaming.html', 'l4d2center-anticheat.html', 'l4d2-custom-maps.html']
 };
 
-let faviconEmoji = '🧪';
-for (const [emoji, files] of Object.entries(faviconGroups)) {
-  if (files.includes(pageFile)) {
-    faviconEmoji = emoji;
-    break;
+if (pageFile !== 'index.html') {
+  let faviconEmoji = '🧪';
+  for (const [emoji, files] of Object.entries(faviconGroups)) {
+    if (files.includes(pageFile)) {
+      faviconEmoji = emoji;
+      break;
+    }
   }
-}
 
-const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#071015"/><text x="50" y="68" text-anchor="middle" font-size="58">${faviconEmoji}</text></svg>`;
-let favicon = document.querySelector('link[rel~="icon"]');
-if (!favicon) {
-  favicon = document.createElement('link');
-  favicon.rel = 'icon';
-  document.head.appendChild(favicon);
+  const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#071015"/><text x="50" y="68" text-anchor="middle" font-size="58">${faviconEmoji}</text></svg>`;
+  let favicon = document.querySelector('link[rel~="icon"]');
+  if (!favicon) {
+    favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    document.head.appendChild(favicon);
+  }
+  favicon.type = 'image/svg+xml';
+  favicon.href = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 }
-favicon.type = 'image/svg+xml';
-favicon.href = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
 
 if (!document.querySelector('.sidebar')) {
   const inNotes = location.pathname.includes('/notes/');
