@@ -72,14 +72,6 @@ if (!document.querySelector('.sidebar')) {
   document.body.insertBefore(sidebar, document.body.firstChild);
 }
 
-const lastUpdated = document.getElementById("lastUpdated");
-if (lastUpdated) {
-  const d = new Date(document.lastModified);
-  lastUpdated.textContent = Number.isNaN(d.getTime())
-    ? "recently"
-    : d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "2-digit" });
-}
-
 const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
@@ -101,5 +93,10 @@ window.addEventListener("scroll", () => {
 });
 
 backToTop?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
 });
+
+// Keep current-page semantics consistent for static and injected navigation.
+document.querySelectorAll(".menu-item.active, .sidebar nav a.active").forEach(a => a.setAttribute("aria-current", "page"));
+document.querySelectorAll(".back-to-top").forEach(b => b.setAttribute("aria-label", "Back to top"));
+document.querySelectorAll(".sidebar nav b, .sidebar nav .icon").forEach(icon => icon.setAttribute("aria-hidden", "true"));
