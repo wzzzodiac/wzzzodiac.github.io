@@ -1,0 +1,34 @@
+HUB #1 - CURRENT VISUAL SNAPSHOT
+
+Purpose
+-------
+This folder is an exact visual/code snapshot of the current W.ZC hub before the Hub #2 redesign.
+It exists so the current look can be restored quickly without reconstructing the old CSS or markup by hand.
+
+Snapshot source
+---------------
+Repository: wzzzodiac/wzzzodiac.github.io
+Branch: main
+Snapshot commit: fee42a5b9db8f1fe4fb9c4f0544b2899e0709c74
+Snapshot date: 15 Sep 2026 (folder created after reviewing the current live visual)
+
+What is preserved
+-----------------
+- Root page markup: index.html, projects.html, field-notes.html, contact.html, 404.html
+- Shared visual/behavior files: style.css, script.js
+- Field-note/category HTML pages and notes/notes-extra.css because those pages also depend on the current layout and classes
+- Content-only files under notes/code are intentionally NOT duplicated because they are not part of the visual system
+
+Restore method
+--------------
+Fast restore: copy the files in this snapshot back to their original repository paths, preserving the same directory structure.
+For example:
+- visuals/hub #1/index.html -> /index.html
+- visuals/hub #1/style.css -> /style.css
+- visuals/hub #1/notes/category-gaming.html -> /notes/category-gaming.html
+
+The original Git commit listed above is also an immutable fallback if a complete repository rollback is ever needed.
+
+Important
+---------
+Do not edit this snapshot when developing Hub #2. Treat Hub #1 as read-only reference/archive.
