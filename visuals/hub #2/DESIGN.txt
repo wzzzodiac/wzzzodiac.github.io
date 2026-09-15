@@ -1,0 +1,114 @@
+HUB #2 - OFFICIAL VISUAL DIRECTION
+
+STATUS
+------
+Concept approved by Walter on 15 Sep 2026.
+This folder is a non-deployed starting point for Codex. Nothing here should replace the live hub until explicitly requested.
+
+CORE LOOK
+---------
+Hub #2 is a monochrome industrial / lab-notebook interface.
+Primary palette: black, charcoal, gunmetal, dirty grey, off-white.
+Accent palette: very restrained cold cyan for active states, links and small indicators.
+Secondary accent: warm beige paper for handwritten/physical-note elements only.
+The page must NOT become uniformly dark-blue or neon-cyberpunk. Texture and contrast should come from material, light and layering rather than saturated color.
+
+MATERIAL / TEXTURE
+------------------
+- Dark brushed/oxidized metal feel on page chrome and large structural panels.
+- Fine technical grid in selected backgrounds, not everywhere.
+- Slight scratches/noise simulated with CSS gradients and pseudo-elements where practical.
+- Thin metal borders, inset highlights and restrained shadows.
+- Paper notes: warm off-white, subtle grid/fibers, slightly imperfect rotation, tape-like strips.
+- Small light streaks / highlights may cross metal panels to stop the interface feeling flat.
+- Avoid glossy gaming-UI effects, huge glows, rainbow gradients or bright saturated panels.
+
+LAYOUT
+------
+Desktop reference structure:
+1. Fixed left navigation rail.
+2. Thin top utility bar.
+3. Main center column.
+4. Narrow right information rail.
+5. Hero panel at top of center column.
+6. Featured project cards below hero.
+7. Quick access row below projects.
+
+The composition should feel dense but orderly, like a physical engineering workstation translated into a website.
+
+CURRENT REAL CONTENT ONLY
+-------------------------
+Do not fabricate projects, notes, counts, dates, activity logs or personal details.
+Known current content from the repository:
+- W.ZC
+- "Mechatronics Bs. of Science • Projects, random ideas & more."
+- "Personal lab notebook for useful tools, useless experiments and software that survived long enough to get a public URL."
+- 11 public projects listed in projects.html
+- 8 field notes online
+- 4 field-note categories
+- Current navigation: Home, Projects, Field Notes, Contact
+- GitHub profile: https://github.com/wzzzodiac
+- Existing project list/content should remain the source of truth
+
+HERO DIRECTION
+--------------
+Approved visual headline direction:
+IDEAS.
+EXPERIMENTS.
+REAL PROGRESS.
+
+Supporting microcopy can reuse existing hub language, e.g. the current personal-lab description.
+Two paper notes are part of the visual identity:
+- "Small systems. Big questions."
+- "Build. Test. Iterate. Repeat."
+These are visual copy, not data/statistics.
+
+PROJECTS
+--------
+Use real current projects only.
+For the preview, four existing featured projects are represented:
+- Financial Damage Calculator
+- Path Planning Visualizer
+- Robot Arm Kinematics
+- Drone Simulator — 3D Ring Course
+The final implementation can choose featured projects from the existing project index but must not invent new ones.
+
+RIGHT RAIL
+----------
+Use real static information only until dynamic data exists.
+Safe examples:
+- 11 projects
+- 8 notes
+- 4 note categories
+- "stability 100% not guaranteed"
+Do NOT invent fake recent activity, fake timestamps, CPU temperatures, online-user counts, uptime, GitHub events, or similar dashboard telemetry.
+
+IMPLEMENTATION REALISM
+----------------------
+This design must be achievable with ordinary HTML/CSS/JS and static assets on GitHub Pages.
+Preferred techniques:
+- CSS Grid / Flexbox
+- layered gradients
+- pseudo-elements for scratches/light streaks/tape
+- subtle box-shadow/inset borders
+- simple CSS noise-like patterns, no heavy WebGL requirement
+- responsive collapse from 3-column desktop to 1-column mobile
+- no framework required unless Codex can justify it
+
+REFERENCE PREVIEW
+-----------------
+preview.html + preview.css are deliberately standalone and are NOT wired into the live root pages.
+They are implementation scaffolding, not the final site.
+The preview uses placeholders for project imagery because the hub repository currently does not contain dedicated thumbnail assets for those projects. Those placeholders should later be replaced with real screenshots/assets, not invented images.
+
+DO NOT
+------
+- Do not deploy Hub #2 from this folder automatically.
+- Do not delete or modify visuals/hub #1.
+- Do not create fake project metadata or fake activity information just to fill space.
+- Do not turn the theme into generic neon cyberpunk.
+- Do not sacrifice readability for texture.
+
+TARGET FEELING
+--------------
+A compact engineering lab notebook / control desk: physical, slightly worn, technical, personal and deliberate.

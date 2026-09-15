@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071015">
+  <title>Mapas custom de Left 4 Dead 2 — W.ZC</title>
+  <meta name="description" content="Tutorial en español para instalar mapas custom .vpk de Left 4 Dead 2.">
+  <link rel="stylesheet" href="../style.css?v=0.64">
+</head>
+<body>
+  <main class="main article-main">
+    <article class="tutorial-article reveal">
+      <a class="article-back" href="category-gaming.html">← GAMING & COMMUNITY TOOLS</a>
+      <header class="article-header">
+        <span class="notes-code">NOTE 021 // L4D2 / CUSTOM MAPS</span>
+        <h1>Cómo instalar mapas custom de Left 4 Dead 2 sin convertir una carpeta en una tragedia</h1>
+        <p>Sirve para mapas descargados desde Cedapug, L4D2Center o cualquier otro sitio que te entregue los archivos del mapa. El objetivo intelectual de hoy es mover unos .vpk a una carpeta. Intenta sobrevivir.</p>
+      </header>
+
+      <div class="article-callout">
+        <strong>RESUMEN PARA EL SUPERVIVIENTE CON 4 SEGUNDOS DE ATENCIÓN</strong>
+        <p>Descargas el mapa → descomprimes si hace falta → buscas los archivos <code>.vpk</code> → los pegas directamente dentro de <code>left4dead2/addons</code>. No dentro de otra subcarpeta. Sí, eso es básicamente todo.</p>
+      </div>
+
+      <section class="article-step"><span class="step-number">01</span><div>
+        <h2>Descarga el mapa</h2>
+        <p>Descarga el mapa desde Cedapug, L4D2Center o la página que estés usando. Puede llegar como una carpeta/archivo comprimido o como archivos sueltos.</p>
+        <p>Si viene comprimido, descomprímelo primero. No intentes meter el ZIP entero al juego esperando que Source Engine desarrolle telepatía.</p>
+      </div></section>
+
+      <section class="article-step"><span class="step-number">02</span><div>
+        <h2>Busca los archivos .vpk</h2>
+        <p>Entra a la carpeta que acabas de extraer y localiza los archivos que terminan en <code>.vpk</code>. Esos son los archivos que contienen el contenido del mapa.</p>
+        <p>Puede haber uno o varios. Selecciónalos y usa <code>Ctrl + C</code> para copiar o <code>Ctrl + X</code> para cortar, dependiendo de cuánto apego emocional tengas a la carpeta de Descargas.</p>
+      </div></section>
+
+      <section class="article-step"><span class="step-number">03</span><div>
+        <h2>Ve a la carpeta de instalación de Left 4 Dead 2</h2>
+        <p>Busca el disco donde instalaste Steam. En una instalación típica de Windows el camino es:</p>
+        <pre><code>C:\Program Files (x86)\Steam\steamapps\common\Left 4 Dead 2\left4dead2\addons</code></pre>
+        <p>Si Steam está instalado en otro disco, empieza desde ese disco. El resto del camino normalmente sigue siendo <code>Steam → steamapps → common → Left 4 Dead 2</code>.</p>
+      </div></section>
+
+      <section class="article-step"><span class="step-number">04</span><div>
+        <h2>Entra a la carpeta correcta, campeón</h2>
+        <p>Dentro de <code>Left 4 Dead 2</code> verás varias carpetas con nombres parecidos: <code>left4dead2</code>, <code>left4dead2_dlc1</code>, <code>left4dead2_dlc2</code> y compañía.</p>
+        <p>Tú entra a <strong><code>left4dead2</code></strong>. No al DLC1 porque te pareció más premium. Después entra a <strong><code>addons</code></strong>.</p>
+      </div></section>
+
+      <section class="article-step"><span class="step-number">05</span><div>
+        <h2>Pega los .vpk directamente en addons</h2>
+        <p>Pega ahí todos los archivos <code>.vpk</code> que copiaste antes.</p>
+        <pre><code>...\Left 4 Dead 2\left4dead2\addons\archivo_del_mapa.vpk</code></pre>
+        <p><strong>No los metas dentro de otra subcarpeta.</strong> Aunque el archivo descargado viniera organizado en una carpeta preciosa, Left 4 Dead 2 quiere los <code>.vpk</code> directamente en <code>addons</code>. La estética de carpetas no da MMR.</p>
+      </div></section>
+
+      <section class="article-step"><span class="step-number">06</span><div>
+        <h2>Ya está</h2>
+        <p>Con los <code>.vpk</code> dentro de <code>left4dead2/addons</code>, el mapa ya queda instalado para el juego. Abre Left 4 Dead 2 y úsalo desde el flujo correspondiente al servidor, lobby o plataforma donde vayas a jugarlo.</p>
+        <p>Si no aparece, primero vuelve a comprobar la ruta y confirma que pegaste realmente archivos <code>.vpk</code> y no la carpeta comprimida entera. Antes de culpar a Valve, revisa si tú eres el bug.</p>
+      </div></section>
+
+      <section class="article-checklist">
+        <h2>Checklist para IQ compatible con Windows</h2>
+        <ul>
+          <li>Mapa descargado.</li>
+          <li>Archivo descomprimido si venía comprimido.</li>
+          <li>Archivos <code>.vpk</code> localizados.</li>
+          <li>Ruta correcta: <code>Left 4 Dead 2\left4dead2\addons</code>.</li>
+          <li>No usar <code>left4dead2_dlc1</code>, <code>dlc2</code>, etc.</li>
+          <li>Los <code>.vpk</code> están directamente dentro de <code>addons</code>, sin otra subcarpeta.</li>
+          <li>Abrir el juego y proceder a morir por causas totalmente ajenas a la instalación.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+  <script src="../script.js"></script>
+</body>
+</html>
