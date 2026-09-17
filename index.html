@@ -17,9 +17,10 @@
   <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/46037018?v=4">
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
   <link rel="stylesheet" href="style.css?v=hub-workshop-depth">
-  <style>.sidebar::before{display:none!important}</style>
+  <link rel="stylesheet" href="home-workshop.css?v=assets-1">
+  <link rel="preload" as="image" href="assets/hub-rebuild/02_workshop_hero_background.webp">
 </head>
-<body>
+<body class="home-workshop">
 <a class="skip-link" href="#main-content">Skip to content</a>
   <aside class="sidebar" aria-label="Main navigation">
     <a class="profile" href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">
@@ -34,7 +35,8 @@
       <a href="contact.html"><b>✉</b><span>Contact</span></a>
     </nav>
 
-    <div class="rail-foot" style="margin-top:auto">GitHub Pages</div>
+    <div class="decorative-paper" aria-hidden="true"></div>
+    <div class="rail-foot">GitHub Pages</div>
   </aside>
 
   <div class="workspace">
@@ -45,9 +47,13 @@
     </header>
 
     <main class="content" id="main-content" tabindex="-1">
-      <section class="hero panel" style="grid-template-columns:1fr">
+      <section class="hero panel">
+        <!-- Decorative scene at layer 0, subtle technical/glass surfaces at 1, live copy at 2. -->
+        <div class="hero-scene" aria-hidden="true"></div>
+        <div class="hero-blueprint" aria-hidden="true"></div>
+        <div class="hero-glass" aria-hidden="true"></div>
         <div class="hero-copy">
-          <h1>IDEAS.<br>EXPERIMENTS.<br>REAL PROGRESS.</h1>
+          <h1>IDEAS.<br>EXPERIMENTS.<br><span>REAL PROGRESS.</span></h1>
           <p class="lead">Mechatronics Bs. of Science • Projects, random ideas & more.</p>
           <div class="actions">
             <a class="primary" href="projects.html">browse experiments <span>→</span></a>
@@ -83,7 +89,7 @@
 
       <section class="panel note-panel">
         <div class="section-head"><h2>// WORKSHOP NOTE</h2></div>
-        <div class="paper-note">The first gulp from the glass of natural sciences makes you an atheist, but at the bottom of the glass God is waiting for you.<br><small>— W. Heisenberg</small></div>
+        <div class="clipped-note"><div class="paper-note">The first gulp from the glass of natural sciences makes you an atheist, but at the bottom of the glass God is waiting for you.<br><small>— W. Heisenberg</small></div></div>
       </section>
     </aside>
   </div>
