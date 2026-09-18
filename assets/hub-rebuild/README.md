@@ -28,3 +28,19 @@ The seven supplied implementation assets were converted to WebP with transparenc
 - The layout switches to two project columns and two support modules at 1100px, then a horizontal navigation and a single column at 700px. Reduced-motion and forced-colors overrides are at the end.
 
 The existing project thumbnails, counts, status wording, quote, navigation and footer are preserved. Words visible within the supplied workshop/blueprint imagery are decorative image content, not new site data.
+
+## Panel material pass (09–11)
+
+The material block at the end of `home-workshop.css` adds component recipes without changing layout dimensions. Each `material-panel` contains one decorative, `aria-hidden` `.surface-coat` with a `.surface-reflection` child. These layers never receive pointer input.
+
+| Supplied source | Web asset | Layer |
+| --- | --- | --- |
+| 09_smoked_glass_panel_overlay.png | 09_smoked_glass_panel_overlay.webp | `.surface-coat::before`: smoked acrylic edge, smudges and fine wear. |
+| 10_warm_reflection_overlay.png | 10_warm_reflection_overlay.webp | `.surface-reflection`: restrained amber ambient pickup. |
+| 11_panel_specular_overlay.png | 11_panel_specular_overlay.webp | `.surface-coat::after`: front-edge gloss and corner highlights. |
+
+All three web assets preserve alpha and are 1200×675; their combined size is about 551 KiB. `01_HERO_REFERENCE.png` remains a visual target only. The supplied baseline screenshot is named `12_ACTUAL_STATUS.png` (called `12_CURRENT_STATUS.png` in the request); it is not a runtime asset.
+
+`--material-opacity` controls the actual shell transparency. `--material-glass`, `--material-warm`, `--material-specular`, `--material-blur`, and reflection positioning control its optical response. Header, structural metal sidebar, hero, status, note frame, showcase and individual cards have separate recipes. The paper and its quote are unaffected. Header and outer showcase/status/note surfaces reveal the real backdrop; cards retain a darker reading area. The sidebar keeps its solid metal base.
+
+Coatings are at layer 1; content stays at layer 2 and panel screws at 3. Fallbacks cover browsers without backdrop blur, reduced transparency and forced colors. Mobile cards are slightly more opaque for readability. The pass adds no JavaScript, new text or continuous animation.
