@@ -183,7 +183,12 @@
   --panel-smoked-glass:url('assets/hub-rebuild/09_smoked_glass_panel_overlay.webp');
   --panel-warm-reflection:url('assets/hub-rebuild/10_warm_reflection_overlay.webp');
   --panel-specular:url('assets/hub-rebuild/11_panel_specular_overlay.webp');
-  --panel-frame-light:#d2c9b876;
+  --panel-frame-light:#d9be9685;
+  --ambient-warmth:1.35;
+  --sidebar-metal-shade:.28;
+  --sidebar-wear:.20;
+  --fastener-rim:#b8aa8d;
+  --fastener-shadow:#020506;
   --panel-frame-dark:#080d0e;
 }
 .home-workshop .material-panel {
@@ -224,7 +229,7 @@
 .home-workshop .surface-reflection {
   background-image:var(--panel-warm-reflection);
   background-position:var(--material-reflection-position); background-size:var(--material-reflection-size);
-  opacity:var(--material-warm); mix-blend-mode:screen;
+  opacity:calc(var(--material-warm) * var(--ambient-warmth)); mix-blend-mode:screen;
 }
 /* Asset 11: the brightest response belongs to corners and thin front edges. */
 .home-workshop .surface-coat::after {
@@ -246,13 +251,34 @@
   --material-reflection-size:100% 360%; --material-reflection-position:center 12%;
 }
 .home-workshop .sidebar.material-metal {
-  --material-glass:.06; --material-warm:.10; --material-specular:.08;
-  --material-reflection-size:auto 140%; --material-reflection-position:35% 0;
-  background:linear-gradient(100deg,#13191988,#060d105c),var(--home-metal) 40% 0/550px;
-  border-color:#c5b49388 #65726e66 #45433c #a5a79a77;
-  box-shadow:inset 0 1px #e9d1ab88,inset -3px 0 #0009,inset 0 0 0 5px #03080959,5px 7px 14px #000b;
+  --material-glass:.10; --material-warm:.17; --material-specular:.14;
+  --material-reflection-size:auto 110%; --material-reflection-position:74% 0;
+  background:linear-gradient(90deg,#e6d5b518,transparent 8%,#02070955 48%,#ba854629 94%,#030709aa),linear-gradient(rgb(6 12 15 / var(--sidebar-metal-shade)),rgb(6 12 15 / var(--sidebar-metal-shade))),var(--home-metal) 40% 0/430px;
+  border-color:#dac5a1a6 #756a54 #353936 #aeb4a28f;
+  box-shadow:inset 0 1px #f0d6ab99,inset 2px 0 #c7d0c638,inset -3px 0 #020607cc,inset 0 0 0 5px #03080988,2px 0 0 #ba9a6b33,5px 7px 14px #000c;
 }
-.home-workshop .sidebar.material-metal::after { opacity:.15; }
+.home-workshop .sidebar.material-metal::after {
+  opacity:var(--sidebar-wear); border-color:#dbc6a294;
+  box-shadow:inset 0 0 5px #000c,0 1px #e3c49566;
+}
+/* Four recessed slotted fasteners, independent of content and frame dimensions. */
+.home-workshop .sidebar > .frame-fasteners {
+  position:absolute; inset:9px; z-index:3; pointer-events:none;
+}
+.home-workshop .frame-fasteners i {
+  position:absolute; width:11px; height:11px; border-radius:50%;
+  border:1px solid var(--fastener-rim);
+  background:linear-gradient(135deg,#ded3b8 0%,#77766b 25%,#242a29 49%,#080c0d 73%,#737568);
+  box-shadow:0 0 0 2px var(--fastener-shadow),1px 2px 3px #000d,inset 0 1px #fff5;
+}
+.home-workshop .frame-fasteners i::after {
+  content:''; position:absolute; inset:4px 1px; background:var(--fastener-shadow);
+  transform:rotate(-38deg); box-shadow:0 1px #c7bf9c80;
+}
+.home-workshop .frame-fasteners i:nth-child(1) { top:0; left:0; }
+.home-workshop .frame-fasteners i:nth-child(2) { top:0; right:0; transform:rotate(65deg); }
+.home-workshop .frame-fasteners i:nth-child(3) { bottom:0; left:0; transform:rotate(20deg); }
+.home-workshop .frame-fasteners i:nth-child(4) { bottom:0; right:0; transform:rotate(85deg); }
 .home-workshop .hero.material-hero {
   --material-glass:.10; --material-warm:.035; --material-specular:.17;
   border-color:#cfc5b598 #9c9c8f70 #70675a #c0b9a880;
@@ -293,6 +319,9 @@
 }
 @media (max-width:700px) {
  .home-workshop .material-panel { --material-blur:2px; }
+ .home-workshop .sidebar > .frame-fasteners { inset:4px; }
+ .home-workshop .frame-fasteners i { width:6px; height:6px; }
+ .home-workshop .frame-fasteners i::after { inset:2px 0; }
  .home-workshop .material-header { --material-warm:.07; --material-specular:.12; }
  .home-workshop .material-card { --material-opacity:.78; --material-glass:.13; --material-warm:.045; }
  .home-workshop .material-showcase { --material-opacity:.64; }
@@ -301,6 +330,6 @@
  .home-workshop .material-panel:not(.sidebar):not(.hero) { background-color:#0b1317; backdrop-filter:none; -webkit-backdrop-filter:none; }
 }
 @media (forced-colors:active) {
- .home-workshop .surface-coat { display:none; }
+ .home-workshop .surface-coat,.home-workshop .frame-fasteners { display:none; }
  .home-workshop .material-panel:not(.sidebar):not(.hero) { background:Canvas; box-shadow:none; backdrop-filter:none; }
 }
