@@ -175,3 +175,132 @@
 @media (min-width:1101px) { .home-workshop .project-card p { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; } }
 
 @media (min-width:1450px) { .home-workshop .project-card h3 { min-height:17px; } .home-workshop .block { padding-top:12px; padding-bottom:13px; } }
+
+/* PANEL MATERIAL PASS — one reusable coating; no dimensions or layout changes.
+   Local stack: translucent shell, optical coat (1), existing content (2), bolts (3).
+   The sidebar remains metal-heavy. Other shells genuinely reveal the page backdrop. */
+.home-workshop {
+  --panel-smoked-glass:url('assets/hub-rebuild/09_smoked_glass_panel_overlay.webp');
+  --panel-warm-reflection:url('assets/hub-rebuild/10_warm_reflection_overlay.webp');
+  --panel-specular:url('assets/hub-rebuild/11_panel_specular_overlay.webp');
+  --panel-frame-light:#d2c9b876;
+  --panel-frame-dark:#080d0e;
+}
+.home-workshop .material-panel {
+  --material-opacity:.62;
+  --material-glass:.17;
+  --material-warm:.10;
+  --material-specular:.15;
+  --material-blur:4px;
+  --material-reflection-position:50% 50%;
+  --material-reflection-size:cover;
+  isolation:isolate;
+}
+.home-workshop .topbar.material-panel,
+.home-workshop .project-card.material-panel { position:relative; }
+.home-workshop .material-panel:not(.sidebar):not(.hero) {
+  background:linear-gradient(120deg,#c8a2710b,transparent 39%,#8ba6ad08),rgb(8 14 17 / var(--material-opacity));
+  -webkit-backdrop-filter:blur(var(--material-blur)) saturate(.7);
+  backdrop-filter:blur(var(--material-blur)) saturate(.7);
+  border-color:var(--panel-frame-light) #75817a66 #3b443f #a9aaa078;
+  box-shadow:inset 0 1px #eee0c077,inset 1px 0 #d3e1dd22,inset 0 -2px #000b,0 0 0 2px #050a0bbb,0 7px 13px #0009;
+}
+.home-workshop .surface-coat {
+  position:absolute; inset:1px; z-index:1; border-radius:inherit; overflow:hidden;
+  pointer-events:none; user-select:none;
+}
+.home-workshop .surface-coat::before,
+.home-workshop .surface-coat::after,
+.home-workshop .surface-reflection {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-repeat:no-repeat;
+}
+/* Asset 09: stretch its transparent outer margin so the glass meets the shell rim. */
+.home-workshop .surface-coat::before {
+  background-image:var(--panel-smoked-glass); background-position:center; background-size:108.5% 124%;
+  opacity:var(--material-glass);
+}
+/* Asset 10: reflected amber surroundings; kept below text and thumbnail layers. */
+.home-workshop .surface-reflection {
+  background-image:var(--panel-warm-reflection);
+  background-position:var(--material-reflection-position); background-size:var(--material-reflection-size);
+  opacity:var(--material-warm); mix-blend-mode:screen;
+}
+/* Asset 11: the brightest response belongs to corners and thin front edges. */
+.home-workshop .surface-coat::after {
+  background-image:var(--panel-specular); background-position:center; background-size:100% 100%;
+  opacity:var(--material-specular); mix-blend-mode:screen;
+}
+.home-workshop .topbar > :not(.surface-coat),
+.home-workshop .sidebar > :not(.surface-coat),
+.home-workshop .material-card > :not(.surface-coat) { position:relative; z-index:2; }
+.home-workshop .panel.material-panel::after {
+  background:linear-gradient(115deg,#d8c2a008,transparent 36%,#90b7bf08);
+  border-color:#d1d4c54c; border-top-color:#e5d2b369; opacity:1;
+  box-shadow:inset 0 1px 4px #0008,0 1px #d6bd9026;
+}
+
+/* Component recipes vary the material without duplicating layer markup. */
+.home-workshop .material-header {
+  --material-opacity:.48; --material-glass:.11; --material-warm:.12; --material-specular:.18;
+  --material-reflection-size:100% 360%; --material-reflection-position:center 12%;
+}
+.home-workshop .sidebar.material-metal {
+  --material-glass:.06; --material-warm:.10; --material-specular:.08;
+  --material-reflection-size:auto 140%; --material-reflection-position:35% 0;
+  background:linear-gradient(100deg,#13191988,#060d105c),var(--home-metal) 40% 0/550px;
+  border-color:#c5b49388 #65726e66 #45433c #a5a79a77;
+  box-shadow:inset 0 1px #e9d1ab88,inset -3px 0 #0009,inset 0 0 0 5px #03080959,5px 7px 14px #000b;
+}
+.home-workshop .sidebar.material-metal::after { opacity:.15; }
+.home-workshop .hero.material-hero {
+  --material-glass:.10; --material-warm:.035; --material-specular:.17;
+  border-color:#cfc5b598 #9c9c8f70 #70675a #c0b9a880;
+  box-shadow:inset 0 1px #f0d7ad88,inset 1px 0 #bad7d82e,inset 0 -3px #000b,0 0 0 3px #03080bba,0 7px 13px #0009;
+}
+.home-workshop .hero.material-hero .surface-coat { inset:3px; }
+.home-workshop .material-status {
+  --material-opacity:.66; --material-glass:.16; --material-warm:.085; --material-specular:.13;
+  --material-reflection-position:15% 40%; --material-reflection-size:160% auto;
+}
+.home-workshop .material-status .stats {
+  background:linear-gradient(110deg,#95becb0b,transparent 40%,#be91551a),#060f13bb;
+  outline-color:#b2c9c978; box-shadow:inset 0 3px 9px #000d,inset 0 -1px #8aadb92b,0 1px #d7ccae44;
+}
+.home-workshop .material-note {
+  --material-opacity:.77; --material-glass:.12; --material-warm:.14; --material-specular:.12;
+  --material-reflection-position:0 100%; --material-reflection-size:180% 120%;
+}
+.home-workshop .material-showcase {
+  --material-opacity:.51; --material-glass:.13; --material-warm:.14; --material-specular:.12;
+  --material-reflection-position:center 80%; --material-reflection-size:110% 170%;
+}
+.home-workshop .material-card {
+  --material-opacity:.65; --material-glass:.19; --material-warm:.065; --material-specular:.14;
+  --material-blur:0px;
+}
+/* Clear windows and calm text backing prevent reflections from competing with copy. */
+.home-workshop .material-card .project-card-body { background:linear-gradient(#08121736,#07111570); }
+.home-workshop .material-card .project-art { border-color:#091011; outline-color:#c4c8b668; box-shadow:0 1px #e5d7b443,inset 0 0 8px #0009; }
+.home-workshop .material-card:nth-child(2) { --material-warm:.045; --material-specular:.10; }
+.home-workshop .material-card:nth-child(3) { --material-warm:.09; --material-reflection-position:80% 0; }
+.home-workshop .material-card:nth-child(4) { --material-glass:.14; --material-reflection-position:100% 50%; }
+.home-workshop .material-card:hover { border-color:#c0d8d3aa; }
+.home-workshop footer { background:linear-gradient(90deg,#182126a3,#9a6d3021 55%,#07101470); border-top:1px solid #c6b99d2e; }
+/* A readable fallback preserves the material treatment when backdrop blur is absent. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+ .home-workshop .material-panel:not(.sidebar):not(.hero) { background-color:rgb(8 14 17 / .88); }
+}
+@media (max-width:700px) {
+ .home-workshop .material-panel { --material-blur:2px; }
+ .home-workshop .material-header { --material-warm:.07; --material-specular:.12; }
+ .home-workshop .material-card { --material-opacity:.78; --material-glass:.13; --material-warm:.045; }
+ .home-workshop .material-showcase { --material-opacity:.64; }
+}
+@media (prefers-reduced-transparency:reduce) {
+ .home-workshop .material-panel:not(.sidebar):not(.hero) { background-color:#0b1317; backdrop-filter:none; -webkit-backdrop-filter:none; }
+}
+@media (forced-colors:active) {
+ .home-workshop .surface-coat { display:none; }
+ .home-workshop .material-panel:not(.sidebar):not(.hero) { background:Canvas; box-shadow:none; backdrop-filter:none; }
+}
