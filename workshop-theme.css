@@ -1,0 +1,296 @@
+/* Shared workshop materials, shell and accessibility. Derived from approved Home.
+   Stack: scene 0, decorative coats 1, content 2, fasteners 3. */
+.workshop-theme {
+  --rail-width:190px;
+  --workshop-cyan:#8bd6df;
+  --workshop-ink:#0b1012;
+  --workshop-text:#e8ebea;
+  --workshop-edge:#b8bcb172;
+  --workshop-warm:#c8915542;
+  --workshop-shadow:#000b;
+  --workshop-gap:14px;
+  --workshop-glass-opacity:.085;
+  --workshop-wear-opacity:.09;
+  --workshop-metal:url('assets/hub-rebuild/03_dark_metal_texture.webp');
+  --workshop-wear:url('assets/hub-rebuild/04_wear_scratches_overlay.webp');
+  --workshop-scene:url('assets/hub-rebuild/02_workshop_hero_background.webp');
+  --workshop-glass:url('assets/hub-rebuild/08_glass_overlay.webp');
+  --workshop-paper:url('assets/hub-rebuild/05_heisenberg_paper.webp');
+  background:linear-gradient(#090e1199,#070b0e66),var(--workshop-scene) center/cover fixed;
+  color:var(--workshop-text);
+}
+.workshop-theme::before { background:linear-gradient(90deg,#0006,transparent 35%,transparent 85%,#0006); opacity:1; mix-blend-mode:normal; }
+.workshop-theme a:focus-visible { outline:2px solid var(--workshop-cyan); outline-offset:4px; }
+.workshop-theme .panel { isolation:isolate; border:1px solid var(--workshop-edge); border-radius:5px; background:linear-gradient(115deg,#11181bc9,#0b1013b3),var(--workshop-metal) center/620px; box-shadow:inset 0 1px #dfd5b54d,inset 0 -2px #030709,0 0 0 4px #070b0dc2,2px 7px 13px var(--workshop-shadow); }
+.workshop-theme .panel::before { z-index:3; opacity:1; }
+.workshop-theme .panel::after { z-index:1; inset:5px; border:1px solid #b5c5c328; box-shadow:inset 0 1px 3px #0009,0 1px #e0caa21a; background:var(--workshop-wear) center/cover; opacity:.18; pointer-events:none; }
+.workshop-theme .section-head { position:relative; z-index:2; padding:0 4px 9px; border-bottom:1px solid #b8c3bf29; box-shadow:0 1px #0007; min-height:28px; }
+.workshop-theme .section-head h2 { color:#a5d2da; font:12px var(--mono); letter-spacing:.035em; margin:0; }
+.workshop-theme .section-head a { color:var(--workshop-cyan); font-size:11px; }
+.workshop-theme .sidebar { position:fixed; inset:8px auto 12px 14px; width:calc(var(--rail-width) - 23px); padding:34px 10px 20px; border:1px solid var(--workshop-edge); border-radius:5px; background:linear-gradient(100deg,#080e117a,#0a101342),var(--workshop-metal) 40% 0/550px; box-shadow:inset 0 1px #e9dcc075,inset 0 0 0 5px #040a0b66,5px 7px 14px #000b; }
+.workshop-theme .sidebar::before { display:none; }
+.workshop-theme .sidebar::after { inset:5px; border-color:#d6c6a52c; background:var(--workshop-wear) center/cover; opacity:.3; }
+.workshop-theme .profile { display:grid; margin:36px 0 22px; gap:12px; font-size:11px; color:#c0d3d8; }
+.workshop-theme .profile img { width:56px; height:56px; border:2px solid #d7c8b2; }
+.workshop-theme .sidebar nav { display:grid; grid-template-columns:1fr; position:relative; z-index:2; padding:12px 0; gap:3px; border-color:#b8c9c02b; }
+.workshop-theme .sidebar nav a { display:grid; font-size:12px; min-height:52px; padding:0 9px; grid-template-columns:25px 1fr; color:#c9d8dc; }
+.workshop-theme .sidebar nav a.active { border-color:#8dc3c97a; border-left-color:#96f1ff; background:linear-gradient(100deg,#12343d9c,#080f14c9); box-shadow:inset 2px 0 5px #9beafa77,0 0 14px #4bcde224,0 4px 7px #000b; }
+.workshop-theme .sidebar nav b { font-size:22px; }
+.workshop-theme .rail-foot { margin:auto 9px 0; padding-top:20px; font-size:10px; color:#a1bbc1; }
+.workshop-theme .topbar { padding:0 20px; gap:22px; grid-template-columns:minmax(0,1fr) auto auto; border:1px solid var(--workshop-edge); border-radius:4px; background:linear-gradient(90deg,#0b1418ad,#0b1315cf),var(--workshop-metal) center/720px; box-shadow:inset 0 1px #ddcaac42,0 4px 9px #0008; }
+.workshop-theme .workbench-label { min-height:0; padding:0; background:none; border:0; box-shadow:none; font:12px var(--mono); color:#aad1db; letter-spacing:.06em; }
+.workshop-theme .workbench-label::before { content:'// '; color:var(--workshop-cyan); }
+.workshop-theme .motto { display:block; font-size:10px; color:#a5c3cd; letter-spacing:.02em; }
+.workshop-theme .topmark { font-size:11px; }
+.workshop-theme .actions { margin-top:20px; gap:14px; }
+.workshop-theme .actions a { padding:12px 17px; min-height:46px; font:12px var(--mono); background:linear-gradient(#172127bf,#070f14ef); border-color:#a0cad085; box-shadow:inset 0 1px #c8dadd49,0 4px 9px #0009; }
+.workshop-theme .actions a.primary { color:#161b1d; border-color:#eee6d5c4; background:linear-gradient(#eae4d3ee,#dedaceef),var(--workshop-metal) center/260px; box-shadow:inset 0 1px #fff9,inset 0 -2px #8a857759,0 4px 10px #000a; }
+.workshop-theme .project-card { min-width:0; overflow:hidden; background:linear-gradient(#0b1218a8,#0b1418f0),var(--workshop-metal) center/440px; border:1px solid #a6b5b286; border-radius:4px; box-shadow:inset 0 1px #dcd5c444,0 0 0 2px #0008,0 4px 7px #0009; }
+.workshop-theme .project-art { height:116px; margin:5px 5px 0; border:3px solid #060b0e; outline:1px solid #bcc7ba42; border-radius:2px; box-shadow:0 2px 3px #0009; }
+.workshop-theme .project-art img { filter:saturate(.6) brightness(1.06) contrast(1.04); }
+.workshop-theme .project-art::after { background:var(--workshop-glass) center/cover; opacity:.12; box-shadow:inset 0 0 9px #0007; }
+.workshop-theme .project-art > span { top:5px; left:5px; border-color:#75c7d4a6; color:#b1e4ec; background:#0a1a21eb; }
+.workshop-theme .tags span { font:9px/1.4 var(--mono); color:#acd3da; border-color:#76bac47a; background:#081217b3; }
+.workshop-theme .online { font:10px var(--mono); color:#8bd1d5; }
+.workshop-theme .stats { position:relative; z-index:2; margin-top:13px; border:2px solid #060b0f; outline:1px solid #b4c9c94f; background:linear-gradient(115deg,#122028a8,#050c10eb); box-shadow:inset 0 3px 10px #000,0 1px #b7c6bd36; }
+.workshop-theme .stats::before { content:''; position:absolute; top:4px; left:4px; width:15px; height:5px; border-top:2px solid var(--workshop-cyan); border-left:2px solid var(--workshop-cyan); }
+.workshop-theme .stats > div { min-height:88px; border-right-color:#a9bbbe30; background:none; }
+.workshop-theme .stats strong { font:24px var(--mono); color:#e1edef; }
+.workshop-theme .stats span { font:9px var(--mono); color:#c1d4d9; }
+.workshop-theme .statbox > p { position:relative; z-index:2; font:10px/1.6 var(--mono); color:#aac5cc; margin:12px 1px 0; }
+.workshop-theme footer { width:auto; margin-left:var(--rail-width); padding:13px 18px 17px; border:0; background:linear-gradient(90deg,#0b1418ad,transparent); color:#b4c9ce; font:10px var(--mono); letter-spacing:.035em; }
+@media (max-width:1449px) and (min-width:1101px) {
+.workshop-theme { --rail-width:170px; --workshop-gap:12px; }
+.workshop-theme .project-art { height:105px; }
+}
+@media (max-width:1100px) {
+.workshop-theme { --rail-width:160px; }
+.workshop-theme .project-art { height:145px; }
+.workshop-theme .motto { display:none; }
+.workshop-theme .topbar { grid-template-columns:1fr auto; }
+}
+@media (max-width:700px) {
+.workshop-theme { --rail-width:0px; --workshop-gap:14px; background-attachment:scroll; }
+.workshop-theme .sidebar { position:relative; inset:auto; margin:8px 10px 0; width:auto; padding:12px 10px 6px; min-height:0; }
+.workshop-theme .profile { display:flex; justify-content:center; margin:0 0 10px; gap:10px; }
+.workshop-theme .profile img { width:38px; height:38px; }
+.workshop-theme .sidebar nav { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); padding:5px 0; gap:2px; }
+.workshop-theme .sidebar nav a { display:flex; flex-direction:column; justify-content:center; gap:5px; min-height:57px; padding:5px 2px; font-size:10px; }
+.workshop-theme .sidebar nav b { font-size:19px; }
+.workshop-theme .topbar { display:grid; padding:0 14px; }
+.workshop-theme .workbench-label { font-size:10px; }
+.workshop-theme .actions { gap:9px; margin-top:17px; }
+.workshop-theme .actions a { font-size:11px; padding:10px 12px; }
+.workshop-theme .project-art { height:178px; }
+.workshop-theme .tags span { font-size:10px; }
+.workshop-theme footer { margin-left:0; font-size:9px; line-height:1.6; padding:17px 14px; }
+}
+@media (prefers-reduced-motion:reduce) {
+.workshop-theme .project-card,.workshop-theme .project-art img,.workshop-theme .actions a { transition:none; }
+.workshop-theme .project-card:hover,.workshop-theme .project-card:focus-within,.workshop-theme .project-card:hover img,.workshop-theme .actions a:hover { transform:none; }
+}
+.workshop-theme {
+  --panel-smoked-glass:url('assets/hub-rebuild/09_smoked_glass_panel_overlay.webp');
+  --panel-warm-reflection:url('assets/hub-rebuild/10_warm_reflection_overlay.webp');
+  --panel-specular:url('assets/hub-rebuild/11_panel_specular_overlay.webp');
+  --panel-frame-light:#d9be9685;
+  --ambient-warmth:1.35;
+  --frame-warm-edge:#c58a4852;
+  --frame-top-highlight:#efd7ac82;
+  --frame-inset-depth:#000c;
+  --sidebar-metal-shade:.28;
+  --sidebar-wear:.20;
+  --fastener-rim:#b8aa8d;
+  --fastener-shadow:#020506;
+  --panel-frame-dark:#080d0e;
+}
+.workshop-theme .material-panel {
+  --material-opacity:.62;
+  --material-glass:.17;
+  --material-warm:.10;
+  --material-specular:.15;
+  --material-blur:4px;
+  --material-reflection-position:50% 50%;
+  --material-reflection-size:cover;
+  isolation:isolate;
+}
+.workshop-theme .topbar.material-panel,
+.workshop-theme .project-card.material-panel { position:relative; }
+.workshop-theme .material-panel:not(.sidebar):not(.hero) {
+  background:radial-gradient(ellipse at 4% 0%,#d4945017,transparent 24%),linear-gradient(120deg,#c8a2710b,transparent 39%,#8ba6ad08),rgb(8 14 17 / var(--material-opacity));
+  -webkit-backdrop-filter:blur(var(--material-blur)) saturate(.7);
+  backdrop-filter:blur(var(--material-blur)) saturate(.7);
+  border-color:var(--panel-frame-light) #75817a66 #3b443f #a9aaa078;
+  box-shadow:inset 0 1px var(--frame-top-highlight),inset 1px 0 var(--frame-warm-edge),inset 0 -3px var(--frame-inset-depth),0 0 0 2px #050a0bbb,0 7px 13px #0009;
+}
+.workshop-theme .surface-coat {
+  position:absolute; inset:1px; z-index:1; border-radius:inherit; overflow:hidden;
+  pointer-events:none; user-select:none;
+}
+.workshop-theme .surface-coat::before,
+.workshop-theme .surface-coat::after,
+.workshop-theme .surface-reflection {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-repeat:no-repeat;
+}
+.workshop-theme .surface-coat::before {
+  background-image:var(--panel-smoked-glass); background-position:center; background-size:108.5% 124%;
+  opacity:var(--material-glass);
+}
+.workshop-theme .surface-reflection {
+  background-image:var(--panel-warm-reflection);
+  background-position:var(--material-reflection-position); background-size:var(--material-reflection-size);
+  opacity:calc(var(--material-warm) * var(--ambient-warmth)); mix-blend-mode:screen;
+}
+.workshop-theme .surface-coat::after {
+  background-image:var(--panel-specular); background-position:center; background-size:100% 100%;
+  opacity:var(--material-specular); mix-blend-mode:screen;
+}
+.workshop-theme .topbar > :not(.surface-coat),
+.workshop-theme .sidebar > :not(.surface-coat),
+.workshop-theme .material-card > :not(.surface-coat) { position:relative; z-index:2; }
+.workshop-theme .panel.material-panel::after {
+  background:linear-gradient(115deg,#d8c2a00b,transparent 32%,#90b7bf08),rgb(4 10 13 / .12);
+  border-color:#d1d4c54c; border-top-color:#e5d2b369; opacity:1;
+  box-shadow:inset 0 2px 5px #000b,inset 0 -1px #aab9b31c,0 1px var(--frame-warm-edge);
+}
+.workshop-theme .material-header {
+  --material-opacity:.50; --material-glass:.11; --material-warm:.13; --material-specular:.18;
+  --material-reflection-size:100% 360%; --material-reflection-position:center 12%;
+}
+.workshop-theme .sidebar.material-metal {
+  --material-glass:.10; --material-warm:.18; --material-specular:.14;
+  --material-reflection-size:auto 110%; --material-reflection-position:74% 0;
+  background:linear-gradient(90deg,#e6d5b518,transparent 8%,#02070955 48%,#ba854629 94%,#030709aa),linear-gradient(rgb(6 12 15 / var(--sidebar-metal-shade)),rgb(6 12 15 / var(--sidebar-metal-shade))),var(--workshop-metal) 40% 0/430px;
+  border-color:#dac5a1a6 #756a54 #353936 #aeb4a28f;
+  box-shadow:inset 0 1px #f0d6ab99,inset 2px 0 #c7d0c638,inset -3px 0 #020607cc,inset 0 0 0 5px #03080988,2px 0 0 #ba9a6b33,5px 7px 14px #000c;
+}
+.workshop-theme .sidebar.material-metal::after {
+  opacity:var(--sidebar-wear); border-color:#dbc6a294;
+  box-shadow:inset 0 0 5px #000c,0 1px #e3c49566;
+}
+.workshop-theme .material-panel > .frame-fasteners {
+  position:absolute; inset:9px; z-index:3; pointer-events:none;
+}
+.workshop-theme .frame-fasteners i {
+  position:absolute; width:11px; height:11px; border-radius:50%;
+  border:1px solid var(--fastener-rim);
+  background:linear-gradient(135deg,#ded3b8 0%,#77766b 25%,#242a29 49%,#080c0d 73%,#737568);
+  box-shadow:0 0 0 2px var(--fastener-shadow),1px 2px 3px #000d,inset 0 1px #fff5;
+}
+.workshop-theme .frame-fasteners i::after {
+  content:''; position:absolute; inset:4px 1px; background:var(--fastener-shadow);
+  transform:rotate(-38deg); box-shadow:0 1px #c7bf9c80;
+}
+.workshop-theme .frame-fasteners i:nth-child(1) { top:0; left:0; }
+.workshop-theme .frame-fasteners i:nth-child(2) { top:0; right:0; transform:rotate(65deg); }
+.workshop-theme .frame-fasteners i:nth-child(3) { bottom:0; left:0; transform:rotate(20deg); }
+.workshop-theme .frame-fasteners i:nth-child(4) { bottom:0; right:0; transform:rotate(85deg); }
+.workshop-theme .material-status {
+  --material-opacity:.68; --material-glass:.16; --material-warm:.095; --material-specular:.13;
+  --material-reflection-position:15% 40%; --material-reflection-size:160% auto;
+}
+.workshop-theme .material-status .stats {
+  background:linear-gradient(110deg,#95becb0b,transparent 40%,#be91551a),#060f13bb;
+  outline-color:#b2c9c978; box-shadow:inset 0 3px 9px #000d,inset 0 -1px #8aadb92b,0 1px #d7ccae44;
+}
+.workshop-theme .material-note {
+  --material-opacity:.78; --material-glass:.12; --material-warm:.15; --material-specular:.12;
+  --material-reflection-position:0 100%; --material-reflection-size:180% 120%;
+}
+.workshop-theme .material-showcase {
+  --material-opacity:.54; --material-glass:.13; --material-warm:.15; --material-specular:.12;
+  --material-reflection-position:center 80%; --material-reflection-size:110% 170%;
+}
+.workshop-theme .material-card {
+  --material-opacity:.72; --material-glass:.17; --material-warm:.055; --material-specular:.13;
+  --frame-top-highlight:#d5c7a85e; --frame-warm-edge:#9c71373b;
+  --material-blur:0px;
+}
+.workshop-theme .material-card .project-card-body { background:linear-gradient(#08121736,#07111570); }
+.workshop-theme .material-card .project-art { border-color:#091011; outline-color:#c4c8b668; box-shadow:0 1px #e5d7b443,inset 0 0 8px #0009; }
+.workshop-theme .material-card:nth-child(2) { --material-warm:.045; --material-specular:.10; }
+.workshop-theme .material-card:nth-child(3) { --material-warm:.09; --material-reflection-position:80% 0; }
+.workshop-theme .material-card:nth-child(4) { --material-glass:.14; --material-reflection-position:100% 50%; }
+.workshop-theme .material-card:hover { border-color:#c0d8d3aa; }
+.workshop-theme footer { background:linear-gradient(90deg,#182126a3,#9a6d3021 55%,#07101470); border-top:1px solid #c6b99d2e; }
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+.workshop-theme .material-panel:not(.sidebar):not(.hero) { background-color:rgb(8 14 17 / .88); }
+}
+@media (max-width:700px) {
+.workshop-theme .material-panel { --material-blur:2px; }
+.workshop-theme .material-panel > .frame-fasteners { inset:4px; }
+.workshop-theme .frame-fasteners i { width:6px; height:6px; }
+.workshop-theme .frame-fasteners i::after { inset:2px 0; }
+.workshop-theme .material-header { --material-warm:.07; --material-specular:.12; }
+.workshop-theme .material-card { --material-opacity:.78; --material-glass:.13; --material-warm:.045; }
+.workshop-theme .material-showcase { --material-opacity:.64; }
+}
+@media (prefers-reduced-transparency:reduce) {
+.workshop-theme .material-panel:not(.sidebar):not(.hero) { background-color:#0b1317; backdrop-filter:none; -webkit-backdrop-filter:none; }
+}
+@media (forced-colors:active) {
+.workshop-theme .surface-coat,.workshop-theme .frame-fasteners { display:none; }
+.workshop-theme .material-panel:not(.sidebar):not(.hero) { background:Canvas; box-shadow:none; backdrop-filter:none; }
+}
+
+/* Default inner-page composition. Materials above are shared with Home;
+   this shell leaves long indexes and articles room to grow vertically. */
+.workshop-page {
+  --accent:var(--workshop-cyan);
+  --text-soft:#b4cdd2;
+  --text-muted:#a1bbc1;
+  background-image:linear-gradient(#090e11bd,#070b0ebd),var(--workshop-scene);
+}
+.workshop-theme .workshop-layout {
+  display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:50px 1fr;
+  gap:var(--workshop-gap); margin-left:var(--rail-width); padding:20px 14px 0;
+  min-height:calc(100vh - 47px);
+}
+.workshop-layout > .main { margin:0; padding:0 0 20px; width:100%; max-width:none; min-width:0; }
+.workshop-page .material-panel { border:1px solid var(--workshop-edge); border-radius:5px; }
+.workshop-page .material-panel:not(.sidebar) { position:relative; }
+.workshop-page .material-panel > :not(.surface-coat):not(.frame-fasteners) { position:relative; z-index:2; }
+.workshop-page .page-header { padding:28px; margin:0; }
+.workshop-page .page-header::before { content:''; display:block; margin:0; padding:0; width:auto; border:0; }
+.workshop-page .page-section { margin-top:var(--workshop-gap); }
+.workshop-page .section-page-title { color:var(--workshop-text); font-family:var(--mono); }
+.workshop-page .page-description { color:var(--text-soft); }
+.workshop-page .project-index,.workshop-page .notes-index { gap:var(--workshop-gap); }
+.workshop-page .project-row { border-radius:4px; }
+.workshop-page .project-row h2,.workshop-page .note-row h2 { color:var(--workshop-text); }
+.workshop-page .project-row p,.workshop-page .note-row p { color:var(--text-soft); }
+.workshop-page .project-number,.workshop-page .project-meta,
+.workshop-page .note-number,.workshop-page .note-tag,.workshop-page .note-state.live { color:var(--workshop-cyan); }
+.workshop-page .project-open { color:var(--workshop-cyan); border-color:#76bac47a; background:#081217b3; }
+.workshop-page .note-row { color:var(--workshop-text); border-radius:4px; }
+.workshop-page .note-row::before { content:none; }
+.workshop-page .note-row .surface-coat { grid-column:auto; }
+.workshop-page .contact-box { border-radius:4px; }
+.workshop-page .contact-box::before,.workshop-page .contact-box::after { content:none; }
+.workshop-page .tutorial-article { padding:28px; --material-opacity:.87; --material-glass:.09; --material-warm:.07; }
+.workshop-page .article-header,.workshop-page .article-step { border-color:#b8c3bf29; }
+.workshop-page .article-checklist { --material-opacity:.82; }
+.workshop-page .article-step > div { min-width:0; }
+.workshop-page pre { max-width:100%; overflow:auto; }
+.workshop-page :is(button,summary):focus-visible { outline:2px solid var(--workshop-cyan); outline-offset:4px; }
+@media (max-width:1100px) {
+  .workshop-theme .workshop-layout { padding:14px 12px 0; }
+}
+@media (max-width:700px) {
+  .workshop-theme .workshop-layout { margin:0; padding:12px 10px 0; grid-template-rows:42px 1fr; }
+  .workshop-page .page-header,.workshop-page .tutorial-article { padding:24px 20px; }
+  .workshop-page .rail-foot { display:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .workshop-page .reveal { opacity:1; transform:none; transition:none; }
+}
+@media (prefers-reduced-transparency:reduce) {
+  .workshop-page .surface-coat { display:none; }
+}
+@media (forced-colors:active) {
+  .workshop-page,.workshop-page .sidebar { background:Canvas; }
+  .workshop-page .panel::before,.workshop-page .panel::after,.workshop-page .sidebar::after { display:none; }
+  .workshop-page .material-panel { border-color:CanvasText; }
+  .workshop-page :is(h1,h2,p,.note-number,.note-tag,.note-state.live) { color:CanvasText; }
+}
