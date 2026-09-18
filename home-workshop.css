@@ -185,6 +185,9 @@
   --panel-specular:url('assets/hub-rebuild/11_panel_specular_overlay.webp');
   --panel-frame-light:#d9be9685;
   --ambient-warmth:1.35;
+  --frame-warm-edge:#c58a4852;
+  --frame-top-highlight:#efd7ac82;
+  --frame-inset-depth:#000c;
   --sidebar-metal-shade:.28;
   --sidebar-wear:.20;
   --fastener-rim:#b8aa8d;
@@ -204,11 +207,11 @@
 .home-workshop .topbar.material-panel,
 .home-workshop .project-card.material-panel { position:relative; }
 .home-workshop .material-panel:not(.sidebar):not(.hero) {
-  background:linear-gradient(120deg,#c8a2710b,transparent 39%,#8ba6ad08),rgb(8 14 17 / var(--material-opacity));
+  background:radial-gradient(ellipse at 4% 0%,#d4945017,transparent 24%),linear-gradient(120deg,#c8a2710b,transparent 39%,#8ba6ad08),rgb(8 14 17 / var(--material-opacity));
   -webkit-backdrop-filter:blur(var(--material-blur)) saturate(.7);
   backdrop-filter:blur(var(--material-blur)) saturate(.7);
   border-color:var(--panel-frame-light) #75817a66 #3b443f #a9aaa078;
-  box-shadow:inset 0 1px #eee0c077,inset 1px 0 #d3e1dd22,inset 0 -2px #000b,0 0 0 2px #050a0bbb,0 7px 13px #0009;
+  box-shadow:inset 0 1px var(--frame-top-highlight),inset 1px 0 var(--frame-warm-edge),inset 0 -3px var(--frame-inset-depth),0 0 0 2px #050a0bbb,0 7px 13px #0009;
 }
 .home-workshop .surface-coat {
   position:absolute; inset:1px; z-index:1; border-radius:inherit; overflow:hidden;
@@ -240,18 +243,18 @@
 .home-workshop .sidebar > :not(.surface-coat),
 .home-workshop .material-card > :not(.surface-coat) { position:relative; z-index:2; }
 .home-workshop .panel.material-panel::after {
-  background:linear-gradient(115deg,#d8c2a008,transparent 36%,#90b7bf08);
+  background:linear-gradient(115deg,#d8c2a00b,transparent 32%,#90b7bf08),rgb(4 10 13 / .12);
   border-color:#d1d4c54c; border-top-color:#e5d2b369; opacity:1;
-  box-shadow:inset 0 1px 4px #0008,0 1px #d6bd9026;
+  box-shadow:inset 0 2px 5px #000b,inset 0 -1px #aab9b31c,0 1px var(--frame-warm-edge);
 }
 
 /* Component recipes vary the material without duplicating layer markup. */
 .home-workshop .material-header {
-  --material-opacity:.48; --material-glass:.11; --material-warm:.12; --material-specular:.18;
+  --material-opacity:.50; --material-glass:.11; --material-warm:.13; --material-specular:.18;
   --material-reflection-size:100% 360%; --material-reflection-position:center 12%;
 }
 .home-workshop .sidebar.material-metal {
-  --material-glass:.10; --material-warm:.17; --material-specular:.14;
+  --material-glass:.10; --material-warm:.18; --material-specular:.14;
   --material-reflection-size:auto 110%; --material-reflection-position:74% 0;
   background:linear-gradient(90deg,#e6d5b518,transparent 8%,#02070955 48%,#ba854629 94%,#030709aa),linear-gradient(rgb(6 12 15 / var(--sidebar-metal-shade)),rgb(6 12 15 / var(--sidebar-metal-shade))),var(--home-metal) 40% 0/430px;
   border-color:#dac5a1a6 #756a54 #353936 #aeb4a28f;
@@ -286,7 +289,7 @@
 }
 .home-workshop .hero.material-hero .surface-coat { inset:3px; }
 .home-workshop .material-status {
-  --material-opacity:.66; --material-glass:.16; --material-warm:.085; --material-specular:.13;
+  --material-opacity:.68; --material-glass:.16; --material-warm:.095; --material-specular:.13;
   --material-reflection-position:15% 40%; --material-reflection-size:160% auto;
 }
 .home-workshop .material-status .stats {
@@ -294,15 +297,16 @@
   outline-color:#b2c9c978; box-shadow:inset 0 3px 9px #000d,inset 0 -1px #8aadb92b,0 1px #d7ccae44;
 }
 .home-workshop .material-note {
-  --material-opacity:.77; --material-glass:.12; --material-warm:.14; --material-specular:.12;
+  --material-opacity:.78; --material-glass:.12; --material-warm:.15; --material-specular:.12;
   --material-reflection-position:0 100%; --material-reflection-size:180% 120%;
 }
 .home-workshop .material-showcase {
-  --material-opacity:.51; --material-glass:.13; --material-warm:.14; --material-specular:.12;
+  --material-opacity:.54; --material-glass:.13; --material-warm:.15; --material-specular:.12;
   --material-reflection-position:center 80%; --material-reflection-size:110% 170%;
 }
 .home-workshop .material-card {
-  --material-opacity:.65; --material-glass:.19; --material-warm:.065; --material-specular:.14;
+  --material-opacity:.72; --material-glass:.17; --material-warm:.055; --material-specular:.13;
+  --frame-top-highlight:#d5c7a85e; --frame-warm-edge:#9c71373b;
   --material-blur:0px;
 }
 /* Clear windows and calm text backing prevent reflections from competing with copy. */
@@ -333,3 +337,4 @@
  .home-workshop .surface-coat,.home-workshop .frame-fasteners { display:none; }
  .home-workshop .material-panel:not(.sidebar):not(.hero) { background:Canvas; box-shadow:none; backdrop-filter:none; }
 }
+
