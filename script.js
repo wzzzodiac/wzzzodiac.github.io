@@ -100,3 +100,93 @@ backToTop?.addEventListener("click", () => {
 document.querySelectorAll(".menu-item.active, .sidebar nav a.active").forEach(a => a.setAttribute("aria-current", "page"));
 document.querySelectorAll(".back-to-top").forEach(b => b.setAttribute("aria-label", "Back to top"));
 document.querySelectorAll(".sidebar nav b, .sidebar nav .icon").forEach(icon => icon.setAttribute("aria-hidden", "true"));
+
+const welcomeAudio = document.getElementById("welcomeAudio");
+const welcomeAudioToggle = document.getElementById("welcomeAudioToggle");
+const welcomeAudioDuration = document.getElementById("welcomeAudioDuration");
+const welcomeWaveform = document.getElementById("welcomeWaveform");
+const welcomeWaveProgress = document.getElementById("welcomeWaveProgress");
+
+if (welcomeAudio && welcomeAudioToggle && welcomeAudioDuration && welcomeWaveform && welcomeWaveProgress) {
+  let welcomeProgressFrame = 0;
+
+  const formatAudioTime = seconds => {
+    if (!Number.isFinite(seconds) || seconds < 0) return "--:--";
+    const wholeSeconds = Math.floor(seconds);
+    const minutes = Math.floor(wholeSeconds / 60);
+    const remainder = wholeSeconds % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+  };
+
+  const setWelcomePlaying = playing => {
+    welcomeAudioToggle.querySelector("span").textContent = playing ? "❚❚" : "▶";
+    welcomeAudioToggle.setAttribute("aria-label", playing ? "Pause welcome audio" : "Play welcome audio");
+  };
+
+  const updateWelcomeProgress = () => {
+    const hasDuration = Number.isFinite(welcomeAudio.duration) && welcomeAudio.duration > 0;
+    const ratio = hasDuration ? Math.min(1, Math.max(0, welcomeAudio.currentTime / welcomeAudio.duration)) : 0;
+    welcomeWaveProgress.setAttribute("width", String(ratio * 180));
+    welcomeWaveform.setAttribute("aria-valuenow", String(Math.round(ratio * 100)));
+  };
+
+  const stopWelcomeProgress = () => {
+    cancelAnimationFrame(welcomeProgressFrame);
+    welcomeProgressFrame = 0;
+  };
+
+  const animateWelcomeProgress = () => {
+    updateWelcomeProgress();
+    if (!welcomeAudio.paused && !welcomeAudio.ended) {
+      welcomeProgressFrame = requestAnimationFrame(animateWelcomeProgress);
+    }
+  };
+
+  const syncWelcomeDuration = () => {
+    welcomeAudioDuration.textContent = formatAudioTime(welcomeAudio.duration);
+    if (Number.isFinite(welcomeAudio.duration)) {
+      welcomeAudioDuration.dateTime = `PT${welcomeAudio.duration}S`;
+    }
+  };
+
+  welcomeAudioToggle.addEventListener("click", async () => {
+    if (!welcomeAudio.paused) {
+      welcomeAudio.pause();
+      return;
+    }
+    try {
+      await welcomeAudio.play();
+    } catch {
+      setWelcomePlaying(false);
+    }
+  });
+
+  welcomeAudio.addEventListener("loadedmetadata", syncWelcomeDuration);
+  welcomeAudio.addEventListener("durationchange", syncWelcomeDuration);
+  welcomeAudio.addEventListener("timeupdate", updateWelcomeProgress);
+  welcomeAudio.addEventListener("play", () => {
+    setWelcomePlaying(true);
+    stopWelcomeProgress();
+    animateWelcomeProgress();
+  });
+  welcomeAudio.addEventListener("pause", () => {
+    setWelcomePlaying(false);
+    stopWelcomeProgress();
+    updateWelcomeProgress();
+  });
+  welcomeAudio.addEventListener("ended", () => {
+    stopWelcomeProgress();
+    welcomeAudio.currentTime = 0;
+    setWelcomePlaying(false);
+    updateWelcomeProgress();
+  });
+  welcomeAudio.addEventListener("error", () => {
+    stopWelcomeProgress();
+    setWelcomePlaying(false);
+    welcomeAudioToggle.disabled = true;
+  });
+
+  setWelcomePlaying(false);
+  updateWelcomeProgress();
+  if (welcomeAudio.readyState >= HTMLMediaElement.HAVE_METADATA) syncWelcomeDuration();
+}

@@ -91,6 +91,25 @@
         <div class="section-head"><h2>// WORKSHOP NOTE</h2></div>
         <div class="clipped-note"><div class="paper-note">The first gulp from the glass of natural sciences makes you an atheist, but at the bottom of the glass God is waiting for you.<br><small>— W. Heisenberg</small></div></div>
       </section>
+
+      <section class="panel welcome-panel material-panel material-status"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+        <div class="section-head"><h2>// WELCOME</h2></div>
+        <div class="welcome-audio-controls">
+          <button class="welcome-audio-toggle" id="welcomeAudioToggle" type="button" aria-label="Play welcome audio"><span aria-hidden="true">▶</span></button>
+          <div class="welcome-waveform" id="welcomeWaveform" role="progressbar" aria-label="Welcome audio progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <svg viewBox="0 0 180 32" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <path id="welcomeWaveBars" d="M0 13h4v6H0zm9-5h4v16H9zm9 2h4v12h-4zm9-7h4v26h-4zm9 4h4v18h-4zm9-6h4v30h-4zm9 9h4v12h-4zm9-5h4v22h-4zm9 7h4v8h-4zm9-9h4v26h-4zm9 4h4v18h-4zm9-2h4v22h-4zm9 6h4v10h-4zm9-8h4v26h-4zm9 5h4v16h-4zm9-3h4v22h-4zm9 6h4v10h-4zm9-4h4v18h-4zm9 6h4v6h-4zm9-3h4v12h-4z"/>
+                <clipPath id="welcomeWaveClip"><rect id="welcomeWaveProgress" width="0" height="32"/></clipPath>
+              </defs>
+              <use class="welcome-wave-base" href="#welcomeWaveBars"/>
+              <use class="welcome-wave-progress" href="#welcomeWaveBars" clip-path="url(#welcomeWaveClip)"/>
+            </svg>
+          </div>
+          <time class="welcome-audio-duration" id="welcomeAudioDuration">--:--</time>
+          <audio id="welcomeAudio" preload="metadata" src="assets/audio/welcome.mp3"></audio>
+        </div>
+      </section>
     </aside>
   </div>
 
