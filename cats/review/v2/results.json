@@ -1,0 +1,60 @@
+{
+  "base": "8c274ad9ed4fcffd767cc60252239623122e4452",
+  "backend": "Playwright 1.62.1 / Edge 154.0.4258.48",
+  "checks": [
+    {
+      "name": "Source content/semantics preserved; root Hub and cat photographs unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "Native selector: five names, current value, 48px target, visible focus",
+      "result": "PASS"
+    },
+    {
+      "name": "Native menu opens; Escape/outside close, keyboard selects, focus and value stay synchronized",
+      "result": "PASS"
+    },
+    {
+      "name": "Repeated five-style cycle preserves text, links, photos, tab/fact/disclosure state",
+      "result": "PASS"
+    },
+    {
+      "name": "Reload persistence for every style; restoration occurs before stylesheets",
+      "result": "PASS"
+    },
+    {
+      "name": "Existing interactions and keyboard in all five styles",
+      "result": "PASS"
+    },
+    {
+      "name": "Responsive geometry at 1440/390/768/320, all styles; long content and zoom",
+      "result": "PASS"
+    },
+    {
+      "name": "Mobile touch opens native popup; selection, tabs/facts/disclosures in every style",
+      "result": "PASS"
+    },
+    {
+      "name": "Reduced motion: all five switches/interactions have no running animations",
+      "result": "PASS"
+    },
+    {
+      "name": "All local links/assets resolve; one DOM, shared photos, no external runtime requests",
+      "result": "PASS"
+    },
+    {
+      "name": "Invalid saved style and denied storage fallback; native list supports 20 entries",
+      "result": "PASS"
+    },
+    {
+      "name": "No JS/console errors or failed local requests",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "failedLocalRequests": [],
+  "screenshots": [],
+  "environmentInjectedOrigins": [
+    "http://me.kis.v2.scr.kaspersky-labs.com"
+  ]
+}

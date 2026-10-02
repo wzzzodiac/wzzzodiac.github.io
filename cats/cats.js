@@ -2,46 +2,55 @@
 
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-const styleButtons = [...document.querySelectorAll('[data-style-choice]')];
+const themes = window.catThemes;
+const styleSelect = document.getElementById('visual-style');
 const wideLayout = matchMedia('(min-width: 800px)');
 let styleTransition;
+let styleRequest = 0;
+let activeTheme = themes.find(theme => theme.id === root.dataset.style) || themes[0];
+
+themes.forEach(theme => styleSelect.add(new Option(theme.name, theme.id)));
 
 function syncTabOrientation() {
   document.querySelector('[role="tablist"]').setAttribute('aria-orientation',
-    root.dataset.style === 'editorial' && wideLayout.matches ? 'vertical' : 'horizontal');
+    wideLayout.matches ? activeTheme.desktopTabs : (activeTheme.mobileTabs || 'horizontal'));
 }
 
 function animateContent(element) {
   if (reducedMotion.matches) return;
   element.getAnimations().forEach(animation => animation.cancel());
   element.animate(
-    [{ opacity: 0.35, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
-    { duration: root.dataset.style === 'playful' ? 280 : 420, easing: 'ease-out' }
+    [{ opacity: 0.35, transform: `translateY(${activeTheme.offset}px)` }, { opacity: 1, transform: 'translateY(0)' }],
+    { duration: activeTheme.duration, easing: activeTheme.easing }
   );
 }
 
 function applyStyle(style) {
-  root.dataset.style = style;
+  activeTheme = themes.find(theme => theme.id === style) || themes[0];
+  root.dataset.style = activeTheme.id;
   syncTabOrientation();
-  styleButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.styleChoice === style)));
-  document.querySelector('meta[name="theme-color"]').content = style === 'playful' ? '#ffdf63' : '#f5f2e9';
-  try { localStorage.setItem('cat-visual-style', style); } catch { /* Storage is optional. */ }
+  styleSelect.value = activeTheme.id;
+  document.querySelector('.style-swatch').style.backgroundColor = activeTheme.color;
+  document.querySelector('meta[name="theme-color"]').content = activeTheme.background;
+  try { localStorage.setItem('cat-visual-style', activeTheme.id); } catch { /* Storage is optional. */ }
 }
 
 applyStyle(root.dataset.style);
 document.querySelector('.style-picker').hidden = false;
-styleButtons.forEach(button => button.addEventListener('click', () => {
-  const style = button.dataset.styleChoice;
-  if (style === root.dataset.style) return;
+styleSelect.addEventListener('change', () => {
+  const style = styleSelect.value;
+  const request = ++styleRequest;
   if (styleTransition) styleTransition.skipTransition();
+  const update = () => { if (request === styleRequest) applyStyle(style); };
   if (document.startViewTransition && !reducedMotion.matches) {
-    styleTransition = document.startViewTransition(() => applyStyle(style));
+    styleTransition = document.startViewTransition(update);
+    styleTransition.ready.catch(() => { /* Skipping a transition rejects ready, even if its update succeeds. */ });
     styleTransition.finished.catch(() => { /* A newer selection may supersede this transition. */ });
   } else {
-    applyStyle(style);
+    update();
     animateContent(document.querySelector('.hero'));
   }
-}));
+});
 
 const tabList = document.querySelector('[role="tablist"]');
 const tabs = [...tabList.querySelectorAll('[role="tab"]')];
