@@ -17,7 +17,7 @@ body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.6 va
 img, svg { display: block; max-width: 100%; }
 img { width: 100%; height: auto; }
 a { color: inherit; text-underline-offset: .25em; }
-button, summary, a { -webkit-tap-highlight-color: transparent; }
+button, summary, a, select { -webkit-tap-highlight-color: transparent; }
 button { font: inherit; cursor: pointer; color: inherit; }
 button, .button, summary { touch-action: manipulation; }
 button:disabled { cursor: default; }
@@ -41,9 +41,9 @@ p { text-wrap: pretty; }
 .section-nav a:hover { border-color: currentColor; }
 .style-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .picker-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; }
-.picker-buttons { display: flex; border: 1px solid var(--ink); padding: 3px; }
-.picker-buttons button { border: 0; background: transparent; min-height: 40px; padding: 6px 13px; font-size: .8rem; }
-.picker-buttons [aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.select-shell { position: relative; max-width: 100%; }
+.style-select { display: block; max-width: 100%; width: 190px; min-height: 48px; padding: 9px 12px 9px 35px; border: 1px solid var(--ink); border-radius: 0; font: .85rem var(--body); color: var(--ink); background: var(--paper); cursor: pointer; }
+.style-swatch { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 11px; height: 11px; border: 1px solid currentColor; border-radius: 50%; pointer-events: none; }
 .hero { padding-top: 35px; display: grid; gap: 32px; }
 .eyebrow { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .15em; line-height: 1.6; }
 .tiny-star { font-size: 1.2rem; display: inline-block; vertical-align: middle; margin-right: 8px; }
@@ -154,8 +154,7 @@ html[data-style="playful"] {
 [data-style="playful"] .section-nav a { border: 1.5px solid var(--ink); border-radius: 30px; padding-inline: 15px; font-weight: bold; }
 [data-style="playful"] .section-nav a:hover { background: var(--ink); color: var(--paper); }
 [data-style="playful"] .style-picker { gap: 6px; }
-[data-style="playful"] .picker-buttons { background: #fffaf0; border: 2px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); }
-[data-style="playful"] .picker-buttons button { border-radius: 7px; font-weight: bold; }
+[data-style="playful"] .style-select { background: #fffaf0; border: 2px solid var(--ink); border-radius: 12px; box-shadow: 3px 3px 0 var(--ink); font-weight: bold; }
 [data-style="playful"] .hero { gap: 28px; padding-top: 38px; }
 [data-style="playful"] .hero .eyebrow { letter-spacing: .05em; }
 [data-style="playful"] .tiny-star { color: var(--accent); font-size: 1.65rem; }

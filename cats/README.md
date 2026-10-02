@@ -1,58 +1,80 @@
-# Cat Visual Playground — first review
+# Cat Visual Playground — five visual systems
 
-Independent static experiment at `/cats/`. Base: `f352f82142cfbfd347c865a49109d18d476709ba` (current `main`, fetched and pulled with a clean checkout on 2026-10-02). Review branch: `web-visuals-try`.
+Static experiment at `/cats/`. Second iteration: branch `cats-more-visuals`, based on `main` at `8c274ad9ed4fcffd767cc60252239623122e4452`, fetched/pulled from a clean checkout on 2026-10-02. This iteration changes only `cats/`; project 13, counts, Featured Projects, the root Hub and Toolkit remain unchanged.
 
 ## Preview
 
-From the repository root:
+From the repository root, run `python -m http.server 8768 --bind 127.0.0.1` and open http://127.0.0.1:8768/cats/ . No build or installation. The review branch is not deployed to production and must not be merged until visual review.
 
-```sh
-python -m http.server 8768 --bind 127.0.0.1
-```
+## Selector and architecture
 
-Open http://127.0.0.1:8768/cats/ . No build, package installation or network dependency is needed by the page. The root Hub still has its existing external links/assets.
+A labelled native `<select>` replaces the two buttons. Its selected name and adjacent swatch identify the current visual; its target is 48px tall. Native semantics provide keyboard navigation, platform popup, Escape/outside dismissal and touch handling without a custom menu/focus manager. Popup appearance and when keyboard changes commit depend on the browser/OS. In tested Edge, arrow navigation can commit before Escape; Escape closes and focus/value remain synchronized.
 
-Pages evidence: the latest successful [production run](https://github.com/wzzzodiac/wzzzodiac.github.io/actions/runs/36019447472) uses `main` at the base commit via `dynamic/pages/pages-build-deployment`; the checkout has no custom `.github/workflows` or branch preview configuration. The Pages settings REST endpoint was unavailable through the connected read API (and unauthenticated access returned 404), so the deployment/workflow evidence was used. No settings, deployment or production source was changed. This draft uses a local preview because no isolated branch preview is configured.
+`themes.js` is the single registry for IDs, names, swatches, browser chrome colors, tab orientation and reveal timing. It restores a validated stored theme before stylesheets load. `cats.js` builds options from the registry and keeps one interaction implementation. A request counter prevents stale transition callbacks from overwriting rapid selections. Storage is optional. Changing visual preserves the current tab, fact and disclosures; reload preserves the visual only.
 
-## What to review
+One semantic DOM and one photo set serve all five visuals. `cats.css` retains Editorial/Playful; `themes.css` scopes the three additions to `data-style`. Add a registry entry and scoped CSS for a future theme; no independent selector button or copied HTML is needed. A test-only native list of 20 options checks compact selector geometry without adding a sixth product theme.
 
-- **Editorial:** Georgia headlines, warm paper, forest ink, rust accents, fine rules, spacious asymmetrical photography, vertical desktop field-guide tabs, quiet reveals.
-- **Playful:** heavy system sans, yellow/teal/coral palette, rounded and rotated photo frames, hard shadows, horizontal desktop tabs, a compact collage, stronger hover response.
-- Shared DOM/content, three actual tab panels, five non-repeating random facts, four native body-language disclosures with diagram highlights, real photos, anchor navigation and credits.
-- The visual switch uses `aria-pressed`, restores optional localStorage before CSS paints, preserves live tab/fact/disclosure state, and uses native View Transitions with a WAAPI fallback. Reduced motion disables both. Persistence across reload covers the visual choice only.
-- Keyboard: one tab stop in the tablist; Left/Right, Home/End and vertical Up/Down; Tab enters the active panel. Focus outlines, skip link, native links/buttons/details and polite fact announcements.
-- Four local photos with 640/1200 WebP variants as used (approximately 360 KiB combined), explicit dimensions, below-fold lazy loading, no web fonts or runtime dependencies. [Photo and content sources](SOURCES.md), also available via `credits.html`.
+| Visual | Direction |
+| --- | --- |
+| Editorial | Existing warm paper, Georgia, spacious asymmetrical photography; selector-only presentation adjustments. |
+| Playful | Existing yellow/teal/coral, heavy sans, collage and hard shadows; selector-only presentation adjustments. |
+| Personal Hub | Actual W.ZC workshop materials, inset rims/hardware, smoked glass, cyan navigation edges, warm paper, compact technical labels and restrained reveals. |
+| Dark Retro | Charcoal workstation and off-white manual pages, amber/green accents, bevel controls, discreet static scanlines, stepped reveals; no flickering loop. |
+| Pastel Pink | Rose/cream editorial, lavender tabs, peach paper, mint diagram, tape details and soft reveals. |
 
-The only root changes are project **13 — Cat Visual Playground**, its `cats/` link, and the two actual project counts from 12 to 13. The index uses text rows, so no thumbnail was added. Home Featured Projects, shared styles/scripts, other projects and historical `visuals/` are unchanged.
+The hero note now says “More ways to see it” instead of “Two ways to see it”; all five styles share it. Main content otherwise matches the base exactly. Native tabs, random facts, disclosures, links, photos and semantics are shared. Reduced motion disables transitions and WAAPI reveals.
 
-## Evidence — 2026-10-02
+## Personal Hub fidelity
 
-Backend actually launched: **Playwright 1.62.1 / Edge 154.0.4258.48**, existing bundled runtime. No new testing dependency.
+Source of truth inspected: `index.html`, `projects.html`, `style.css`, `workshop-theme.css`, `home-workshop.css`, `docs/WORKSHOP_DESIGN_SYSTEM.md` and `assets/hub-rebuild/README.md`. Local renders of the real Hub and Projects were compared with the Cats Hub render for material hierarchy, borders, color, typography, density and controls.
 
-| Visual | Desktop, 1440 × 1000 viewport | Mobile emulation, 390 × 844 viewport |
+Reused by relative URL from `../assets/hub-rebuild/`:
+
+- `02_workshop_hero_background.webp`
+- `03_dark_metal_texture.webp`
+- `09_smoked_glass_panel_overlay.webp`
+- `10_warm_reflection_overlay.webp`
+- `11_panel_specular_overlay.webp`
+
+The scoped adaptation uses the Hub palette, Consolas/Impact family, material gradients, inset highlights, cyan active edges and paper controls. It keeps the cat page composition rather than copying the Hub dashboard. No global Hub stylesheet is imported; no material asset is duplicated. These five existing textures total about 859 KiB and are used only by the Hub theme. The four existing cat photographs (about 360 KiB total variants) and system fonts are reused by all themes. [Existing photo/content provenance](SOURCES.md).
+
+## Visual evidence — 2026-10-02
+
+| Visual | Desktop 1440 × 1000 | Mobile emulation 390 × 844 |
 | --- | --- | --- |
-| Editorial | [Full screenshot](review/editorial-desktop.png) | [Full screenshot](review/editorial-mobile.png) |
-| Playful | [Full screenshot](review/playful-desktop.png) | [Full screenshot](review/playful-mobile.png) |
+| Editorial | [Full screenshot](review/v2/editorial-desktop.png) | [Full screenshot](review/v2/editorial-mobile.png) |
+| Playful | [Full screenshot](review/v2/playful-desktop.png) | [Full screenshot](review/v2/playful-mobile.png) |
+| Personal Hub | [Full screenshot](review/v2/hub-desktop.png) | [Full screenshot](review/v2/hub-mobile.png) |
+| Dark Retro | [Full screenshot](review/v2/dark-retro-desktop.png) | [Full screenshot](review/v2/dark-retro-mobile.png) |
+| Pastel Pink | [Full screenshot](review/v2/pastel-pink-desktop.png) | [Full screenshot](review/v2/pastel-pink-mobile.png) |
 
-All four full screenshots were opened and inspected, with mobile crops inspected at readable size. Reviewed hierarchy, spacing, photo crops, control visibility, clipping and reflow. No clear visual defect remained. Screenshots show different random facts because the mobile interaction checks exercise the shuffle; they use the same fact pool.
+All ten screenshots were opened and inspected. Mobile full-page content was additionally split into readable 390px-wide strips for inspection. Checked hierarchy, spacing, crop, contrast, controls, clipping, theme leakage and reflow. Compared [real Hub](review/v2/hub-reference-index.png) and [Projects](review/v2/hub-reference-projects.png) with Personal Hub; their external avatar was blocked during reference capture, so that image is not fidelity evidence. No obvious visual defect remained. The original two-theme evidence in `review/` is historical.
 
-`review/results.json`: 12 passing focused groups plus a passing orientation follow-up. Theme switch/state/persistence; pointer and keyboard tabs; focus; random fact; native disclosures; mobile taps; decoded images; local links and Hub counts; reduced motion; denied storage; no-JS reading fallback. No JavaScript/console errors or failed local requests in the experiment. Overflow checks also passed at 768 and 320 CSS px, with long introduction text and a 200% CSS zoom proxy. Orientation correction was rechecked separately and did not change the captured appearance. `node --check cats/cats.js` and scoped Git whitespace checks passed.
+## Focused verification
 
-To repeat using an already-installed Playwright module, start the HTTP server and run:
+Backend: existing Playwright 1.62.1 / Edge 154.0.4258.48. Results are in `review/v2/results.json`; the script checks content invariants, selector keyboard/focus/dismissal, repeated and rapid switching, state, reload/pre-stylesheet restoration, tabs/facts/disclosures, 1440/390/768/320 geometry, long text, 200% CSS zoom, mobile taps, reduced motion, links/images, invalid/denied storage, 20-option fixture and local console/network errors.
+
+Final run: **12/12 groups PASS**, zero JavaScript/console errors and zero failed local requests. JavaScript syntax and Git whitespace checks passed. The corrected paper-card focus was asserted in the browser and its [focused screenshot](review/v2/hub-keyboard-focus.png) was opened and inspected. This additional capture does not replace any of the ten full-page views.
+
+To repeat with the existing bundled module (start the HTTP server first):
 
 ```powershell
 $env:PLAYWRIGHT_MODULE = 'C:/Users/Walter Zafra/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'
 node cats/review/verify.cjs
 ```
 
-Override `CAT_PREVIEW_URL` or `CAT_REVIEW_OUTPUT` if needed. Test script writes screenshots/results only to the selected output directory. It does not install tools. Screenshots alone are not an inspection result.
+Optional `CAT_PREVIEW_URL` and `CAT_REVIEW_OUTPUT` override the server/output. `CAPTURE=1` refreshes the ten screenshots; normal verification reuses them and writes results only. Saving screenshots is not proof of inspection.
 
-## Toolkit and focused review
+Limits: Edge desktop plus mobile emulation, not physical-device/Safari/Firefox testing. Mobile taps open the native popup; option changes use Playwright's native select API rather than a physical OS picker. CSS zoom is a reflow proxy. No screen-reader session or exhaustive accessibility/compliance audit. Current evidence does not imply a public branch deployment.
 
-Used v0.7.0 `coding-standards` for native/scoped implementation; `frontend-patterns` plus `visual-direction-and-reference.md` for coherent distinct directions; `e2e-testing` plus `ui-verification-by-risk.md` for browser evidence; `verification-lite` for the completion/diff gate. No intake blocker; the user-prescribed workflow did not need additional `project-workflow` coordination. Toolkit files were read only, never changed.
+The host antivirus injects requests to `me.kis.v2.scr.kaspersky-labs.com` into Edge. The check records that observed environmental origin separately and rejects any other external resource origin. The page's own runtime assets are local; the antivirus was not disabled or reconfigured.
 
-One read-only `reviewer` agent inspected changed code, root diff, test evidence and representative screenshots. **No actionable findings**; no subjective findings accepted or rejected. The author corrected tab orientation/Up/Down handling during verification, before that review.
+## Workflow and review
 
-Limits: Edge desktop plus mobile emulation, not real-device/Safari/Firefox testing. CSS zoom is a reflow proxy, not native browser-zoom testing. No screen-reader session or exhaustive accessibility audit; no WCAG compliance claim. Pexels pages/license were consulted; no legal certification. No public branch deployment, no merge, no third visual.
+Read-only Toolkit v0.7.0 guidance: `coding-standards`, `frontend-patterns` with `visual-direction-and-reference.md`, `e2e-testing` with `ui-verification-by-risk.md`, and `verification-lite`. No Toolkit/skill edits or installations. The user-prescribed Git flow made additional workflow coordination unnecessary.
 
-**READY FOR FIRST REVIEW**
+One independent read-only reviewer compared Hub references and the new mobile screenshots, and reviewed the selector, scoped CSS and shared logic. Its P2 finding was a low-contrast cyan focus outline on Personal Hub's light fact card; a local dark-outline override fixes it. Runtime verification also identified and fixed an unhandled View Transition `ready` rejection during rapid switching. No unrelated redesign was made.
+
+The reviewer rechecked both corrections and closed the P2 finding: no remaining actionable findings. It did not rerun browser tests; the author supplied the final runtime evidence above.
+
+**NO MERGE — visual review required.**

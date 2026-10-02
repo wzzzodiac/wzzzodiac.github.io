@@ -4,16 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f2e9">
-  <meta name="description" content="A little curiosity, a lot of cat. Explore the same feline world in two very different visual styles.">
+  <meta name="description" content="A little curiosity, a lot of cat. Explore the same feline world in five different visual styles.">
   <title>The Cat Edit — Cat Visual Playground</title>
-  <script>
-    try {
-      const saved = localStorage.getItem('cat-visual-style');
-      if (saved === 'playful') document.documentElement.dataset.style = saved;
-    } catch { /* The default works when storage is unavailable. */ }
-  </script>
+  <script src="themes.js"></script>
   <link rel="icon" href="assets/cat.svg" type="image/svg+xml">
   <link rel="stylesheet" href="cats.css">
+  <link rel="stylesheet" href="themes.css">
   <script src="cats.js" defer></script>
 </head>
 <body>
@@ -21,9 +17,9 @@
   <header class="masthead wrap">
     <a class="brand" href="#top" aria-label="The Cat Edit, back to top"><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M9 17 8 3l13 9h6L40 3l-1 14c10 24-40 24-30 0Z"/><path d="m3 24 10 2M2 32l11-2m22-4 10-2m-10 6 11 2M18 22h1m10 0h1m-8 5 2 2 2-2"/></svg><span>the cat edit<span class="brand-dot">.</span></span></a>
     <nav class="section-nav" aria-label="Explore the page"><a href="#field-guide">Field guide</a><a href="#gallery">Cat people</a><a href="#body-language">Cat signals</a></nav>
-    <div class="style-picker" role="group" aria-label="Visual style" hidden>
-      <span class="picker-label">Visual style</span>
-      <div class="picker-buttons"><button type="button" data-style-choice="editorial" aria-pressed="true">Editorial</button><button type="button" data-style-choice="playful" aria-pressed="false">Playful <span aria-hidden="true">✳</span></button></div>
+    <div class="style-picker" hidden>
+      <label class="picker-label" for="visual-style">Visual style</label>
+      <div class="select-shell"><span class="style-swatch" aria-hidden="true"></span><select id="visual-style" class="style-select"></select></div>
     </div>
   </header>
   <main id="main" tabindex="-1">
@@ -33,7 +29,7 @@
         <h1 id="hero-title">Life, with<br>a little more<br><em>cat.</em></h1>
         <p class="intro">Expert nappers. Curious roommates. Small, magnificent weirdos. A place to pause and get to know them a little better.</p>
         <a class="button primary" href="#field-guide">Follow your curiosity <span aria-hidden="true">↗</span></a>
-        <p class="hero-note">One feline world. Two ways to see it.<br>Try the visual style switch above.</p>
+        <p class="hero-note">One feline world. More ways to see it.<br>Try the visual style switch above.</p>
       </div>
       <figure class="hero-photo">
         <div class="photo-frame"><img src="assets/kitten-1200.webp" srcset="assets/kitten-640.webp 640w, assets/kitten-1200.webp 1200w" sizes="(min-width: 800px) 46vw, 90vw" width="1200" height="1254" alt="Cream kitten with blue eyes sitting upright on a patterned blanket" fetchpriority="high"><span class="photo-sticker" aria-hidden="true">very busy<br>being a cat</span></div>
