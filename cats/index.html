@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-style="editorial">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="A little curiosity, a lot of cat. Explore the same feline world in two very different visual styles.">
+  <title>The Cat Edit — Cat Visual Playground</title>
+  <script>
+    try {
+      const saved = localStorage.getItem('cat-visual-style');
+      if (saved === 'playful') document.documentElement.dataset.style = saved;
+    } catch { /* The default works when storage is unavailable. */ }
+  </script>
+  <link rel="icon" href="assets/cat.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="cats.css">
+  <script src="cats.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="masthead wrap">
+    <a class="brand" href="#top" aria-label="The Cat Edit, back to top"><svg viewBox="0 0 48 40" aria-hidden="true"><path d="M9 17 8 3l13 9h6L40 3l-1 14c10 24-40 24-30 0Z"/><path d="m3 24 10 2M2 32l11-2m22-4 10-2m-10 6 11 2M18 22h1m10 0h1m-8 5 2 2 2-2"/></svg><span>the cat edit<span class="brand-dot">.</span></span></a>
+    <nav class="section-nav" aria-label="Explore the page"><a href="#field-guide">Field guide</a><a href="#gallery">Cat people</a><a href="#body-language">Cat signals</a></nav>
+    <div class="style-picker" role="group" aria-label="Visual style" hidden>
+      <span class="picker-label">Visual style</span>
+      <div class="picker-buttons"><button type="button" data-style-choice="editorial" aria-pressed="true">Editorial</button><button type="button" data-style-choice="playful" aria-pressed="false">Playful <span aria-hidden="true">✳</span></button></div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-star" aria-hidden="true">✳</span> A small celebration of cats</p>
+        <h1 id="hero-title">Life, with<br>a little more<br><em>cat.</em></h1>
+        <p class="intro">Expert nappers. Curious roommates. Small, magnificent weirdos. A place to pause and get to know them a little better.</p>
+        <a class="button primary" href="#field-guide">Follow your curiosity <span aria-hidden="true">↗</span></a>
+        <p class="hero-note">One feline world. Two ways to see it.<br>Try the visual style switch above.</p>
+      </div>
+      <figure class="hero-photo">
+        <div class="photo-frame"><img src="assets/kitten-1200.webp" srcset="assets/kitten-640.webp 640w, assets/kitten-1200.webp 1200w" sizes="(min-width: 800px) 46vw, 90vw" width="1200" height="1254" alt="Cream kitten with blue eyes sitting upright on a patterned blanket" fetchpriority="high"><span class="photo-sticker" aria-hidden="true">very busy<br>being a cat</span></div>
+        <figcaption><span>01 / A little curiosity goes a long way.</span><span>Photo: Pixabay</span></figcaption>
+      </figure>
+      <div class="hero-edition" aria-hidden="true"><span>THE ART OF DOING YOUR OWN THING</span><span>SCROLL TO EXPLORE ↓</span></div>
+    </section>
+
+    <section class="field-guide wrap section-space" id="field-guide" aria-labelledby="guide-title">
+      <div class="section-heading"><div><p class="eyebrow">The field guide</p><h2 id="guide-title">Small paws.<br><em>Big personalities.</em></h2></div><p>There is a whole world behind that look.<br>Pick a starting point.</p></div>
+      <div class="guide-layout">
+        <div class="tabs" role="tablist" aria-label="Cat field guide" hidden>
+          <button id="tab-facts" type="button" role="tab" aria-controls="panel-facts" aria-selected="true" tabindex="0"><span>01</span> Everyday cats <span aria-hidden="true">↗</span></button>
+          <button id="tab-coats" type="button" role="tab" aria-controls="panel-coats" aria-selected="false" tabindex="-1"><span>02</span> Coats & characters <span aria-hidden="true">↗</span></button>
+          <button id="tab-behavior" type="button" role="tab" aria-controls="panel-behavior" aria-selected="false" tabindex="-1"><span>03</span> Little rituals <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="guide-panels">
+          <section class="guide-panel" id="panel-facts" aria-labelledby="tab-facts">
+            <p class="panel-kicker">An ordinary day, beautifully done</p><h3>Professional<br>window watchers.</h3><p>A sunny patch. Something moving outside. A cardboard box that absolutely needed inspecting. Cats have a way of making the everyday look interesting.</p>
+            <dl class="mini-notes"><div><dt>Favourite assignment</dt><dd>Inspecting the new box</dd></div><div><dt>Office hours</dt><dd>On their own terms</dd></div><div><dt>Special skill</dt><dd>Finding the cosy spot</dd></div></dl>
+          </section>
+          <section class="guide-panel" id="panel-coats" aria-labelledby="tab-coats">
+            <p class="panel-kicker">More than a first impression</p><h3>A coat is not<br>a personality.</h3><p>Stripes, patches, long fur, short fur: there are many ways to look like a cat. A tabby is a coat pattern, not a breed. And the best way to know a cat is to spend time with that individual.</p>
+            <dl class="mini-notes"><div><dt>Tabby</dt><dd>Stripes, spots or swirls</dd></div><div><dt>Tortoiseshell</dt><dd>A mix of dark and orange</dd></div><div><dt>Bicolour</dt><dd>White alongside another colour</dd></div></dl>
+          </section>
+          <section class="guide-panel" id="panel-behavior" aria-labelledby="tab-behavior">
+            <p class="panel-kicker">The pleasure of small routines</p><h3>Same spot.<br>Another perfect nap.</h3><p>Watching, exploring, grooming, resting, then doing it all again. Each cat has their own little routine. Give them room to approach, investigate or take a break.</p>
+            <dl class="mini-notes"><div><dt>Watch</dt><dd>Notice their favourite places</dd></div><div><dt>Play</dt><dd>Make time to be curious</dd></div><div><dt>Pause</dt><dd>Let them choose some space</dd></div></dl>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section section-space" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <div class="section-heading"><div><p class="eyebrow">The unofficial cast</p><h2 id="gallery-title">A mood for<br><em>every moment.</em></h2></div><p>No job. No deadlines.<br>Somehow, a very full schedule.</p></div>
+        <div class="gallery">
+          <figure class="gallery-item gallery-wide"><div class="gallery-image"><img src="assets/tabby-1200.webp" srcset="assets/tabby-640.webp 640w, assets/tabby-1200.webp 1200w" sizes="(min-width: 800px) 53vw, 90vw" width="1200" height="675" alt="Long-haired tabby resting its chin on the floor and looking at the camera" loading="lazy" decoding="async"></div><figcaption><span class="caption-number">01</span><div><h3>The quiet observer</h3><p>Knows what you did. Has no comment.</p></div><span class="caption-mark" aria-hidden="true">↗</span></figcaption></figure>
+          <figure class="gallery-item gallery-tall"><div class="gallery-image"><img src="assets/sleeping-640.webp" width="640" height="427" alt="Small striped kitten asleep with its paws tucked close" loading="lazy" decoding="async"></div><figcaption><span class="caption-number">02</span><div><h3>The nap enthusiast</h3><p>Currently out of office.</p></div><span class="caption-mark" aria-hidden="true">☾</span></figcaption></figure>
+          <figure class="gallery-item gallery-last"><div class="gallery-image"><img src="assets/portrait-1200.webp" srcset="assets/portrait-640.webp 640w, assets/portrait-1200.webp 1200w" sizes="(min-width: 800px) 42vw, 90vw" width="1200" height="800" alt="White and tabby cat lying on its back with its front paws stretched towards the camera" loading="lazy" decoding="async"></div><figcaption><span class="caption-number">03</span><div><h3>The weekend specialist</h3><p>A masterclass in taking it easy.</p></div><span class="caption-mark" aria-hidden="true">✳</span></figcaption></figure>
+          <div class="gallery-aside"><span class="big-asterisk" aria-hidden="true">✳</span><p>Less scrolling.<br>More <em>slow blinking.</em></p><a class="text-link" href="#body-language">Learn their language <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="fact-section wrap section-space" aria-labelledby="fact-title">
+      <div class="fact-label"><span aria-hidden="true">✳</span><h2 id="fact-title">A little cat fact</h2><p>For your next conversation.<br>Preferably with a cat.</p></div>
+      <div class="fact-content"><p id="random-fact" aria-live="polite" aria-atomic="true">A raised tail can be a friendly hello. Read it together with the rest of the cat’s body.</p><button class="button fact-button" type="button" id="another-fact" hidden>Another cat fact <span aria-hidden="true">↻</span></button><a class="fact-source" href="https://www.cats.org.uk/help-and-advice/cat-behaviour/cat-body-language">Source: Cats Protection ↗</a></div>
+    </aside>
+
+    <section class="body-section wrap section-space" id="body-language" aria-labelledby="body-title">
+      <div class="section-heading"><div><p class="eyebrow">A conversation without words</p><h2 id="body-title">Read the room.<br><em>And the cat.</em></h2></div><p>Small signals, a bigger picture.<br>Always look at the whole cat and the context.</p></div>
+      <div class="body-layout">
+        <div class="cat-diagram" data-signal="tail">
+          <svg viewBox="0 0 520 400" role="img" aria-labelledby="diagram-title"><title id="diagram-title">Illustration of a sitting cat with a curved tail, upright ears and relaxed eyes</title>
+            <ellipse class="diagram-ground" cx="265" cy="358" rx="180" ry="12"/>
+            <path class="cat-fill signal-tail" d="M321 329c100 30 130-36 102-94-13-27-9-73 11-92 14-14 29 4 17 19-12 17-11 44 1 69 40 91-20 159-133 128Z"/>
+            <path class="cat-fill signal-posture" d="M183 171c-38 52-60 139-38 173 12 19 45 15 63 9 24 10 47 10 65 0 27 10 70 5 74-15 5-44-21-112-49-163Z"/>
+            <path class="cat-fill signal-ears" d="m164 128-8-81 69 44c18-3 36-3 52 0l63-44-6 90c31 99-196 99-170-9Z"/>
+            <path class="cat-detail" d="m180 79 29 20m88 0 27-22m-87 77 13 11 12-11m-12 11v12m0 0-15 6m15-6 16 6M148 156l45 7m-43 18 42-5m109-12 47-8m-47 20 43 6m-147 80-2 80m84-80 6 80"/>
+            <g class="signal-eyes cat-detail"><path d="M195 139q15 15 30 0m50 0q15 15 30 0"/></g>
+          </svg>
+          <p class="diagram-caption">A few clues. Never the whole story.</p>
+        </div>
+        <div class="signals">
+          <details name="cat-signals" data-signal="tail" open><summary><span class="signal-index">01</span> The tail <span class="plus" aria-hidden="true">+</span></summary><p>A tail held up can be a friendly greeting. A swishing tail may mean something quite different. Look at the pace and the rest of the body.</p></details>
+          <details name="cat-signals" data-signal="ears"><summary><span class="signal-index">02</span> The ears <span class="plus" aria-hidden="true">+</span></summary><p>Ears can turn towards a sound. Flattened or backward ears can signal discomfort; give the cat room rather than insisting on contact.</p></details>
+          <details name="cat-signals" data-signal="eyes"><summary><span class="signal-index">03</span> The eyes <span class="plus" aria-hidden="true">+</span></summary><p>Soft eyes and a slow blink can be signs of feeling relaxed. Try a gentle slow blink, without staring or moving into their space.</p></details>
+          <details name="cat-signals" data-signal="posture"><summary><span class="signal-index">04</span> The posture <span class="plus" aria-hidden="true">+</span></summary><p>A loose body and a tense crouch tell different stories. A cat showing their belly is not necessarily asking for a belly rub.</p></details>
+          <a class="text-link behavior-source" href="https://www.cats.org.uk/help-and-advice/cat-behaviour/cat-body-language">Explore the Cats Protection guide ↗</a>
+        </div>
+      </div>
+    </section>
+    <div class="closing wrap"><p>Stay curious.<br><em>Take the nap.</em></p><a class="button" href="#top">Back to the cats <span aria-hidden="true">↑</span></a></div>
+  </main>
+  <footer class="footer wrap"><div><strong>The Cat Edit.</strong><p>Cat Visual Playground · A W.ZC experiment</p></div><div class="footer-links"><a href="../projects.html">← Back to the Hub</a><a href="credits.html">Photos & sources</a></div></footer>
+  <noscript><p class="wrap no-script">JavaScript is off. All field-guide content is shown; the cat signals still open. Enable JavaScript to switch visual styles and shuffle facts.</p></noscript>
+</body>
+</html>
