@@ -1,0 +1,59 @@
+{
+  "backend": "Playwright 1.62.1 / Edge 154.0.4258.48",
+  "checks": [
+    {
+      "name": "Default editorial; two style controls; correct pressed state",
+      "result": "PASS"
+    },
+    {
+      "name": "Tabs change content; keyboard arrows, Home, End; Tab/Shift+Tab and focus",
+      "result": "PASS"
+    },
+    {
+      "name": "Random facts change without reload and announce updates",
+      "result": "PASS"
+    },
+    {
+      "name": "Style switch preserves tab, fact and disclosure; reload persists style",
+      "result": "PASS"
+    },
+    {
+      "name": "Keyboard style activation and disclosure; no focus loss",
+      "result": "PASS"
+    },
+    {
+      "name": "Desktop 1440: both visual systems and decoded images, no overflow",
+      "result": "PASS"
+    },
+    {
+      "name": "Mobile 390 touch interactions and both visual screenshots",
+      "result": "PASS"
+    },
+    {
+      "name": "768px intermediate, 320px narrow, long text and 200% zoom proxy",
+      "result": "PASS"
+    },
+    {
+      "name": "Reduced motion disables CSS/WAAPI motion and preserves interactions",
+      "result": "PASS"
+    },
+    {
+      "name": "All local links and anchors resolve; Hub entry and counters",
+      "result": "PASS"
+    },
+    {
+      "name": "Storage-denied fallback and no-JS readable content",
+      "result": "PASS"
+    },
+    {
+      "name": "No runtime console errors or failed local requests",
+      "result": "PASS"
+    },
+    {
+      "name": "Follow-up: tab orientation on resize/style, vertical Up/Down keyboard",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "failedLocalRequests": []
+}
