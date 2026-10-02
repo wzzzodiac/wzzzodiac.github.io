@@ -21,7 +21,7 @@ Pages evidence: the latest successful [production run](https://github.com/wzzzod
 - Shared DOM/content, three actual tab panels, five non-repeating random facts, four native body-language disclosures with diagram highlights, real photos, anchor navigation and credits.
 - The visual switch uses `aria-pressed`, restores optional localStorage before CSS paints, preserves live tab/fact/disclosure state, and uses native View Transitions with a WAAPI fallback. Reduced motion disables both. Persistence across reload covers the visual choice only.
 - Keyboard: one tab stop in the tablist; Left/Right, Home/End and vertical Up/Down; Tab enters the active panel. Focus outlines, skip link, native links/buttons/details and polite fact announcements.
-- Four local photos with 640/1200 WebP variants as used (approximately 465 KiB combined), explicit dimensions, below-fold lazy loading, no web fonts or runtime dependencies. [Photo and content sources](SOURCES.md), also available via `credits.html`.
+- Four local photos with 640/1200 WebP variants as used (approximately 360 KiB combined), explicit dimensions, below-fold lazy loading, no web fonts or runtime dependencies. [Photo and content sources](SOURCES.md), also available via `credits.html`.
 
 The only root changes are project **13 — Cat Visual Playground**, its `cats/` link, and the two actual project counts from 12 to 13. The index uses text rows, so no thumbnail was added. Home Featured Projects, shared styles/scripts, other projects and historical `visuals/` are unchanged.
 
