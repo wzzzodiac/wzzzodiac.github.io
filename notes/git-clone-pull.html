@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111315">
+  <title>Git clone & pull — Field Notes — W.ZC</title>
+  <meta name="description" content="A quick reference for cloning a GitHub repository, pulling updates and authenticating for private repositories.">
+  <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
+  <link rel="stylesheet" href="../style.css?v=hub-workshop-depth">
+  <link rel="stylesheet" href="../workshop-theme.css?v=1">
+</head>
+<body class="workshop-theme workshop-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <aside class="sidebar material-panel material-metal" aria-label="Main navigation"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+    <div class="frame-fasteners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <a class="profile" href="https://github.com/wzzzodiac" target="_blank" rel="noreferrer">
+      <img src="https://avatars.githubusercontent.com/u/46037018?v=4" alt="W.ZC profile picture">
+      <span>my profile</span>
+    </a>
+    <nav>
+      <a href="../index.html"><b>⌂</b><span>Home</span></a>
+      <a href="../projects.html"><b>⌘</b><span>Projects</span></a>
+      <a class="active" aria-current="page" href="../field-notes.html"><b>▤</b><span>Field Notes</span></a>
+      <a href="../contact.html"><b>✉</b><span>Contact</span></a>
+    </nav>
+  </aside>
+
+  <div class="workshop-layout">
+    <header class="topbar material-panel material-header"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+      <div class="workbench-label">PERSONAL LAB</div>
+      <div class="motto">BUILD A MORE INTERESTING TOMORROW.</div>
+      <div class="topmark">W.ZC</div>
+    </header>
+
+    <main id="main-content" tabindex="-1" class="main article-main">
+      <article class="tutorial-article reveal panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+        <a class="article-back" href="category-web-github.html">← WEB & GITHUB</a>
+        <header class="article-header">
+          <span class="notes-code">NOTE 002 // GIT</span>
+          <h1>Clone a repository and pull updates</h1>
+          <p>The short workflow for downloading a GitHub repository once and keeping the local folder updated later.</p>
+        </header>
+
+        <div class="article-callout">
+          <strong>Remember</strong>
+          <p><code>git clone</code> = first download. <code>git pull</code> = update the copy you already cloned.</p>
+        </div>
+
+        <section class="article-step">
+          <span class="step-number">01</span>
+          <div>
+            <h2>First time: clone the repository</h2>
+            <p>Open PowerShell and go to the folder where the repository should be stored.</p>
+            <pre><code>cd "C:\path\where\you\want\it"</code></pre>
+            <p>On GitHub, open the repository, press <strong>Code</strong>, select <strong>HTTPS</strong> and copy the URL. Then run:</p>
+            <pre><code>git clone https://github.com/OWNER/REPOSITORY.git</code></pre>
+            <p>Git creates a new folder containing the entire repository.</p>
+          </div>
+        </section>
+
+        <section class="article-step">
+          <span class="step-number">02</span>
+          <div>
+            <h2>Later: pull the newest changes</h2>
+            <p>Open PowerShell inside the cloned repository folder, or move into it:</p>
+            <pre><code>cd "C:\path\to\REPOSITORY"</code></pre>
+            <p>Then run:</p>
+            <pre><code>git pull</code></pre>
+            <p>Git downloads the newest changes into that local folder. Do not clone the repository again every time.</p>
+          </div>
+        </section>
+
+        <section class="article-step">
+          <span class="step-number">03</span>
+          <div>
+            <h2>If the repository is private</h2>
+            <p>Your GitHub account must have access to the repository. Start by running the normal HTTPS clone command:</p>
+            <pre><code>git clone https://github.com/OWNER/REPOSITORY.git</code></pre>
+            <p>If Git opens a browser login, sign in to the GitHub account that has access and authorize Git. After that, cloning continues normally and Windows usually remembers the login for future pulls.</p>
+          </div>
+        </section>
+
+        <section class="article-step">
+          <span class="step-number">04</span>
+          <div>
+            <h2>If the browser login does not appear or authentication fails</h2>
+            <p>Use GitHub CLI to authenticate once:</p>
+            <pre><code>gh auth login</code></pre>
+            <p>Select these options:</p>
+            <pre><code>GitHub.com
+HTTPS
+Login with a web browser</code></pre>
+            <p>Follow the browser login, authorize GitHub CLI, return to PowerShell and run the clone command again.</p>
+            <p>If PowerShell says <code>gh</code> is not recognized, install GitHub CLI first from <strong>cli.github.com</strong>, then repeat <code>gh auth login</code>.</p>
+          </div>
+        </section>
+
+        <section class="article-step">
+          <span class="step-number">05</span>
+          <div>
+            <h2>Do not use your normal GitHub password in the terminal</h2>
+            <p>GitHub does not accept the normal account password for Git operations over HTTPS. Use the browser login / Git Credential Manager or <code>gh auth login</code>.</p>
+          </div>
+        </section>
+
+        <section class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+          <h2>Quick version</h2>
+          <ul>
+            <li>First download: <code>git clone REPOSITORY-URL</code>.</li>
+            <li>Future updates: open the cloned folder and run <code>git pull</code>.</li>
+            <li>Private repo: log in with the GitHub account that has access.</li>
+            <li>If normal login fails: <code>gh auth login</code> → GitHub.com → HTTPS → web browser.</li>
+            <li>After successful authentication, future pulls normally do not ask again.</li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <footer>MECHATRONICS / CODE / QUESTIONABLE IDEAS</footer>
+  <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+  <script src="../script.js"></script>
+</body>
+</html>
