@@ -72,6 +72,35 @@ if (!document.querySelector('.sidebar')) {
   document.body.insertBefore(sidebar, document.body.firstChild);
 }
 
+// Respect the device setting and remember the optional local motion switch.
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+let motionOff = false;
+try { motionOff = localStorage.getItem('wzc-motion') === 'off'; } catch {}
+const motionControl = document.createElement('button');
+motionControl.type = 'button';
+motionControl.className = 'motion-control';
+const syncMotion = () => {
+  const off = motionOff || motionPreference.matches;
+  document.documentElement.dataset.motion = off ? 'off' : 'on';
+  motionControl.textContent = off ? 'Motion: off' : 'Motion: on';
+  motionControl.setAttribute('aria-label', 'Interface motion');
+  motionControl.setAttribute('aria-pressed', String(!off));
+  motionControl.disabled = motionPreference.matches;
+  motionControl.title = motionPreference.matches ? 'Reduced motion follows your device setting' : 'Toggle interface motion';
+};
+syncMotion();
+motionControl.addEventListener('click', () => {
+  motionOff = !motionOff;
+  try { localStorage.setItem('wzc-motion', motionOff ? 'off' : 'on'); } catch {}
+  syncMotion();
+});
+motionPreference.addEventListener('change', syncMotion);
+document.querySelector('footer')?.append(motionControl);
+
+// The note index stays compact on mobile and opens beside desktop articles.
+const noteOutline = document.querySelector('.note-outline');
+if (noteOutline && matchMedia('(min-width: 1101px)').matches) noteOutline.open = true;
+
 const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
@@ -93,7 +122,7 @@ window.addEventListener("scroll", () => {
 });
 
 backToTop?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  window.scrollTo({ top: 0, behavior: document.documentElement.dataset.motion === "off" ? "instant" : "smooth" });
 });
 
 // Keep current-page semantics consistent for static and injected navigation.
