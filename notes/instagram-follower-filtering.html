@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
   <link rel="stylesheet" href="../style.css?v=hub-workshop-depth">
   <link rel="stylesheet" href="notes-extra.css?v=hub-2">
-<link rel="stylesheet" href="../workshop-theme.css?v=1">
+<link rel="stylesheet" href="../workshop-theme.css?v=bench-2">
 </head>
 <body class="workshop-theme workshop-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -36,30 +36,39 @@
       <div class="topmark">W.ZC</div>
     </header>
 <main id="main-content" tabindex="-1" class="main article-main">
-    <article class="tutorial-article reveal panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
-      <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
-      <header class="article-header">
+    <article class="tutorial-article reveal note-workbench">
+      <header class="article-header panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+        <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
+
         <span class="notes-code">NOTE 003 // INSTAGRAM / BROWSER CONSOLE</span>
         <h1>Instagram follower filtering utility</h1>
         <p>A quick reference for the browser-console workflow I use to inspect follower relationships and work with the resulting account list.</p>
+
       </header>
+      <div class="note-reading-grid">
+        <details class="note-outline panel material-panel material-status">
+          <summary>In this note</summary>
+          <nav aria-label="In this note"><a href="#note-step-1"><span aria-hidden="true">01</span><span>Open your Instagram profile</span></a><a href="#note-step-2"><span aria-hidden="true">02</span><span>Open the browser console</span></a><a href="#note-step-3"><span aria-hidden="true">03</span><span>Paste the script and press Enter</span></a><a href="#note-step-4"><span aria-hidden="true">04</span><span>Click RUN</span></a><a class="note-summary-link" href="#note-summary">Summary ↓</a></nav>
+        </details>
+        <div class="note-body panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+
 
       <div class="article-callout warning-callout">
         <strong>Use on your own account / use at your own risk</strong>
         <p>This note does not run the script automatically. The code only executes after you deliberately paste it into Instagram's developer console. It works with data available to your logged-in session and the utility also contains an unfollow action. Instagram can change its internal endpoints or rate limits at any time, so there is no guarantee it will always work and temporary blocks are possible. I keep this here because it is the workflow I use; each person is responsible for what they run and which accounts they modify.</p>
       </div>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-1">
         <span class="step-number">01</span>
         <div><h2>Open your Instagram profile</h2><p>Log in normally and go to <strong>Instagram → Profile</strong>. The script is intended to be run while you are already inside Instagram with your own session.</p></div>
       </section>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-2">
         <span class="step-number">02</span>
         <div><h2>Open the browser console</h2><p>Right-click the page → <strong>Inspect</strong> / <strong>Inspect element</strong>, then open the <strong>Console</strong> tab.</p></div>
       </section>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-3">
         <span class="step-number">03</span>
         <div><h2>Paste the script and press Enter</h2><p>Open the code box below, copy the full script, paste it into the console and press <strong>Enter</strong>.</p>
 
@@ -74,12 +83,12 @@
         </div>
       </section>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-4">
         <span class="step-number">04</span>
         <div><h2>Click RUN</h2><p>After the script loads its interface, click <strong>RUN</strong>. From there the controls are intentionally visual: filters, account list, search, whitelist and the available actions are shown directly in the utility.</p></div>
       </section>
 
-      <section class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+      <section id="note-summary" class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
         <h2>Short version</h2>
         <ul>
           <li>Instagram → Profile.</li>
@@ -91,13 +100,16 @@
           <li>Check the selected accounts carefully before using any unfollow action.</li>
         </ul>
       </section>
+
+        </div>
+      </div>
     </article>
   </main>
 </div>
 <footer>MECHATRONICS / CODE / QUESTIONABLE IDEAS</footer>
 
   <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
-  <script src="../script.js"></script>
+  <script src="../script.js?v=bench-2"></script>
   <script>
     (async () => {
       const box = document.getElementById('instagramCode');

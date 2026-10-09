@@ -8,7 +8,7 @@
   <meta name="description" content="A quick reference for cloning a GitHub repository, pulling updates and authenticating for private repositories.">
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
   <link rel="stylesheet" href="../style.css?v=hub-workshop-depth">
-  <link rel="stylesheet" href="../workshop-theme.css?v=1">
+  <link rel="stylesheet" href="../workshop-theme.css?v=bench-2">
 </head>
 <body class="workshop-theme workshop-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -34,20 +34,29 @@
     </header>
 
     <main id="main-content" tabindex="-1" class="main article-main">
-      <article class="tutorial-article reveal panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+      <article class="tutorial-article reveal note-workbench">
+      <header class="article-header panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
         <a class="article-back" href="category-web-github.html">← WEB & GITHUB</a>
-        <header class="article-header">
+
           <span class="notes-code">NOTE 002 // GIT</span>
           <h1>Clone a repository and pull updates</h1>
           <p>The short workflow for downloading a GitHub repository once and keeping the local folder updated later.</p>
-        </header>
+
+      </header>
+      <div class="note-reading-grid">
+        <details class="note-outline panel material-panel material-status">
+          <summary>In this note</summary>
+          <nav aria-label="In this note"><a href="#note-step-1"><span aria-hidden="true">01</span><span>First time: clone the repository</span></a><a href="#note-step-2"><span aria-hidden="true">02</span><span>Later: pull the newest changes</span></a><a href="#note-step-3"><span aria-hidden="true">03</span><span>If the repository is private</span></a><a href="#note-step-4"><span aria-hidden="true">04</span><span>If the browser login does not appear or authentication fails</span></a><a href="#note-step-5"><span aria-hidden="true">05</span><span>Do not use your normal GitHub password in the terminal</span></a><a class="note-summary-link" href="#note-summary">Summary ↓</a></nav>
+        </details>
+        <div class="note-body panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+
 
         <div class="article-callout">
           <strong>Remember</strong>
           <p><code>git clone</code> = first download. <code>git pull</code> = update the copy you already cloned.</p>
         </div>
 
-        <section class="article-step">
+        <section class="article-step" id="note-step-1">
           <span class="step-number">01</span>
           <div>
             <h2>First time: clone the repository</h2>
@@ -59,7 +68,7 @@
           </div>
         </section>
 
-        <section class="article-step">
+        <section class="article-step" id="note-step-2">
           <span class="step-number">02</span>
           <div>
             <h2>Later: pull the newest changes</h2>
@@ -71,7 +80,7 @@
           </div>
         </section>
 
-        <section class="article-step">
+        <section class="article-step" id="note-step-3">
           <span class="step-number">03</span>
           <div>
             <h2>If the repository is private</h2>
@@ -81,7 +90,7 @@
           </div>
         </section>
 
-        <section class="article-step">
+        <section class="article-step" id="note-step-4">
           <span class="step-number">04</span>
           <div>
             <h2>If the browser login does not appear or authentication fails</h2>
@@ -96,7 +105,7 @@ Login with a web browser</code></pre>
           </div>
         </section>
 
-        <section class="article-step">
+        <section class="article-step" id="note-step-5">
           <span class="step-number">05</span>
           <div>
             <h2>Do not use your normal GitHub password in the terminal</h2>
@@ -104,7 +113,7 @@ Login with a web browser</code></pre>
           </div>
         </section>
 
-        <section class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+        <section id="note-summary" class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
           <h2>Quick version</h2>
           <ul>
             <li>First download: <code>git clone REPOSITORY-URL</code>.</li>
@@ -114,12 +123,15 @@ Login with a web browser</code></pre>
             <li>After successful authentication, future pulls normally do not ask again.</li>
           </ul>
         </section>
-      </article>
+
+        </div>
+      </div>
+    </article>
     </main>
   </div>
 
   <footer>MECHATRONICS / CODE / QUESTIONABLE IDEAS</footer>
   <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
-  <script src="../script.js"></script>
+  <script src="../script.js?v=bench-2"></script>
 </body>
 </html>

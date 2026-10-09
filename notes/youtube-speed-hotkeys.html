@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
   <link rel="stylesheet" href="../style.css?v=hub-workshop-depth">
   <link rel="stylesheet" href="notes-extra.css?v=0.53">
-<link rel="stylesheet" href="../workshop-theme.css?v=1">
+<link rel="stylesheet" href="../workshop-theme.css?v=bench-2">
 </head>
 <body class="workshop-theme workshop-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -36,25 +36,34 @@
       <div class="topmark">W.ZC</div>
     </header>
 <main id="main-content" tabindex="-1" class="main article-main">
-    <article class="tutorial-article reveal panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
-      <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
-      <header class="article-header">
+    <article class="tutorial-article reveal note-workbench">
+      <header class="article-header panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+        <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
+
         <span class="notes-code">NOTE 004 // YOUTUBE / TAMPERMONKEY</span>
         <h1>YouTube playback-speed hotkeys</h1>
         <p>A tiny userscript for immediate playback control: 0.25×, 1×, 2×, 3× and 4× from the keyboard, plus temporary 2× while holding <code>Q</code>.</p>
+
       </header>
+      <div class="note-reading-grid">
+        <details class="note-outline panel material-panel material-status">
+          <summary>In this note</summary>
+          <nav aria-label="In this note"><a href="#note-step-1"><span aria-hidden="true">01</span><span>Install Tampermonkey</span></a><a href="#note-step-2"><span aria-hidden="true">02</span><span>Create a new userscript</span></a><a href="#note-step-3"><span aria-hidden="true">03</span><span>Save and reload YouTube</span></a><a class="note-summary-link" href="#note-summary">Summary ↓</a></nav>
+        </details>
+        <div class="note-body panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+
 
       <div class="article-callout">
         <strong>What this solves</strong>
         <p>No menus and no repeated clicks. The script changes the playback rate of the current YouTube video and ignores the hotkeys while you are typing in search, comments or other text fields.</p>
       </div>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-1">
         <span class="step-number">01</span>
         <div><h2>Install Tampermonkey</h2><p>Install the Tampermonkey browser extension. In Opera, Chrome or Edge, open the extension settings and make sure <strong>Allow UserScripts</strong> / <strong>UserScripts zulassen</strong> is enabled. Without that switch, the userscript will not run.</p></div>
       </section>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-2">
         <span class="step-number">02</span>
         <div><h2>Create a new userscript</h2><p>Open Tampermonkey and choose <strong>Create a new script</strong> / <strong>Neues Skript erstellen</strong>. Delete the default content and paste the current script below.</p>
 <pre class="code-scroll"><code>// ==UserScript==
@@ -142,12 +151,12 @@
 })();</code></pre></div>
       </section>
 
-      <section class="article-step">
+      <section class="article-step" id="note-step-3">
         <span class="step-number">03</span>
         <div><h2>Save and reload YouTube</h2><p>Save the userscript with <strong>Ctrl + S</strong>. Open or reload YouTube, then start any video.</p></div>
       </section>
 
-      <section class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
+      <section id="note-summary" class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
         <h2>Hotkeys</h2>
         <ul>
           <li><code>0</code> → 0.25× playback.</li>
@@ -160,11 +169,14 @@
           <li>Typing fields are ignored, so the shortcuts do not interfere with search or comments.</li>
         </ul>
       </section>
+
+        </div>
+      </div>
     </article>
   </main>
 </div>
 <footer>MECHATRONICS / CODE / QUESTIONABLE IDEAS</footer>
   <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
-  <script src="../script.js"></script>
+  <script src="../script.js?v=bench-2"></script>
 </body>
 </html>

@@ -97,3 +97,17 @@ Do not duplicate or regenerate these assets, add screenshot backgrounds, duplica
 ## Validation when editing
 
 Compare Home against the approved implementation at 1600, 1366, 1024, 768 and 390 pixels. Check inner pages at the same widths, keyboard focus, active navigation, local links, long article content and horizontal overflow. A shared material edit should be reviewed on both Home and an inner page before publishing.
+
+## Project bench implementation (approved)
+
+The Home main landmark is a real grid: hero and personal modules share the first row above 1100 px, and Featured Projects spans both columns. At smaller widths the order is hero, featured projects, personal modules. Do not use `display: contents` on the main landmark.
+
+Featured Projects: Black Hole, Bomb-It, Heart Sync and Path Planning Visualizer. Images have intrinsic 720 x 450 dimensions; use genuine project screenshots and preserve their aspect ratio. Projects remains a consistent text catalogue with no thumbnails. Every catalogue action uses the same full-border metal button, with at least 46 px height.
+
+Motion uses short CSS transitions for hover/press and a brief page-header entrance. The footer switch persists locally; the device's reduced-motion preference takes priority. No scroll tracking, continuous decoration, new rendering runtime or animation dependency is required. Keep the reduced-transparency/forced-colors fallbacks, and keep dark ink inside paper callouts.
+
+### Notes in the project bench
+
+All nine articles use `note-workbench`: a full-width `article-header`, a dark `note-body`, and a `note-outline` made from native details/navigation and static step anchors. Above 1100 px the index opens beside the reading surface and stays visible while scrolling. On smaller screens it starts folded above the article. Content remains available without JavaScript; the index can always be opened manually.
+
+Callouts, code disclosures, back links and copy buttons share the dark workshop materials and control surface. Home's clipped paper note is unchanged. Preserve article text, inline utilities, code-source TXT files and step ordering when editing this presentation.
