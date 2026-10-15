@@ -115,7 +115,7 @@
       const box = document.getElementById('instagramCode');
       const state = document.getElementById('codeLoadState');
       const copy = document.getElementById('copyInstagramCode');
-      const files = Array.from({ length: 8 }, (_, i) => `code/instagram-unfollowers-${String(i + 1).padStart(2, '0')}.txt`);
+      const files = ['code/instagram.txt?v=20261016'];
       try {
         const parts = await Promise.all(files.map(file => fetch(file).then(response => {
           if (!response.ok) throw new Error(`Could not load ${file}`);
