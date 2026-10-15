@@ -47,7 +47,7 @@
 
         <span class="notes-code">NOTE 003 // INSTAGRAM / BROWSER CONSOLE</span>
         <h1>Instagram Unfollowers</h1>
-        <p>See who does not follow you back and which followers disappeared since your previous scan. Read-only, in English, with 20 accounts per page.</p>
+        <p>See who does not follow you back and which followers disappeared since your previous scan. Read-only, in English, with profile photos and 20 accounts per page.</p>
 
       </header>
       <div class="note-reading-grid">
@@ -60,7 +60,7 @@
 
       <div class="article-callout" id="windows-download">
         <strong>Windows shortcut</strong>
-        <p><a class="instagram-download" href="downloads/instagram-unfollowers-windows.zip" download>DOWNLOAD WINDOWS ZIP ↓</a></p>
+        <p><a class="instagram-download" href="downloads/instagram-unfollowers-windows.zip?v=0.1.1" download>DOWNLOAD WINDOWS ZIP ↓</a></p>
         <p><strong>Extract all</strong> the ZIP files, then double-click <code>Open Instagram Unfollowers.bat</code>. Instagram opens in your default browser and the script is copied for you. Log in, open Console, paste and press Enter, then click RUN.</p>
         <p>Includes the launcher, the script and a short <code>START HERE.txt</code>. Keep all three files together. No installation needed.</p>
       </div>
@@ -68,6 +68,7 @@
       <div class="article-callout warning-callout">
         <strong>Read-only / your signed-in account</strong>
         <p>This version cannot follow or unfollow anyone. It only reads follower lists after you press RUN, keeping pauses between requests. Whitelists and scan dates are saved in your browser, separately for each signed-in account. Instagram can change or limit these requests.</p>
+        <p>Profile photos load from Instagram's image servers; initials appear if a photo is unavailable. Updating from an older version? Close its panel, paste this script and run a scan to load photos. Your saved whitelist and scan history are kept.</p>
       </div>
 
       <section class="article-step" id="note-step-1">
@@ -129,7 +130,7 @@
       const box = document.getElementById('instagramCode');
       const state = document.getElementById('codeLoadState');
       const copy = document.getElementById('copyInstagramCode');
-      const files = ['code/instagram.txt?v=readonly-20261016-1'];
+      const files = ['code/instagram.txt?v=readonly-20261016-photos-1'];
       try {
         const parts = await Promise.all(files.map(file => fetch(file).then(response => {
           if (!response.ok) throw new Error(`Could not load ${file}`);
