@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#111315">
-  <title>Instagram Follower Filtering — Field Notes — W.ZC</title>
-  <meta name="description" content="Personal field note for running the Instagram follower filtering utility from the browser console.">
+  <title>Instagram Unfollowers — Field Notes — W.ZC</title>
+  <meta name="description" content="Read-only Instagram follower comparison with per-account scan history and whitelist. Copy the script or download the Windows launcher.">
   <link rel="icon" type="image/png" href="https://avatars.githubusercontent.com/u/46037018?v=4">
   <link rel="stylesheet" href="../style.css?v=hub-workshop-depth">
   <link rel="stylesheet" href="notes-extra.css?v=hub-2">
 <link rel="stylesheet" href="../workshop-theme.css?v=bench-2">
+  <style>
+    .instagram-download { display:inline-flex; align-items:center; min-height:44px; padding:10px 16px; border:1px solid currentColor; color:inherit; font-family:var(--mono); font-size:12px; font-weight:700; text-decoration:none; }
+    .instagram-download:hover { text-decoration:underline; }
+    #windows-download p strong { display:inline; font:inherit; font-weight:700; letter-spacing:normal; text-transform:none; }
+  </style>
 </head>
 <body class="workshop-theme workshop-page">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -41,8 +46,8 @@
         <a class="article-back" href="../field-notes.html">← FIELD NOTES</a>
 
         <span class="notes-code">NOTE 003 // INSTAGRAM / BROWSER CONSOLE</span>
-        <h1>Instagram follower filtering utility</h1>
-        <p>A quick reference for the browser-console workflow I use to inspect follower relationships and work with the resulting account list.</p>
+        <h1>Instagram Unfollowers</h1>
+        <p>See who does not follow you back and which followers disappeared since your previous scan. Read-only, in English, with 20 accounts per page.</p>
 
       </header>
       <div class="note-reading-grid">
@@ -53,9 +58,16 @@
         <div class="note-body panel material-panel material-showcase"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
 
 
+      <div class="article-callout" id="windows-download">
+        <strong>Windows shortcut</strong>
+        <p><a class="instagram-download" href="downloads/instagram-unfollowers-windows.zip" download>DOWNLOAD WINDOWS ZIP ↓</a></p>
+        <p><strong>Extract all</strong> the ZIP files, then double-click <code>Open Instagram Unfollowers.bat</code>. Instagram opens in your default browser and the script is copied for you. Log in, open Console, paste and press Enter, then click RUN.</p>
+        <p>Includes the launcher, the script and a short <code>START HERE.txt</code>. Keep all three files together. No installation needed.</p>
+      </div>
+
       <div class="article-callout warning-callout">
-        <strong>Use on your own account / use at your own risk</strong>
-        <p>This note does not run the script automatically. The code only executes after you deliberately paste it into Instagram's developer console. It works with data available to your logged-in session and the utility also contains an unfollow action. Instagram can change its internal endpoints or rate limits at any time, so there is no guarantee it will always work and temporary blocks are possible. I keep this here because it is the workflow I use; each person is responsible for what they run and which accounts they modify.</p>
+        <strong>Read-only / your signed-in account</strong>
+        <p>This version cannot follow or unfollow anyone. It only reads follower lists after you press RUN, keeping pauses between requests. Whitelists and scan dates are saved in your browser, separately for each signed-in account. Instagram can change or limit these requests.</p>
       </div>
 
       <section class="article-step" id="note-step-1">
@@ -65,27 +77,27 @@
 
       <section class="article-step" id="note-step-2">
         <span class="step-number">02</span>
-        <div><h2>Open the browser console</h2><p>Right-click the page → <strong>Inspect</strong> / <strong>Inspect element</strong>, then open the <strong>Console</strong> tab.</p></div>
+        <div><h2>Open the browser console</h2><p>Press <strong>Ctrl+Shift+J</strong>, or right-click the page → <strong>Inspect</strong> → <strong>Console</strong>.</p></div>
       </section>
 
       <section class="article-step" id="note-step-3">
         <span class="step-number">03</span>
-        <div><h2>Paste the script and press Enter</h2><p>Open the code box below, copy the full script, paste it into the console and press <strong>Enter</strong>.</p>
+        <div><h2>Paste the script and press Enter</h2><p>If you used the Windows launcher, the code is already on your clipboard. Otherwise, open the code box below and click <strong>COPY CODE</strong>. In the Instagram console, press <strong>Ctrl+V</strong>, then <strong>Enter</strong>. Close any older panel before pasting.</p>
 
           <details class="code-disclosure">
             <summary>SHOW FULL SCRIPT // vertically scrollable code box</summary>
             <div class="code-box-tools">
               <span id="codeLoadState">loading code…</span>
-              <button id="copyInstagramCode" type="button">COPY CODE</button>
+              <button id="copyInstagramCode" type="button" disabled>COPY CODE</button>
             </div>
-            <textarea id="instagramCode" class="code-textarea" wrap="soft" readonly spellcheck="false" aria-label="Instagram follower filtering script">Loading script…</textarea>
+            <textarea id="instagramCode" class="code-textarea" wrap="soft" readonly spellcheck="false" aria-label="Instagram Unfollowers read-only script">Loading script…</textarea>
           </details>
         </div>
       </section>
 
       <section class="article-step" id="note-step-4">
         <span class="step-number">04</span>
-        <div><h2>Click RUN</h2><p>After the script loads its interface, click <strong>RUN</strong>. From there the controls are intentionally visual: filters, account list, search, whitelist and the available actions are shown directly in the utility.</p></div>
+        <div><h2>Click RUN</h2><p>Click <strong>RUN</strong> to scan. <strong>Not following back</strong> shows accounts you follow that do not follow you back. <strong>No longer following</strong> compares with your previous completed scan; your first scan saves the baseline. A missing follower may also be a deleted, deactivated or blocked account. Add accounts to your <strong>Whitelist</strong> to hide them from both lists.</p></div>
       </section>
 
       <section id="note-summary" class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
@@ -97,10 +109,12 @@
           <li>Paste the complete code.</li>
           <li>Press Enter.</li>
           <li>Click RUN.</li>
-          <li>Check the selected accounts carefully before using any unfollow action.</li>
+          <li>Keep using the same browser profile for your whitelist and scan history.</li>
+          <li>Two complete scans are needed to show changes over time.</li>
         </ul>
       </section>
 
+        <p>Connection conventions and scan timings adapted from <a href="https://github.com/davidarroyo1234/InstagramUnfollowers" target="_blank" rel="noreferrer">InstagramUnfollowers by David Arroyo</a> (MIT). License included in the script.</p>
         </div>
       </div>
     </article>
@@ -115,13 +129,14 @@
       const box = document.getElementById('instagramCode');
       const state = document.getElementById('codeLoadState');
       const copy = document.getElementById('copyInstagramCode');
-      const files = ['code/instagram.txt?v=20261016'];
+      const files = ['code/instagram.txt?v=readonly-20261016-1'];
       try {
         const parts = await Promise.all(files.map(file => fetch(file).then(response => {
           if (!response.ok) throw new Error(`Could not load ${file}`);
           return response.text();
         })));
         box.value = parts.join('');
+        copy.disabled = false;
         state.textContent = `${box.value.length.toLocaleString()} characters loaded`;
       } catch (error) {
         box.value = 'Could not load the stored script. Reload the page and try again.';
