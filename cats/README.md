@@ -59,7 +59,7 @@ Final run: **12/12 groups PASS**, zero JavaScript/console errors and zero failed
 To repeat with the existing bundled module (start the HTTP server first):
 
 ```powershell
-$env:PLAYWRIGHT_MODULE = 'C:/Users/USER/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'
+$env:PLAYWRIGHT_MODULE = Join-Path $env:USERPROFILE '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'
 node cats/review/verify.cjs
 ```
 
