@@ -1,0 +1,28 @@
+@font-face{font-family:WzcGraphite;src:url('assets/fonts/reenie-beanie/ReenieBeanie.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+#wall-note .handwritten-sheet{--line:50px;--baseline:34px;position:relative;isolation:isolate;width:min(860px,94%);margin:4px auto 12px;padding:26px 42px 28px 62px;background:#eee1bc;color:#38352f;box-shadow:0 12px 26px #0003,inset 0 0 0 1px #bca989;transform:rotate(-.35deg);clip-path:polygon(0 .4%,99.3% 0,100% 97.9%,99.6% 100%,.2% 99.5%);overflow:hidden}
+#wall-note .handwritten-sheet:before{content:'';position:absolute;inset:0;z-index:-1;background:url('assets/hub-rebuild/06_decorative_papers.webp') -520px -680px/4400px 3200px no-repeat;filter:saturate(.22);opacity:.64;pointer-events:none}
+#wall-note .handwritten-sheet:after{content:'';position:absolute;top:18px;bottom:18px;left:37px;width:1px;background:#ac66574d;pointer-events:none}
+#wall-note .writing{position:relative;font:400 42px/var(--line) WzcGraphite,'Segoe Print',cursive;background:linear-gradient(to bottom,transparent calc(var(--baseline) - 1px),#6f819060 calc(var(--baseline) - 1px),#6f819060 var(--baseline),transparent var(--baseline)) left top/100% var(--line) repeat-y}
+#wall-note .writing blockquote,#wall-note .writing figcaption{font:inherit;letter-spacing:0;color:inherit;margin:0;text-wrap:wrap}
+#wall-note .writing blockquote{min-width:0;overflow-wrap:normal}
+#wall-note .writing figcaption{text-align:right;margin-top:var(--line)}
+#wall-note .baseline-probe{display:inline-block;width:0;height:0;vertical-align:baseline}
+@media(max-width:700px){#wall-note .handwritten-sheet{--line:44px;width:100%;padding:22px 21px 24px 41px;margin:0 auto 8px;transform:none}#wall-note .handwritten-sheet:after{left:23px;top:17px;bottom:17px}#wall-note .writing{font-size:38px}}
+@media(forced-colors:active){#wall-note .handwritten-sheet{background:Canvas;color:CanvasText;box-shadow:none;border:1px solid CanvasText;clip-path:none}#wall-note .handwritten-sheet:before,#wall-note .handwritten-sheet:after{display:none}#wall-note .writing{background:none}}
+
+#wall-note .graphite-filter{position:absolute;pointer-events:none}
+#wall-note .writing blockquote,#wall-note .writing figcaption{filter:url(#wall-graphite-grain);-webkit-text-stroke:.16px #38352f;text-shadow:.2px .2px .35px #332c2529}
+
+@media(forced-colors:active){#wall-note .writing blockquote,#wall-note .writing figcaption{filter:none;text-shadow:none;-webkit-text-stroke:0}}
+
+/* Native disclosure and site preference stay authoritative. */
+#wall-note .reveal{position:relative;padding:26px 0 5px}
+#wall-note[open] .reveal{animation:paper-arrive 180ms ease-out both}
+#wall-note .toggle svg{width:16px;height:16px;display:block}
+#wall-note .handwritten-sheet{scroll-margin-block:20px}
+#wall-note.writing-ready:not([data-phase="complete"]) .writing blockquote,#wall-note.writing-ready:not([data-phase="complete"]) .writing figcaption{clip-path:inset(0 100% 0 0)}
+#wall-note .finish-writing{position:absolute;z-index:2;top:-51px;right:46px;min-height:44px;padding:8px;border:0;background:var(--bg);color:var(--mint);font:11px/1.4 Arial,sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+#wall-note .finish-writing:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+@media(max-width:700px){#wall-note .reveal{padding-top:20px}#wall-note .finish-writing{font-size:10px;right:42px}}
+html[data-motion="off"] #wall-note .reveal{animation:none!important}
+@media(prefers-reduced-motion:reduce){#wall-note .reveal{animation:none!important}}
