@@ -1,4 +1,5 @@
 'use strict';
+if (!window.catIsRouting) {
 
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -11,8 +12,8 @@ let activeTheme = themes.find(theme => theme.id === root.dataset.style) || theme
 
 for (const expressive of [false, true]) {
   const group = document.createElement('optgroup');
-  group.label = expressive ? 'Motion editions · new' : 'Original editions';
-  themes.filter(theme => Boolean(theme.expressive) === expressive).forEach(theme => group.append(new Option(theme.name, theme.id)));
+  group.label = expressive ? 'Reference templates · new' : 'Original editions';
+  themes.filter(theme => Boolean(theme.template) === expressive).forEach(theme => group.append(new Option(theme.name, theme.id)));
   styleSelect.append(group);
 }
 
@@ -32,6 +33,7 @@ function animateContent(element) {
 
 function applyStyle(style) {
   activeTheme = themes.find(theme => theme.id === style) || themes[0];
+  if (activeTheme.template) { location.assign(window.catThemeURL(activeTheme.id)); return; }
   root.dataset.style = activeTheme.id;
   root.dataset.expressive = String(Boolean(activeTheme.expressive));
   syncTabOrientation();
@@ -142,3 +144,4 @@ reducedMotion.addEventListener('change', () => {
   styleTransition?.skipTransition();
   document.getAnimations().forEach(animation => animation.cancel());
 });
+}

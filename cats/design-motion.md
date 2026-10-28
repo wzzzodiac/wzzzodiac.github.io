@@ -1,4 +1,26 @@
-# Three motion editions
+# Complete reference templates — corrective rebuild
+
+Walter requested three genuinely different visual systems after the first shared-DOM additions remained too similar. Complete template reuse was explicitly authorized. The following official template pages and their live demos were opened and visually inspected; their downloadable HTML/CSS was retrieved and adapted, with retained licensing and visible attribution.
+
+| Adaptation | Primary source | What is actually reused and changed |
+| --- | --- | --- |
+| Ethereal | https://html5up.net/ethereal | Its horizontal panel/banner/spotlight architecture and full base CSS. Stock images and remote font/icon imports are replaced; the cat content, Syne/Karla, warm gradients and custom finite motion are local. Mobile uses vertical reading. |
+| Dimension | https://html5up.net/dimension | Its full-stage background, logo/connecting rules, central navigation and article-room structure with the full base CSS. Space Mono, cat imagery, native dialogs and bounded parallax replace the demo content and jQuery interaction layer. |
+| Multiverse | https://html5up.net/multiverse | Its photographic wall, thumbnail/caption treatment and fixed bottom navigation with the full base CSS. Bodoni Moda/Karla, an asymmetric photo grid, native expanding lightbox and right-side content drawers adapt the template to the same cat material. |
+
+This is deliberate reuse of licensed template code, not a claim that the layouts were invented here. Sources are HTML5 UP / AJ under [CC BY 3.0](https://html5up.net/license). Each `templates/<name>/LICENSE.txt` is retained. Adapted files are `index.html`, `template.css`, `edition.css` and `edition.js`; original template headers remain in `template.css`. No original demo photographs, remote icon library or jQuery runtime is shipped. Local fonts use their included OFL licenses; photo sources are listed in SOURCES.md.
+
+## Motion ownership and interaction
+
+The template-specific scripts own page choreography; `shared.js` owns its finite WAAPI effects, cancels them on visibility/policy changes, and samples visible photo transforms before close. Geometry and information remain usable with motion off. Image decoding and a revision guard prevent old photo loads from overwriting a newer selection. Native dialogs provide modal semantics, Escape and focus return; root scroll is locked while a dialog is open, with contained inner scrolling. The viewer keeps close/previous/next controls in the viewport, including 320px layouts.
+
+Ethereal follows native horizontal scroll, with scene controls and a desktop vertical-wheel mapping that yields to genuinely scrollable inner content. Ctrl+wheel is not intercepted. Mobile has normal document scroll. Dimension keeps pointer parallax bounded and restricted to fine pointers. Multiverse image entrances are triggered once on intersection; caption hover/zoom also has keyboard focus and static touch/reduced-motion states. There is no idle RAF loop or mandatory 3D effect.
+
+The first-pass work below is preserved as a historical experiment, not the current implementation or current source attribution.
+
+---
+
+# Historical first-pass motion editions
 
 Brief: keep the feline content and functions, but explore three distinctly expressive compositions. Walter delegated design selection and publication; no intermediate sketch approval was required. The original five editions and prior trial evidence remain.
 

@@ -1,14 +1,24 @@
-# Cat Visual Playground — eight visual systems
+# Cat Visual Playground — five originals and three complete templates
 
-## Motion editions — 2026-10-28
+## Reference-template rebuild — 2026-10-28
 
-Three new, independently scoped editions join the original five. **Night Safari** combines night-vision typography, a pointer-responsive portrait and a scroll-scrubbed filmstrip. **Paper Riot** uses a poster collage, alternating photographic rows and repeated image layers on hover, focus or the photo button. **Prism Room** opens a panoramic aperture and unfolds contact sheets in perspective as the visitor scrolls. See [design decisions and references](design-motion.md).
+The three recent motion editions were rejected for insufficient typographic and structural variety. Their replacements adapt **complete, licensed HTML5 UP templates**, each with a separate HTML architecture and its original template stylesheet, rather than recoloring the same page.
 
-Choose any edition in the native selector. Optional `?style=night-safari`, `?style=paper-riot` or `?style=prism-room` links select that edition; subsequent changes update the parameter. A validated local preference preserves the selected style. The original default remains Editorial.
+| Selector | Complete source template | Local typefaces | Composition and interaction |
+| --- | --- | --- | --- |
+| Ethereal | [Ethereal](https://html5up.net/ethereal) | Syne + Karla | Horizontal photographic story; desktop wheel/scene navigation, vertical mobile reading, scene entrances and photo expansion. |
+| Dimension | [Dimension](https://html5up.net/dimension) | Space Mono | Full-screen cat photograph, connected navigation and animated modal rooms; bounded pointer parallax. |
+| Multiverse | [Multiverse](https://html5up.net/multiverse) | Bodoni Moda + Karla | Edge-to-edge photographic wall, hover captions/zoom, image reveals, expanding photo viewer and lateral content drawers. |
 
-`expressive.css` and `expressive.js` contain the additions. No library, remote runtime asset, new font or installation is required. Existing content, photos, credits, favicon and shared functions remain. Motion controls appear only in the new editions. Motion off and OS reduced-motion use a static, fully spread layout. Short/narrow viewports use normal vertical galleries rather than pinned scenes. Keyboard focus brings a scrubbed card into view; photo gestures work with a button as well as pointer/focus. Work is confined to `cats/`.
+The existing five remain at `index.html?style=editorial|playful|hub|dark-retro|pastel-pink`. The selector still has eight editions. Compatibility ids `night-safari`, `paper-riot` and `prism-room` now route to `templates/ethereal/`, `templates/dimension/` and `templates/multiverse/`. Saved preferences and old deep links resolve to the replacement pages. Original editions keep their shared page and styles; the three templates have independent pages. No framework or global installation is needed.
 
-Current checks: browser rendering and interactions at 1440×1000, 1366×800 and mobile viewport sizes 390×844 / 320×740; scroll start/intermediate/end, image repetition, shared tabs (including keyboard), facts, signals, motion off/on, rapid theme changes and preference restoration. The five original editions retain their assets/styles and hide the new controls. JavaScript syntax and scoped-diff checks are included. OS reduced-motion rules and listener policy were inspected; a physical mobile device, screen reader, Safari/Firefox and an actual OS preference change were not tested. Screenshots and machine-readable release evidence are retained with the local delivery, outside this repository.
+`templates/shared.js` shares only the original tabs, facts, signals, native selector, motion policy and photo/dialog controls. Original field-guide, fact and signal content is preserved. New photography and locally served fonts have explicit provenance in [SOURCES.md](SOURCES.md) and [credits.html](credits.html). Each adapted page visibly credits its HTML5 UP source, links its retained CC BY 3.0 license and identifies itself as an adaptation. See [design and motion decisions](design-motion.md).
+
+Motion off and OS reduced-motion expose complete static content; hover text is visible on touch layouts. Escape closes the topmost native dialog and restores focus. Photo previous/next controls also accept arrow keys. Tabs support keyboard navigation. Desktop Ethereal maps vertical wheel input to its horizontal story only when an inner reading area cannot scroll; Ctrl+wheel and horizontal gestures are preserved. On mobile the story uses normal vertical scroll. No continuous animation loop, replacement cursor, remote runtime asset or WebGL dependency is used.
+
+Verification evidence is retained outside the checkout in the local `cats-reference-rebuild-2026-10-28/qa/` delivery folder. It covers Chromium desktop and 390/320px mobile emulation, routing, tabs, facts, signal disclosures, nested dialogs, photo navigation, focus return, motion persistence and original-edition regression. Static checks cover local asset references, IDs/ARIA targets, JavaScript syntax and a cats-only Git diff. Physical mobile devices, Safari/Firefox, a screen reader and an actual OS reduced-motion preference change were not tested; the reduced-motion listener and CSS fallback were inspected.
+
+The previous rejected edition sources `expressive.css` / `expressive.js` and the original review evidence remain as history, but are not loaded by any current page. The prior public release also has verified local Git bundles and a dedicated backup branch. Work is confined to `cats/`; the Hub, games, other repositories and toolkit are outside this change.
 
 ## Historical five-edition trial record
 
