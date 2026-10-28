@@ -7,12 +7,17 @@ window.catThemes = Object.freeze([
   { id: 'playful', name: 'Playful', color: '#244d49', background: '#ffdf63', desktopTabs: 'horizontal', duration: 280, easing: 'ease-out', offset: 6 },
   { id: 'hub', name: 'Personal Hub', color: '#8bd6df', background: '#0b1012', desktopTabs: 'vertical', mobileTabs: 'vertical', duration: 180, easing: 'ease-out', offset: 3 },
   { id: 'dark-retro', name: 'Dark Retro', color: '#f0bf6b', background: '#181d1b', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 240, easing: 'steps(5, end)', offset: 0 },
-  { id: 'pastel-pink', name: 'Pastel Pink', color: '#9b476b', background: '#f9e7ed', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 520, easing: 'cubic-bezier(.2,.7,.3,1)', offset: 8 }
+  { id: 'pastel-pink', name: 'Pastel Pink', color: '#9b476b', background: '#f9e7ed', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 520, easing: 'cubic-bezier(.2,.7,.3,1)', offset: 8 },
+  { id: 'night-safari', name: 'Night Safari', color: '#d5ff62', background: '#11140e', desktopTabs: 'vertical', mobileTabs: 'vertical', duration: 650, easing: 'cubic-bezier(.2,.8,.2,1)', offset: 20, expressive: true },
+  { id: 'paper-riot', name: 'Paper Riot', color: '#283bd9', background: '#f5f0e4', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 450, easing: 'cubic-bezier(.2,.8,.2,1)', offset: 25, expressive: true },
+  { id: 'prism-room', name: 'Prism Room', color: '#6331c8', background: '#eae5f3', desktopTabs: 'vertical', mobileTabs: 'vertical', duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)', offset: 18, expressive: true }
 ]);
 
 // This small local script runs before the stylesheets, preventing a default-theme flash.
 let savedCatStyle;
 try { savedCatStyle = localStorage.getItem('cat-visual-style'); } catch { /* Storage is optional. */ }
-const initialCatTheme = window.catThemes.find(theme => theme.id === savedCatStyle) || window.catThemes[0];
+const requestedCatStyle = new URLSearchParams(location.search).get('style');
+const initialCatTheme = window.catThemes.find(theme => theme.id === requestedCatStyle)
+  || window.catThemes.find(theme => theme.id === savedCatStyle) || window.catThemes[0];
 document.documentElement.dataset.style = initialCatTheme.id;
 document.querySelector('meta[name="theme-color"]').content = initialCatTheme.background;

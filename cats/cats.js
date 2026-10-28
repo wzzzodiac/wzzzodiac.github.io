@@ -9,7 +9,12 @@ let styleTransition;
 let styleRequest = 0;
 let activeTheme = themes.find(theme => theme.id === root.dataset.style) || themes[0];
 
-themes.forEach(theme => styleSelect.add(new Option(theme.name, theme.id)));
+for (const expressive of [false, true]) {
+  const group = document.createElement('optgroup');
+  group.label = expressive ? 'Motion editions · new' : 'Original editions';
+  themes.filter(theme => Boolean(theme.expressive) === expressive).forEach(theme => group.append(new Option(theme.name, theme.id)));
+  styleSelect.append(group);
+}
 
 function syncTabOrientation() {
   document.querySelector('[role="tablist"]').setAttribute('aria-orientation',
@@ -17,7 +22,7 @@ function syncTabOrientation() {
 }
 
 function animateContent(element) {
-  if (reducedMotion.matches) return;
+  if (reducedMotion.matches || (activeTheme.expressive && root.dataset.motion === 'off')) return;
   element.getAnimations().forEach(animation => animation.cancel());
   element.animate(
     [{ opacity: 0.35, transform: `translateY(${activeTheme.offset}px)` }, { opacity: 1, transform: 'translateY(0)' }],
@@ -33,6 +38,7 @@ function applyStyle(style) {
   document.querySelector('.style-swatch').style.backgroundColor = activeTheme.color;
   document.querySelector('meta[name="theme-color"]').content = activeTheme.background;
   try { localStorage.setItem('cat-visual-style', activeTheme.id); } catch { /* Storage is optional. */ }
+  window.dispatchEvent(new CustomEvent('cat:style', { detail: activeTheme.id }));
 }
 
 applyStyle(root.dataset.style);
@@ -119,7 +125,7 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      animateContent(entry.target);
+      if (!activeTheme.expressive) animateContent(entry.target);
       observer.unobserve(entry.target);
     });
   }, { threshold: 0.12 });
