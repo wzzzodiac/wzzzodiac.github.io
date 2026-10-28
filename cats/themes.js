@@ -20,4 +20,5 @@ const requestedCatStyle = new URLSearchParams(location.search).get('style');
 const initialCatTheme = window.catThemes.find(theme => theme.id === requestedCatStyle)
   || window.catThemes.find(theme => theme.id === savedCatStyle) || window.catThemes[0];
 document.documentElement.dataset.style = initialCatTheme.id;
+document.documentElement.dataset.expressive = String(Boolean(initialCatTheme.expressive));
 document.querySelector('meta[name="theme-color"]').content = initialCatTheme.background;

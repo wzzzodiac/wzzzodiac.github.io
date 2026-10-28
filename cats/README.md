@@ -1,4 +1,18 @@
-# Cat Visual Playground — five visual systems
+# Cat Visual Playground — eight visual systems
+
+## Motion editions — 2026-10-28
+
+Three new, independently scoped editions join the original five. **Night Safari** combines night-vision typography, a pointer-responsive portrait and a scroll-scrubbed filmstrip. **Paper Riot** uses a poster collage, alternating photographic rows and repeated image layers on hover, focus or the photo button. **Prism Room** opens a panoramic aperture and unfolds contact sheets in perspective as the visitor scrolls. See [design decisions and references](design-motion.md).
+
+Choose any edition in the native selector. Optional `?style=night-safari`, `?style=paper-riot` or `?style=prism-room` links select that edition; subsequent changes update the parameter. A validated local preference preserves the selected style. The original default remains Editorial.
+
+`expressive.css` and `expressive.js` contain the additions. No library, remote runtime asset, new font or installation is required. Existing content, photos, credits, favicon and shared functions remain. Motion controls appear only in the new editions. Motion off and OS reduced-motion use a static, fully spread layout. Short/narrow viewports use normal vertical galleries rather than pinned scenes. Keyboard focus brings a scrubbed card into view; photo gestures work with a button as well as pointer/focus. Work is confined to `cats/`.
+
+Current checks: browser rendering and interactions at 1440×1000, 1366×800 and mobile viewport sizes 390×844 / 320×740; scroll start/intermediate/end, image repetition, shared tabs (including keyboard), facts, signals, motion off/on, rapid theme changes and preference restoration. The five original editions retain their assets/styles and hide the new controls. JavaScript syntax and scoped-diff checks are included. OS reduced-motion rules and listener policy were inspected; a physical mobile device, screen reader, Safari/Firefox and an actual OS preference change were not tested. Screenshots and machine-readable release evidence are retained with the local delivery, outside this repository.
+
+## Historical five-edition trial record
+
+The sections below preserve the 2026-10-02 trial and its evidence. Its review-branch/publication statements describe that historical stage, not the authorized eight-edition release above.
 
 Static experiment at `/cats/`. Second iteration: branch `cats-more-visuals`, based on `main` at `8c274ad9ed4fcffd767cc60252239623122e4452`, fetched/pulled from a clean checkout on 2026-10-02. This iteration changes only `cats/`; project 13, counts, Featured Projects, the root Hub and Toolkit remain unchanged.
 

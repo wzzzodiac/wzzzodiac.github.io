@@ -33,11 +33,17 @@ function animateContent(element) {
 function applyStyle(style) {
   activeTheme = themes.find(theme => theme.id === style) || themes[0];
   root.dataset.style = activeTheme.id;
+  root.dataset.expressive = String(Boolean(activeTheme.expressive));
   syncTabOrientation();
   styleSelect.value = activeTheme.id;
   document.querySelector('.style-swatch').style.backgroundColor = activeTheme.color;
   document.querySelector('meta[name="theme-color"]').content = activeTheme.background;
   try { localStorage.setItem('cat-visual-style', activeTheme.id); } catch { /* Storage is optional. */ }
+  if (new URLSearchParams(location.search).has('style')) {
+    const url = new URL(location.href);
+    url.searchParams.set('style', activeTheme.id);
+    history.replaceState(null, '', url);
+  }
   window.dispatchEvent(new CustomEvent('cat:style', { detail: activeTheme.id }));
 }
 
