@@ -1,3 +1,13 @@
+# Cat editions — Visual Playground
+
+## Current collection — 2026-11-08
+
+The public collection is now [Visual Playground](../visual-playground/), with Editorial, Personal Hub, Pastel Pink, Dimension, Multiverse and CASI. The five cat designs remain intact. The temporary voice-call proof banner has been removed from the shared page used by the three original active editions. Playful, Dark Retro and Ethereal remain available through legacy direct links, but are archived and omitted from all current selectors. Source credits and licenses are retained.
+
+## Historical implementation record
+
+The material below describes earlier releases, not the current catalogue selection.
+
 # Cat Visual Playground — five originals and three complete templates
 
 ## Reference-template rebuild — 2026-10-28

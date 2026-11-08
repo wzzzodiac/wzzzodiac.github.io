@@ -12,8 +12,8 @@ let activeTheme = themes.find(theme => theme.id === root.dataset.style) || theme
 
 for (const expressive of [false, true]) {
   const group = document.createElement('optgroup');
-  group.label = expressive ? 'Reference templates · new' : 'Original editions';
-  themes.filter(theme => Boolean(theme.template) === expressive).forEach(theme => group.append(new Option(theme.name, theme.id)));
+  group.label = expressive ? 'Full-page editions' : 'Original editions';
+  themes.filter(theme => !theme.archived && Boolean(theme.template) === expressive).forEach(theme => group.append(new Option(theme.name, theme.id)));
   styleSelect.append(group);
 }
 
