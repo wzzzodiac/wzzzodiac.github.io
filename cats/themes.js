@@ -3,13 +3,13 @@
 // Route metadata for direct edition links and pre-paint restoration.
 // The Visual Playground catalogue lists the six active editions.
 window.catThemes = Object.freeze([
-  { id: 'editorial', name: 'Domingo', color: '#9c482d', background: '#f5f2e9', desktopTabs: 'vertical', duration: 420, easing: 'ease-out', offset: 6, path: '../visual-playground/domingo/', template: true },
+  { id: 'editorial', name: 'Sunday', color: '#9c482d', background: '#f5f2e9', desktopTabs: 'vertical', duration: 420, easing: 'ease-out', offset: 6, path: '../visual-playground/domingo/', template: true },
   { id: 'playful', archived: true, name: 'Playful', color: '#244d49', background: '#ffdf63', desktopTabs: 'horizontal', duration: 280, easing: 'ease-out', offset: 6 },
-  { id: 'hub', name: 'Fuera de Servicio', color: '#8bd6df', background: '#0b1012', desktopTabs: 'vertical', mobileTabs: 'vertical', duration: 180, easing: 'ease-out', offset: 3, path: '../visual-playground/fuera-de-servicio/', template: true },
+  { id: 'hub', name: 'Out of Service', color: '#8bd6df', background: '#0b1012', desktopTabs: 'vertical', mobileTabs: 'vertical', duration: 180, easing: 'ease-out', offset: 3, path: '../visual-playground/fuera-de-servicio/', template: true },
   { id: 'dark-retro', archived: true, name: 'Dark Retro', color: '#f0bf6b', background: '#181d1b', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 240, easing: 'steps(5, end)', offset: 0 },
-  { id: 'pastel-pink', name: 'Miga', color: '#9b476b', background: '#f9e7ed', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 520, easing: 'cubic-bezier(.2,.7,.3,1)', offset: 8, path: '../visual-playground/miga/', template: true },
+  { id: 'pastel-pink', name: 'Crumb', color: '#9b476b', background: '#f9e7ed', desktopTabs: 'horizontal', mobileTabs: 'vertical', duration: 520, easing: 'cubic-bezier(.2,.7,.3,1)', offset: 8, path: '../visual-playground/miga/', template: true },
   { id: 'night-safari', archived: true, name: 'Ethereal', color: '#b75a48', background: '#ede3dc', path: 'templates/ethereal/', template: true },
-  { id: 'paper-riot', name: 'Última Transmisión', color: '#b0d9cb', background: '#071419', path: '../visual-playground/ultima-transmision/', template: true },
+  { id: 'paper-riot', name: 'Last Transmission', color: '#b0d9cb', background: '#071419', path: '../visual-playground/ultima-transmision/', template: true },
   { id: 'prism-room', name: 'Multiverse', color: '#681e35', background: '#f3efe8', path: 'templates/multiverse/', template: true },
   { id: 'casi', name: 'CASI', color: '#283cff', background: '#f4482f', path: '../visual-playground/casi/', template: true }
 ]);

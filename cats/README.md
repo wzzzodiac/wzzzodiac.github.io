@@ -2,7 +2,7 @@
 
 ## Current collection | 2026-11-08
 
-The active collection is [Visual Playground](../visual-playground/): Domingo, Fuera de Servicio, Miga, Última Transmisión, Multiverse and CASI. Multiverse is the only active cat design. Old Editorial, Hub, Pastel Pink and Dimension URLs route to their new subjects. Their earlier sources remain in Git history. Archived Playful, Dark Retro and Ethereal retain their existing direct routes. Each active design links back to the catalogue; there are no style selectors. Source credits and licenses are preserved.
+The active collection is [Visual Playground](../visual-playground/): Sunday, Out of Service, Crumb, Last Transmission, Multiverse and CASI. Multiverse is the only active cat design. Old Editorial, Hub, Pastel Pink and Dimension URLs route to their new subjects. Their earlier sources remain in Git history. Archived Playful, Dark Retro and Ethereal retain their existing direct routes. Each active design links back to the catalogue; there are no style selectors. Source credits and licenses are preserved.
 
 ## Historical implementation record
 
