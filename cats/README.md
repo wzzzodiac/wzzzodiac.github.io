@@ -1,8 +1,8 @@
-# Cat editions — Visual Playground
+# Cat editions | Visual Playground
 
-## Current collection — 2026-11-08
+## Current collection | 2026-11-08
 
-The public collection is now [Visual Playground](../visual-playground/), with Editorial, Personal Hub, Pastel Pink, Dimension, Multiverse and CASI. The five cat designs remain intact. The temporary voice-call proof banner has been removed from the shared page used by the three original active editions. Playful, Dark Retro and Ethereal remain available through legacy direct links, but are archived and omitted from the current catalogue. Each edition links back to the catalogue; there are no style selectors inside the pages. Source credits and licenses are retained.
+The active collection is [Visual Playground](../visual-playground/): Domingo, Fuera de Servicio, Miga, Última Transmisión, Multiverse and CASI. Multiverse is the only active cat design. Old Editorial, Hub, Pastel Pink and Dimension URLs route to their new subjects. Their earlier sources remain in Git history. Archived Playful, Dark Retro and Ethereal retain their existing direct routes. Each active design links back to the catalogue; there are no style selectors. Source credits and licenses are preserved.
 
 ## Historical implementation record
 
