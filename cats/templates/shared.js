@@ -1,7 +1,7 @@
 'use strict';
 (() => {
   const root=document.documentElement, media=matchMedia('(prefers-reduced-motion: reduce)');
-  const selector=document.querySelector('#visual-style'), motionButton=document.querySelector('#motion-toggle');
+  const motionButton=document.querySelector('#motion-toggle');
   const id=root.dataset.template;
   let wanted=true;try{wanted=localStorage.getItem('cat-motion')!=='off';localStorage.setItem('cat-visual-style',id);}catch{/* Optional preferences. */}
   const effects=new Set(), subscribers=new Set();
@@ -9,8 +9,6 @@
   function animate(el,frames,options){if(!isOn()||!el.animate)return;const a=el.animate(frames,options);effects.add(a);a.finished.then(()=>effects.delete(a),()=>effects.delete(a));return a;}
   function update(){root.dataset.motion=wanted&&!media.matches?'on':'off';motionButton.textContent=media.matches?'Reduced motion':wanted?'Motion on':'Motion off';motionButton.disabled=media.matches;motionButton.setAttribute('aria-pressed',String(wanted&&!media.matches));effects.forEach(a=>a.cancel());effects.clear();subscribers.forEach(fn=>fn());}
   window.catMotion={isOn,animate,subscribe:fn=>subscribers.add(fn)};
-  for(const templated of [false,true]){const group=document.createElement('optgroup');group.label=templated?'Full-page editions':'Original editions';window.catThemes.filter(t=>!t.archived&&Boolean(t.template)===templated).forEach(t=>group.append(new Option(t.name,t.id)));selector.append(group);}
-  selector.value=id;selector.addEventListener('change',()=>{try{localStorage.setItem('cat-visual-style',selector.value);}catch{}location.assign(window.catThemeURL(selector.value));});
   motionButton.addEventListener('click',()=>{wanted=!wanted;try{localStorage.setItem('cat-motion',wanted?'on':'off');}catch{}update();});
   media.addEventListener('change',update);document.addEventListener('visibilitychange',update);update();
 

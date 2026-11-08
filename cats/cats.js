@@ -4,18 +4,8 @@ if (!window.catIsRouting) {
 const root = document.documentElement;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const themes = window.catThemes;
-const styleSelect = document.getElementById('visual-style');
 const wideLayout = matchMedia('(min-width: 800px)');
-let styleTransition;
-let styleRequest = 0;
 let activeTheme = themes.find(theme => theme.id === root.dataset.style) || themes[0];
-
-for (const expressive of [false, true]) {
-  const group = document.createElement('optgroup');
-  group.label = expressive ? 'Full-page editions' : 'Original editions';
-  themes.filter(theme => !theme.archived && Boolean(theme.template) === expressive).forEach(theme => group.append(new Option(theme.name, theme.id)));
-  styleSelect.append(group);
-}
 
 function syncTabOrientation() {
   document.querySelector('[role="tablist"]').setAttribute('aria-orientation',
@@ -37,8 +27,6 @@ function applyStyle(style) {
   root.dataset.style = activeTheme.id;
   root.dataset.expressive = String(Boolean(activeTheme.expressive));
   syncTabOrientation();
-  styleSelect.value = activeTheme.id;
-  document.querySelector('.style-swatch').style.backgroundColor = activeTheme.color;
   document.querySelector('meta[name="theme-color"]').content = activeTheme.background;
   try { localStorage.setItem('cat-visual-style', activeTheme.id); } catch { /* Storage is optional. */ }
   if (new URLSearchParams(location.search).has('style')) {
@@ -50,22 +38,6 @@ function applyStyle(style) {
 }
 
 applyStyle(root.dataset.style);
-document.querySelector('.style-picker').hidden = false;
-styleSelect.addEventListener('change', () => {
-  const style = styleSelect.value;
-  const request = ++styleRequest;
-  if (styleTransition) styleTransition.skipTransition();
-  const update = () => { if (request === styleRequest) applyStyle(style); };
-  if (document.startViewTransition && !reducedMotion.matches) {
-    styleTransition = document.startViewTransition(update);
-    styleTransition.ready.catch(() => { /* Skipping a transition rejects ready, even if its update succeeds. */ });
-    styleTransition.finished.catch(() => { /* A newer selection may supersede this transition. */ });
-  } else {
-    update();
-    animateContent(document.querySelector('.hero'));
-  }
-});
-
 const tabList = document.querySelector('[role="tablist"]');
 const tabs = [...tabList.querySelectorAll('[role="tab"]')];
 function selectTab(selected, focus = false) {
@@ -141,7 +113,6 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
 }
 reducedMotion.addEventListener('change', () => {
   if (!reducedMotion.matches) return;
-  styleTransition?.skipTransition();
   document.getAnimations().forEach(animation => animation.cancel());
 });
 }

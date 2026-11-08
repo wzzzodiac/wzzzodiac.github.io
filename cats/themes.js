@@ -1,7 +1,7 @@
 'use strict';
 
-// One registry for the native selector, pre-paint restoration and motion metadata.
-// Archived entries preserve old direct links; only the six active editions appear in selectors.
+// Route metadata for direct edition links and pre-paint restoration.
+// The Visual Playground catalogue lists the six active editions.
 window.catThemes = Object.freeze([
   { id: 'editorial', name: 'Editorial', color: '#9c482d', background: '#f5f2e9', desktopTabs: 'vertical', duration: 420, easing: 'ease-out', offset: 6 },
   { id: 'playful', archived: true, name: 'Playful', color: '#244d49', background: '#ffdf63', desktopTabs: 'horizontal', duration: 280, easing: 'ease-out', offset: 6 },
