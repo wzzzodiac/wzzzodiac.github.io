@@ -37,7 +37,8 @@
 /* Vector navigation icons share color and scale without emoji font fallback. */
 .ui-arrow{display:inline-block;width:1em;height:1em;flex:none;vertical-align:-.12em}
 .site-header nav a{display:inline-flex;align-items:center;gap:.4em}
-@media(max-width:360px){.site-header nav{column-gap:8px;row-gap:4px}}
+@media(max-width:480px){.site-header nav{column-gap:9px;row-gap:4px}}
+@media(max-width:360px){.site-header{padding-inline:14px}.site-header nav{column-gap:7px}}
 
 /* Project windows: real screenshots, large enough to recognize the experience. */
 .project-preview{display:block;position:relative;width:112px;aspect-ratio:8/5;overflow:hidden;background:#142019;border:1px solid #687b6a;isolation:isolate}
@@ -54,3 +55,53 @@
 @media(prefers-reduced-motion:reduce){.drawer .project-preview img{transition:none;transform:none!important}}
 html[data-motion=off] .drawer .project-preview img{transition:none;transform:none!important}
 @media(min-width:701px) and (max-width:1000px){.inventory .project-preview{width:90px}}
+
+.log-page {
+  max-width: 800px;
+  margin-bottom: 56px;
+}
+
+.log-page .page-intro {
+  padding-bottom: 24px;
+}
+
+.log-entry {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 20px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.log-entry time {
+  padding-top: 5px;
+  color: var(--mint);
+  font: 12px/1.5 Consolas, "Courier New", monospace;
+}
+
+.log-entry h2,
+.log-entry p {
+  overflow-wrap: anywhere;
+}
+
+.log-entry h2 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+
+.log-entry p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 540px) {
+  .log-entry {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .log-entry time {
+    padding-top: 0;
+  }
+}
