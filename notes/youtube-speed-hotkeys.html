@@ -4,8 +4,8 @@
         <a class="article-back" href="../field-notes.html"><svg class="ui-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 8H3M8 3 3 8l5 5"/></svg> FIELD NOTES</a>
 
         <span class="notes-code">NOTE 004 // YOUTUBE / TAMPERMONKEY</span>
-        <h1>YouTube playback-speed hotkeys</h1>
-        <p>A tiny userscript for immediate playback control: 0.25×, 1×, 2×, 3× and 4× from the keyboard, plus temporary 2× while holding <code>Q</code>.</p>
+        <h1>YouTube playback hotkeys</h1>
+        <p>A small Tampermonkey userscript for fixed 1×–4× playback, pause and resume, time jumps and adaptive volume steps.</p>
 
       </header>
       <div class="note-reading-grid">
@@ -18,7 +18,7 @@
 
       <div class="article-callout">
         <strong>What this solves</strong>
-        <p>No menus and no repeated clicks. The script changes the playback rate of the current YouTube video and ignores the hotkeys while you are typing in search, comments or other text fields.</p>
+        <p>Control the current YouTube video from the keyboard, with smaller volume steps near silence. The hotkeys are ignored while you are typing in search, comments or other text fields.</p>
       </div>
 
       <section class="article-step" id="note-step-1">
@@ -28,108 +28,274 @@
 
       <section class="article-step" id="note-step-2">
         <span class="step-number">02</span>
-        <div><h2>Create a new userscript</h2><p>Open Tampermonkey and choose <strong>Create a new script</strong> / <strong>Neues Skript erstellen</strong>. Delete the default content and paste the current script below.</p>
+        <div><h2>Create a new userscript</h2><p>Open Tampermonkey and choose <strong>Create a new script</strong> / <strong>Neues Skript erstellen</strong>. Replace the entire editor content with version <strong>2.2</strong> below, including its metadata header. If you are updating an existing script, replace its full contents and disable any older duplicate copies.</p>
 <pre class="code-scroll"><code>// ==UserScript==
 // @name         YouTube Speed Hotkeys Fixed
+// @version      2.2
+// @description  1-4 velocidad, 5 pausa, 6 seguir, 7 -10s, 8 +1min, 9 +10s, 0 -1min, -/+ volumen adaptativo
 // @match        https://www.youtube.com/*
 // @match        https://youtube.com/*
-// @grant        none
-// @run-at       document-idle
+// @grant        unsafeWindow
+// @sandbox      JavaScript
+// @run-at       document-start
 // ==/UserScript==
 
 (function () {
-  function getVideo() {
-    return document.querySelector("video");
-  }
+    'use strict';
 
-  function isTyping() {
-    const el = document.activeElement;
-    if (!el) return false;
-
-    const tag = el.tagName?.toLowerCase();
-    return (
-      tag === "input" ||
-      tag === "textarea" ||
-      el.isContentEditable
-    );
-  }
-
-  function setSpeed(rate) {
-    const video = getVideo();
-    if (!video) return;
-
-    video.playbackRate = rate;
-    console.log("YouTube speed set to:", rate);
-  }
-
-  window.addEventListener("keydown", function (e) {
-    if (isTyping()) return;
-
-    if (e.key === "2") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(2);
+    function clamp(value, minimum, maximum) {
+        return Math.max(minimum, Math.min(maximum, value));
     }
 
-    if (e.key === "0") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(0.25);
+    // Pasos de 1 punto entre 0 y 10%; de 10 puntos por encima.
+    function nextVolumePercent(volume, delta) {
+        const percent = clamp(Math.round(volume * 100), 0, 100);
+        if (delta &gt; 0) {
+            return percent &lt; 10 ? percent + 1 : Math.min(100, percent + 10);
+        }
+        if (delta &lt; 0) {
+            return percent &lt;= 10 ? Math.max(0, percent - 1) : Math.max(10, percent - 10);
+        }
+        return percent;
     }
 
-    if (e.key === "1") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(1);
+    function commandFromKey(key) {
+        const fixedRates = {
+            '1': 1,
+            '2': 2,
+            '3': 3,
+            '4': 4
+        };
+
+        if (fixedRates[key] !== undefined) {
+            return {
+                type: 'set-rate',
+                rate: fixedRates[key]
+            };
+        }
+
+        if (key === '+' || key === '=') {
+            return {
+                type: 'adjust-volume',
+                delta: 0.1
+            };
+        }
+
+        if (key === '-') {
+            return {
+                type: 'adjust-volume',
+                delta: -0.1
+            };
+        }
+
+        if (key === '5') {
+            return {
+                type: 'playback-state',
+                state: 'pause'
+            };
+        }
+
+        if (key === '6') {
+            return {
+                type: 'playback-state',
+                state: 'play'
+            };
+        }
+
+        if (key === '0') {
+            return {
+                type: 'seek',
+                seconds: -60
+            };
+        }
+
+        if (key === '7') {
+            return {
+                type: 'seek',
+                seconds: -10
+            };
+        }
+
+        if (key === '8') {
+            return {
+                type: 'seek',
+                seconds: 60
+            };
+        }
+
+        if (key === '9') {
+            return {
+                type: 'seek',
+                seconds: 10
+            };
+        }
+
+        return null;
     }
 
-    if (e.key === "3") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(3);
+    function isTyping(event) {
+        return event.composedPath().some(element =&gt;
+            ['INPUT', 'TEXTAREA', 'SELECT'].includes(element.tagName) ||
+            element.isContentEditable
+        ) || document.activeElement?.isContentEditable;
     }
 
-    if (e.key === "4") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(4);
+    function getVideo() {
+        // Prioriza el reproductor principal sobre las vistas previas.
+        return document.querySelector('#movie_player video') ||
+            document.querySelector('video');
     }
 
-    if (e.key.toLowerCase() === "q") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(2);
-    }
-  }, true);
+    const pageWindow = typeof unsafeWindow !== 'undefined' ? unsafeWindow : window;
+    let statusTimer;
+    let volumeCommandId = 0;
 
-  window.addEventListener("keyup", function (e) {
-    if (isTyping()) return;
-
-    if (e.key.toLowerCase() === "q") {
-      e.preventDefault();
-      e.stopPropagation();
-      setSpeed(1);
+    function showStatus(text, error = false) {
+        const host = document.fullscreenElement || document.body || document.documentElement;
+        if (!host) return;
+        let status = document.getElementById('yt-hotkeys-status');
+        if (!status) {
+            status = document.createElement('div');
+            status.id = 'yt-hotkeys-status';
+            status.setAttribute('role', 'status');
+            status.dataset.ytHotkeysVersion = '2.2';
+            status.style.cssText = 'position:fixed;top:80px;right:20px;z-index:2147483647;padding:10px 14px;border-radius:8px;background:#161616ee;color:#fff;font:14px/1.4 Arial,sans-serif;pointer-events:none;max-width:420px;box-shadow:0 2px 12px #0008';
+        }
+        if (status.parentNode !== host) host.appendChild(status);
+        status.style.border = `1px solid ${error ? '#ff8888' : '#69d4bc'}`;
+        status.textContent = `YT 2.2 · ${text}`;
+        clearTimeout(statusTimer);
+        statusTimer = setTimeout(() =&gt; status.remove(), 4500);
     }
-  }, true);
+
+    function getPagePlayer(video) {
+        // Pedir explícitamente el objeto del mundo JavaScript de la página.
+        // Un elemento DOM de un contexto aislado puede no exponer setVolume.
+        const player = pageWindow.document.getElementById('movie_player');
+        if (player?.contains(video)) return player;
+        return null;
+    }
+
+    function adjustVolume(video, delta) {
+        const commandId = ++volumeCommandId;
+        const player = getPagePlayer(video);
+        if (typeof player?.setVolume !== 'function' || typeof player?.getVolume !== 'function') {
+            showStatus('sin conexión al control de YouTube. No se ha cambiado el volumen.', true);
+            console.warn('YT Hotkeys 2.2: falta acceso a getVolume/setVolume en el contexto de página.');
+            return;
+        }
+
+        const percent = player.getVolume();
+        if (!Number.isFinite(percent)) {
+            showStatus('YouTube todavía no informa de su volumen. Prueba otra vez.', true);
+            return;
+        }
+        const muted = typeof player.isMuted === 'function' ? player.isMuted() : video.muted;
+        const nextPercent = nextVolumePercent(muted ? 0 : clamp(percent, 0, 100) / 100, delta);
+
+        // Se cambia el estado del reproductor, su barra y su valor recordado.
+        // A cero se activa también silencio para que el vídeo quede silenciado.
+        player.setVolume(nextPercent);
+        if (nextPercent === 0) {
+            if (typeof player.mute === 'function') player.mute();
+        } else if (muted) {
+            if (typeof player.unMute !== 'function') {
+                showStatus('YouTube no permite quitar el silencio ahora.', true);
+                return;
+            }
+            player.unMute();
+            player.setVolume(nextPercent);
+        }
+        showStatus(`volumen solicitado: ${nextPercent}%`);
+
+        // Solo se lee el resultado: no se bloquea el control manual del usuario.
+        setTimeout(() =&gt; {
+            if (commandId !== volumeCommandId || getVideo() !== video) return;
+            try {
+                const actual = player.getVolume();
+                const slider = player.querySelector('.ytp-volume-panel[role="slider"]');
+                const sliderValue = slider?.getAttribute('aria-valuenow');
+                const sliderPercent = sliderValue === null || sliderValue === undefined
+                    ? null : Number(sliderValue);
+                const confirmed = Number.isFinite(actual) &amp;&amp; Math.abs(actual - nextPercent) &lt; 0.5 &amp;&amp;
+                    (sliderPercent === null || Math.abs(sliderPercent - nextPercent) &lt; 0.5);
+                const bar = sliderPercent === null ? '' : ` · barra: ${sliderPercent}%`;
+                showStatus(`pedido: ${nextPercent}% · YouTube: ${actual}%${bar}${confirmed ? ' ✓' : ' · sin confirmar'}`, !confirmed);
+            } catch (error) {
+                showStatus('no se pudo verificar el volumen de YouTube.', true);
+                console.debug('YT Hotkeys 2.2: error al verificar volumen', error);
+            }
+        }, 1200);
+    }
+
+    window.addEventListener('keydown', event =&gt; {
+        if (event.isComposing || isTyping(event) || event.ctrlKey || event.metaKey || event.altKey) {
+            return;
+        }
+
+        const command = commandFromKey(event.key);
+        const video = getVideo();
+        if (!command || !video) return;
+
+        // Impide que YouTube use los números para saltar a un porcentaje.
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        try {
+            switch (command.type) {
+                case 'set-rate':
+                    video.playbackRate = command.rate;
+                    break;
+                case 'adjust-volume': {
+                    adjustVolume(video, command.delta);
+                    break;
+                }
+                case 'seek': {
+                    const target = Math.max(0, video.currentTime + command.seconds);
+                    video.currentTime = Number.isFinite(video.duration)
+                        ? Math.min(target, video.duration)
+                        : target;
+                    break;
+                }
+                case 'playback-state':
+                    if (command.state === 'pause') {
+                        video.pause();
+                    } else {
+                        const promise = video.play();
+                        if (promise?.catch) promise.catch(error =&gt; {
+                            console.debug('YouTube: no se pudo reanudar el video', error);
+                        });
+                    }
+                    break;
+            }
+        } catch (error) {
+            if (command.type === 'adjust-volume') showStatus('YouTube rechazó el cambio de volumen.', true);
+            console.debug('YouTube: no se pudo aplicar el control', error);
+        }
+    }, true);
 })();</code></pre></div>
       </section>
 
       <section class="article-step" id="note-step-3">
         <span class="step-number">03</span>
-        <div><h2>Save and reload YouTube</h2><p>Save the userscript with <strong>Ctrl + S</strong>. Open or reload YouTube, then start any video.</p></div>
+        <div><h2>Save and reload YouTube</h2><p>Save the userscript with <strong>Ctrl + S</strong>. Reload YouTube, then start a video. Use <code>-</code> or <code>+</code> to check the <strong>YT 2.2</strong> status badge: it shows the requested volume and checks YouTube’s reported volume and its slider when available. If the player controls cannot be reached, the badge reports the problem.</p></div>
       </section>
 
       <section id="note-summary" class="article-checklist material-panel material-card"><div class="surface-coat" aria-hidden="true"><span class="surface-reflection"></span></div>
         <h2>Hotkeys</h2>
         <ul>
-          <li><code>0</code> → 0.25× playback.</li>
           <li><code>1</code> → normal 1× playback.</li>
           <li><code>2</code> → fixed 2× playback.</li>
           <li><code>3</code> → fixed 3× playback.</li>
           <li><code>4</code> → fixed 4× playback.</li>
-          <li>Hold <code>Q</code> → temporary 2×.</li>
-          <li>Release <code>Q</code> → return to 1×.</li>
-          <li>Typing fields are ignored, so the shortcuts do not interfere with search or comments.</li>
+          <li><code>5</code> → pause.</li>
+          <li><code>6</code> → resume playback.</li>
+          <li><code>7</code> → back 10 seconds.</li>
+          <li><code>8</code> → forward 1 minute.</li>
+          <li><code>9</code> → forward 10 seconds.</li>
+          <li><code>0</code> → back 1 minute.</li>
+          <li><code>-</code> / <code>+</code> (or <code>=</code>) → lower / raise volume: 1 percentage point per step in the 0–10% range, 10 points above it. At zero, the player is muted; raising volume unmutes it.</li>
+          <li>Typing fields, IME input and shortcuts with Ctrl, Alt or Command are ignored.</li>
         </ul>
       </section>
 
